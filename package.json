@@ -1,0 +1,42 @@
+{
+  "name": "lorem-idle",
+  "version": "1.0.0",
+  "description": "A browser-based AFK RPG.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "seed": "node seeds/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elfelfa/lorem-idle.git"
+  },
+  "keywords": [
+    "node",
+    "sequelize",
+    "mysql",
+    "CRUD",
+    "faker",
+    "express"
+  ],
+  "author": "Elfelfa, rahargrave, Jamesgit22, SurosRegime",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "connect-session-sequelize": "^7.0.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  },
+  "bugs": {
+    "url": "https://github.com/Elfelfa/lorem-idle/issues"
+  },
+  "homepage": "https://github.com/Elfelfa/lorem-idle#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0"
+  }
+}
