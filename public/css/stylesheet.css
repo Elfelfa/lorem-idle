@@ -1,0 +1,48 @@
+:root {
+    --text: #FFFFFF;
+    --menubackground: #263142;
+    --menubackgroundtext: #A6A6A6;
+    --black: #000000;
+    --font1: 'MedievalSharp', cursive;
+    --font2: 'Almendra SC', serif;
+}
+
+body {
+    background-image: url("https://preview.redd.it/sltql5d9i1891.png?auto=webp&s=d2e8e57c625e2800904ddb5045727776e3159195");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-y: center;
+}
+
+.profileImg {
+    transform: scale(.8);
+}
+
+.backpackImg {
+    transform: scale(1.5);
+}
+
+.aside {
+    color: var(--text);
+    font-family: var(--font1);
+}
+
+.title{
+    color: var(--menubackground);
+	font-size: 40px;
+    font-family: var(--font2);
+	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+}
+
+.subtitle{
+    font-family: var(--font2);
+}
+
+.player,
+.skills {
+    color: var(--menubackgroundtext);
+    border-color: var(--menubackgroundtext);
+    font-family: var(--font1);
+}
