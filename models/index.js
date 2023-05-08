@@ -1,7 +1,7 @@
 const Skill = require('./Skill');
 const Tool = require('./Tool');
 const Resource = require('./Resource');
-const Users = require('./User');
+const User = require('./User');
 const Inventory = require('./Inventory');
 const Item = require('./Item');
 const Progress = require('./Progress');
@@ -19,4 +19,4 @@ Users.hasMany(Tool);
 
 // Consider having an association between tool and skill. Depends on where we want to put our equip lvl requirement logic.
 
-module.exports = { Skill, Tool, Resource, Users, Inventory, Item, Progress };
+module.exports = { Skill, Tool, Resource, User, Inventory, Item, Progress };
