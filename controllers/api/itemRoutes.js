@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Item } = require('../../models');
 const Auth = require('../../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', Auth, async (req, res) => {
     try {
         const itemData = await Item.findAll();
 
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', Auth, async (req, res) => {
     try {
         const itemData = await Item.findByPk(req.params.id);
 
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
     };
 });
 
-router.get('/bySkill/:skill_id', async (req, res) => {
+router.get('/bySkill/:skill_id', Auth, async (req, res) => {
     try {
         const itemData = await Item.findAll({
             where: {
@@ -36,7 +36,7 @@ router.get('/bySkill/:skill_id', async (req, res) => {
     };
 });
 
-router.get('/value/:id', async (req, res) => {
+router.get('/value/:id', Auth, async (req, res) => {
     try {
         const itemData = await Item.findByPk(req.params.id, {
             attributes: ['value'],
