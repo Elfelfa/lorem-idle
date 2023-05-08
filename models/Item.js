@@ -33,6 +33,10 @@ Item.init(
         skill_name: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        item_icon: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     },
     {
