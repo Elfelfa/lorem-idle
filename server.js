@@ -13,9 +13,9 @@ const hbs = exphbs.create({ helpers });
 const sess = {
     secret: 'lorem is life',
     cookie: {
-        maxAge: 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-        secure: true,
+        secure: false,
         sameSite: strict
     },
     resave: false,
