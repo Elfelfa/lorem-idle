@@ -15,6 +15,18 @@ Tool.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        category_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'skill',
+                key: 'id'
+            }
+        },
+        category_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         modifier: {
             type: DataTypes.DECIMAL,
             allowNull: false,
@@ -22,11 +34,6 @@ Tool.init(
                 max: 1.0,
                 min: 0.4
             }
-        },
-        purchased: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false,
         }
     },
     {
