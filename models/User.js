@@ -33,6 +33,22 @@ User.init(
                 len: [12],
             },
         },
+        progress_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'progress',
+                key: 'id'
+            }
+        },
+        inventory_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'inventory',
+                key: 'id'
+            }
+        }
     },
     {
         sequelize,
