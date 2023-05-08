@@ -1,10 +1,15 @@
 :root {
     --text: #FFFFFF;
-    --menubackground: #263142;
+    --menubackground: #263142f1;
     --menubackgroundtext: #A6A6A6;
+    --hovercolor: #FFDE59;
     --black: #000000;
     --font1: 'MedievalSharp', cursive;
     --font2: 'Almendra SC', serif;
+}
+
+.aside{
+    background-color: var(--menubackground);
 }
 
 body {
@@ -16,7 +21,7 @@ body {
 }
 
 .profileImg {
-    transform: scale(.8);
+    transform: scale(.75);
 }
 
 .backpackImg {
@@ -45,4 +50,28 @@ body {
     color: var(--menubackgroundtext);
     border-color: var(--menubackgroundtext);
     font-family: var(--font1);
+    font-size: 20px;
+}
+
+.profile,
+.backpack,
+.woodcutting,
+.fishing {
+    font-size: 16px;
+}
+
+.profile:hover,
+.backpack:hover,
+.woodcutting:hover,
+.fishing:hover {
+    color: var(--hovercolor);
+}
+
+.profile:active,
+.backpack:active,
+.woodcutting:active,
+.fishing:active {
+    color: var(--hovercolor);
+    text-shadow: 1px 1px 5px var(--menubackgroundtext);
+    font-size: 15px;
 }
