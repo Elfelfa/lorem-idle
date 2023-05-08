@@ -24,7 +24,7 @@ User.init(
                 isEmail: true,
             },
         },
-        password: {
+        pass: {
             // TODO: reformat this variable to properly validate
             // TODO: figure out password hashing
             type: DataTypes.STRING,

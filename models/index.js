@@ -1,8 +1,10 @@
-const Experience = require('./Experience');
 const Skill = require('./Skill');
 const Tool = require('./Tool');
 const Resource = require('./Resource');
 const Users = require('./User');
+const Inventory = require('./Inventory');
+const Item = require('./Item');
+const Progress = require('./Progress');
 
 //TODO: create relationships between tables
 
@@ -15,8 +17,6 @@ Users.hasMany(Skill);
 
 Users.hasMany(Tool);
 
-Users.hasOne(Experience);
-
 // Consider having an association between tool and skill. Depends on where we want to put our equip lvl requirement logic.
 
-module.exports = { Experience, Skill, Tool, Resource, Users };
+module.exports = { Skill, Tool, Resource, Users, Inventory, Item, Progress };

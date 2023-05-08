@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Resource extends Model {}
+class Progress extends Model {}
 
-Resource.init(
+Progress.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,40 +11,47 @@ Resource.init(
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        category_id: {
+        user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'skill',
+                model: 'user',
                 key: 'id'
             }
         },
-        category_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        exp_reward: {
+        skill_id: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                mode: 'skill',
+                key: 'id'
+            }
         },
-        seconds_to_complete: {
+        level: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 1,
+            validate: {
+                max: 99,
+                min: 1
+            }
+        },
+        experience: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
-                min: 1
+                max: 200000000,
+                min: 0
             }
         }
     },
     {
         sequelize,
         timestamps: false,
+        freezeTableName: true,
         underscored: true,
-        modelName: 'resource'
+        modelName: 'progress'
     }
 );
 
-module.exports = Resource;
+module.exports = Progress;
