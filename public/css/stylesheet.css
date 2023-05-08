@@ -1,6 +1,7 @@
 :root {
     --text: #FFFFFF;
     --menubackground: #263142f1;
+    --menubackgroundsolid: #263142;
     --menubackgroundtext: #A6A6A6;
     --hovercolor: #FFDE59;
     --black: #000000;
@@ -74,4 +75,15 @@ body {
     color: var(--hovercolor);
     text-shadow: 1px 1px 5px var(--menubackgroundtext);
     font-size: 15px;
+}
+
+.generalProfile {
+    background-color: var(--menubackground);
+    color: white;
+    font-family: var(--font1); 
+}
+
+.profileName {
+    font-size: 25px;
+    font-family: var(--font2);
 }
