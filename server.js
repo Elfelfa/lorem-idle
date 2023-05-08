@@ -9,9 +9,10 @@ const { strict } = require('assert');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
+require('dotenv').config();
 
 const sess = {
-    secret: 'lorem is life',
+    secret: process.env.SESSION_KEY,
     cookie: {
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
