@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Resource extends Model {}
+class Inventory extends Model {}
 
-Resource.init(
+Inventory.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,44 +11,37 @@ Resource.init(
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        skill_id: {
+        user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'skill',
+                model: 'user',
                 key: 'id'
             }
         },
-        skill_name: {
-            type: DataTypes.STRING,
+        item_id: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: 'item',
+                key: 'id'
+            }
         },
-        exp_reward: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        item_reward: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        seconds_to_complete: {
+        item_amount: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
-                min: 1
+                min: 0
             }
         }
     },
     {
         sequelize,
         timestamps: false,
+        freezeTableName: true,
         underscored: true,
-        modelName: 'resource'
+        modelName: 'inventory'
     }
 );
 
-module.exports = Resource;
+module.exports = Inventory;

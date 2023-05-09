@@ -15,15 +15,6 @@ Skill.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        level: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            defaultValue: 1,
-            validate: {
-                max: 99,
-                min: 1
-            }
-        }
     },
     {
         sequelize,
