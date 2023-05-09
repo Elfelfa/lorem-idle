@@ -1,12 +1,13 @@
 const sequelize = require("../config/connection");
 const {
-  User,
-  Inventory,
-  Item,
-  Resource,
   Skill,
+  Item,
+  User,
   Tool,
+  Resource,
   Progress,
+  Inventory,
+  Active_Resource,
 } = require("../models");
 
 const userData = require("./userData.json");
@@ -16,17 +17,13 @@ const resourceData = require("./resourceNodeData.json");
 const skillData = require("./skillData.json");
 const toolData = require("./toolData.json");
 const progressData = require("./progressData.json");
+const activeResourceData = require("./activeResourceData.json");
 
 const seedDatabase = async () => {
   try {
     await sequelize.sync({ force: true });
 
-    const users = await User.bulkCreate(userData, {
-      individualHooks: true,
-      returning: true,
-    });
-
-    const inventory = await Inventory.bulkCreate(inventoryData, {
+    const skills = await Skill.bulkCreate(skillData, {
       returning: true,
     });
 
@@ -34,11 +31,8 @@ const seedDatabase = async () => {
       returning: true,
     });
 
-    const resources = await Resource.bulkCreate(resourceData, {
-      returning: true,
-    });
-
-    const skills = await Skill.bulkCreate(skillData, {
+    const users = await User.bulkCreate(userData, {
+      individualHooks: true,
       returning: true,
     });
 
@@ -46,7 +40,19 @@ const seedDatabase = async () => {
       returning: true,
     });
 
+    const resources = await Resource.bulkCreate(resourceData, {
+      returning: true,
+    });
+
     const progress = await Progress.bulkCreate(progressData, {
+      returning: true,
+    });
+
+    const inventory = await Inventory.bulkCreate(inventoryData, {
+      returning: true,
+    });
+
+    const activeResource = await Active_Resource.bulkCreate(activeResourceData, {
       returning: true,
     });
 

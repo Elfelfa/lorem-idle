@@ -15,15 +15,15 @@ Active_Resource.init(
             type: DataTypes.STRING,
             allowNull: false,
             references: {
-                model: 'user',
+                model: 'users',
                 key: 'id'
             }
         },
         resource_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             references: {
-                model: 'resource',
+                model: 'resources',
                 key: 'id'
             }
         }

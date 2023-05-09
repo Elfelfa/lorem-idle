@@ -19,7 +19,7 @@ Tool.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'skill',
+                model: 'skills',
                 key: 'id'
             }
         },

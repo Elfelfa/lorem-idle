@@ -124,5 +124,13 @@
         "skill_id": 2,
         "skill_name": "fishing",
         "item_icon": "🦈"
+    },
+    {
+        "id": 1000,
+        "name": "Coins",
+        "value": 1,
+        "skill_id": null,
+        "skill_name": null,
+        "item_icon": null
     }
 ]
