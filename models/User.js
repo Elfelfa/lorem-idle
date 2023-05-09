@@ -52,7 +52,7 @@ User.init(
         },
         sequelize,
         timestamps: false,
-        freezeTableName: true,
+        freezeTableName: false, //changed to false to display the table name as "users" since multiple users will be stored.
         underscored: true,
         modelName: 'user',
     }
