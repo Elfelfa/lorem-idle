@@ -1,0 +1,146 @@
+[
+    {
+        "name": "Bronze Axe",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "modifier": 0.4,
+        "value": 20000,
+        "lvl_required": 1,
+        "tool_icon": "🪓"
+    },
+    {
+        "name": "Iron Axe",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "modifier": 0.45,
+        "value": 50000,
+        "lvl_required": 1,
+        "tool_icon": "🪓"
+    },
+    {
+        "name": "Steel Axe",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "modifier": 0.5,
+        "value": 200000,
+        "lvl_required": 5,
+        "tool_icon": "🪓"
+    },
+    {
+        "name": "Black Axe",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "modifier": 0.55,
+        "value": 800000,
+        "lvl_required": 10,
+        "tool_icon": "🪓"
+    },
+    {
+        "name": "Mithril Axe",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "modifier": 0.6,
+        "value": 3000000,
+        "lvl_required": 20,
+        "tool_icon": "🪓"
+    },
+    {
+        "name": "Adamant Axe",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "modifier": 0.7,
+        "value": 10000000,
+        "lvl_required": 30,
+        "tool_icon": "🪓"
+    },
+    {
+        "name": "Rune Axe",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "modifier": 0.8,
+        "value": 20000000,
+        "lvl_required": 40,
+        "tool_icon": "🪓"
+    },
+    {
+        "name": "Dragon Axe",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "modifier": 0.9,
+        "value": 100000000,
+        "lvl_required": 60,
+        "tool_icon": "🪓"
+    },
+    {
+        "name": "Crystal Axe",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "modifier": 1.0,
+        "value": 500000000,
+        "lvl_required": 75,
+        "tool_icon": "🪓"
+    },
+    {
+        "name": "Fishing Rod",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "modifier": 0.4,
+        "value": 20000,
+        "lvl_required": 1,
+        "tool_icon": "🎣"
+    },
+    {
+        "name": "Reinforced Fishing Rod",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "modifier": 0.5,
+        "value": 500000,
+        "lvl_required": 10,
+        "tool_icon": "🎣"
+    },
+    {
+        "name": "Live Bait",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "modifier": 0.6,
+        "value": 3000000,
+        "lvl_required": 20,
+        "tool_icon": "🎣"
+    },
+    {
+        "name": "Fishing Lessons",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "modifier": 0.7,
+        "value": 10000000,
+        "lvl_required": 30,
+        "tool_icon": "🎣"
+    },
+    {
+        "name": "Dr. Giuseppe's Bait Formula",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "modifier": 0.8,
+        "value": 20000000,
+        "lvl_required": 40,
+        "tool_icon": "🎣"
+    },
+    {
+        "name": "The Secret Technique",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "modifier": 0.9,
+        "value": 100000000,
+        "lvl_required": 60,
+        "tool_icon": "🎣"
+    },
+    {
+        "name": "The Hero's Rod",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "modifier": 1.0,
+        "value": 500000000,
+        "lvl_required": 75,
+        "tool_icon": "🎣"
+    }
+] 
