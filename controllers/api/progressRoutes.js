@@ -3,10 +3,10 @@ const { Progress } = require("../../models");
 const Auth = require("../../utils/auth");
 
 // Retrieve a users progress from the database
-router.get("/:user_id", Auth, async (req, res) => {
+router.get("/", Auth, async (req, res) => {
   try {
     const progressData = await Progress.findAll({
-      where: { user_id: req.params.user_id },
+      where: { user_id: req.session.user_id },
     });
     const progressDataObj = progressData.map((data) =>
       data.get({ plain: true })
@@ -23,11 +23,11 @@ router.get("/:user_id", Auth, async (req, res) => {
 // NOTE:: (James) attempting some other endpoints here but don't fully understand this progress part.
 
 // Update all stats in progress where user_id using values passed in req.body
-router.put("/update/:user_id", Auth, async (req, res) => {
+router.put("/update", Auth, async (req, res) => {
   try {
     const progressData = await Progress.update(
       { level: req.body.level, experience: req.body.experience },
-      { returning: true, where: { user_id: req.params.user_id } } // TODO, Change req.parames.uesr_id to a session storage for better securtiy.
+      { returning: true, where: { user_id: req.session.user_id } } // TODO, Change req.parames.uesr_id to a session storage for better securtiy.
     );
     res.status(200).json(progressData);
   } catch (err) {
