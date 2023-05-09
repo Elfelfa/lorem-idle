@@ -15,7 +15,7 @@ Tool.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        category_id: {
+        skill_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -23,7 +23,7 @@ Tool.init(
                 key: 'id'
             }
         },
-        category_name: {
+        skill_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },

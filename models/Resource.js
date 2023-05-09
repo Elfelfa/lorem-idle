@@ -15,7 +15,7 @@ Resource.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        category_id: {
+        skill_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -23,11 +23,15 @@ Resource.init(
                 key: 'id'
             }
         },
-        category_name: {
+        skill_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
         exp_reward: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        item_reward: {
             type: DataTypes.INTEGER,
             allowNull: false
         },

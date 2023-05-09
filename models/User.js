@@ -37,22 +37,6 @@ User.init(
             validate: {
                 len: [12],
             },
-        },
-        progress_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'progress',
-                key: 'id'
-            }
-        },
-        inventory_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'inventory',
-                key: 'id'
-            }
         }
     },
     {
@@ -62,7 +46,7 @@ User.init(
                 return newUserData;
             },
             beforeUpdate: async (updatedUserData) => {
-                updatedUserData.password = await bcrypt.hash(udatedUserData.password, 10);
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
                 return updatedUserData;
             },
         },

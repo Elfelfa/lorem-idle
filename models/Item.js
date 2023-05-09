@@ -28,7 +28,7 @@ Item.init(
             references: {
                 model: 'skill',
                 key: 'id'
-            }
+           }
         },
         skill_name: {
             type: DataTypes.STRING,
