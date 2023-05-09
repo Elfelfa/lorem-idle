@@ -7,7 +7,7 @@
     --gold: #d4c274c0;
     --goldsolid: #d4c274ec;
     --hovercolor: #FFDE59;
-    --complete: rgb(1, 120, 1);
+    --complete: rgb(2, 255, 19);
     --black: #000000;
     --Charcoal: #465362;
     --red: #ED254E;
@@ -136,9 +136,15 @@ body {
 } 
 
 .nextBar {
+    position: absolute;
     color: var(--text);
-    font-size: 30px;
-}
+    background-color: var(--menubackground);
+    font-size: 25px;
+    top: 50%;
+    right: 0;
+    border: 3px double var(--text);
+  }
+  
 
 .insideWoodcuttingCards,
 .insideinventoryCards {
@@ -147,14 +153,13 @@ body {
 }
 
 .treeText {
-    color: var(--menubackgroundsolid);
-    font-family: var(--font2);
+    color: var(--text);
+    font-family: var(--font1);
     font-size: 30px;
 }
 
-
 .percentText {
-    color: var(--menubackgroundsolid);
+    color: var(--text);
     font-family: var(--font1);
     font-size: 20px;
 }
