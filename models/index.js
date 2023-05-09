@@ -22,28 +22,28 @@ User.hasMany(Inventory, {
     onDelete: 'CASCADE'
 });
 
+Skill.hasMany(Progress, {
+    foreignKey: 'skill_id'
+});
+
+Skill.hasMany(Tool, {
+    foreignKey: 'skill_id'
+});
+
+Skill.hasMany(Item, {
+    foreignKey: 'skill_id'
+});
+
+Skill.hasMany(Resource, {
+    foreignKey: 'skill_id'
+});
+
 Progress.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
 Inventory.belongsTo(User, {
     foreignKey: 'user_id'
-});
-
-Skill.hasMany(Progress, {
-    foreignKey: 'skill_id',
-});
-
-Skill.hasMany(Resource, {
-    foreignKey: 'skill_id',
-});
-
-Skill.hasMany(Tool, {
-    foreignKey: 'skill_id',
-});
-
-Skill.hasMany(Item, {
-    foreignKey: 'skill_id',
 });
 
 Progress.belongsTo(Skill, {
@@ -82,4 +82,4 @@ Resource.belongsToMany(User, {
 
 // Consider having an association between tool and skill. Depends on where we want to put our equip lvl requirement logic.
 
-module.exports = { Skill, Tool, Resource, User, Inventory, Item, Progress, Active_Resource };
+module.exports = { Skill, Item, User, Tool, Resource, Progress, Inventory, Active_Resource };

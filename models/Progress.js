@@ -15,7 +15,7 @@ Progress.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'user',
+                model: 'users',
                 key: 'id'
             }
         },
@@ -23,7 +23,7 @@ Progress.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                mode: 'skill',
+                mode: 'skills',
                 key: 'id'
             }
         },
