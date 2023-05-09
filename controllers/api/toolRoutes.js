@@ -9,7 +9,7 @@ router.get("/", Auth, async (req, res) => {
     const toolDataObj = toolData.map((data) => data.get({ plain: true }));
     res.status(200).json({ toolDataObj });
   } catch (err) {
-    res.status(400).json({ message: "Unable to get all tools" + err });
+    res.status(400).json({ message: "Unable to retrieve all tools from database. Error:" + err });
   }
 });
 
@@ -19,12 +19,12 @@ router.get("/:id", Auth, async (req, res) => {
     const toolData = await Tool.findByPk(req.params.id);
     res.status(200).json({ tool: toolData });
   } catch (err) {
-    res.status(400).json({ message: "Unable to find tool" + err });
+    res.status(400).json({ message: "Unable to find tool by id from database. Error:" + err });
   }
 });
 
 // Endpoint to GET tools by skill id
-router.get("byskill/:skill_id", Auth, async (req, res) => {
+router.get("/byskill/:skill_id", Auth, async (req, res) => {
   try {
     const toolData = await Tool.findAll({
       where: { skill_id: req.params.skill_id },
@@ -32,7 +32,7 @@ router.get("byskill/:skill_id", Auth, async (req, res) => {
     const toolDataObj = toolData.map((data) => data.get({ plain: true }));
     res.status(200).json({ toolDataObj });
   } catch (err) {
-    res.status(400).json({ message: "Unable to find tools by skill id" + err });
+    res.status(400).json({ message: "Unable to find tools by skill id from database. Error:" + err });
   }
 });
 
@@ -44,7 +44,7 @@ router.get("/value/:id", Auth, async (req, res) => {
     });
     res.status(200).json(toolData);
   } catch (err) {
-    res.status(400).json({ message: "Unable to find value of tool" + err });
+    res.status(400).json({ message: "Unable to find value of tool by id from database. Error:" + err });
   }
 });
 
