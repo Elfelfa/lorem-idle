@@ -1,8 +1,9 @@
 :root {
     --text: #FFFFFF;
     --menubackground: #263142f1;
-    --menubackgroundsolid: #263142;
+    --menubackgroundsolid: #1c2430;
     --menubackgroundtext: #A6A6A6;
+    --menubackgrounddark: #171d27;
     --hovercolor: #FFDE59;
     --black: #000000;
     --font1: 'MedievalSharp', cursive;
@@ -77,13 +78,25 @@ body {
     font-size: 15px;
 }
 
-.generalProfile {
+.generalProfile,
+.backpackContainer {
     background-color: var(--menubackground);
     color: white;
     font-family: var(--font1); 
 }
 
-.profileName {
+.profileName,
+.userBackpack {
     font-size: 25px;
     font-family: var(--font2);
+}
+
+.itemName {
+    font-size: 20px;
+    background-color: var(--menubackgrounddark);
+}
+
+.itemCards {
+    border: 3px solid var(--menubackgroundsolid);
+    background-color: var(--menubackgroundsolid);
 }
