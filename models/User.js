@@ -37,6 +37,10 @@ User.init(
             validate: {
                 len: [12],
             },
+        },
+        timestamp: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     },
     {

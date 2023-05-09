@@ -3,7 +3,7 @@ const router = require('express').Router();
 const userRoutes = require('./userRoutes');
 const toolRoutes = require('./toolRoutes');
 const skillRoutes = require('./skillRoutes');
-const inventoryRoutes = require('./inverntoryRoutes');
+const inventoryRoutes = require('./inventoryRoutes');
 const itemRoutes = require('./itemRoutes');
 const progressRoutes = require('./progressRoutes');
 
