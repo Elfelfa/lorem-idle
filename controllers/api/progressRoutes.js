@@ -13,9 +13,9 @@ router.get("/:user_id", Auth, async (req, res) => {
     );
     res.status(200).json({ progress: progressDataObj });
   } catch (err) {
+    console.log(err);
     res.status(400).json({
-      message:
-        "Unable to retrive users progess from the database. Error: " + err,
+      message: "Unable to retrive users progess from the database. Error: ",
     });
   }
 });
@@ -23,17 +23,21 @@ router.get("/:user_id", Auth, async (req, res) => {
 // NOTE:: (James) attempting some other endpoints here but don't fully understand this progress part.
 
 // Update all stats in progress where user_id using values passed in req.body
-router.put("/update/:user_id", Auth, async (req, res) => {
+router.put("/update", Auth, async (req, res) => {
   try {
-    const progressData = await Progress.update(
-      { level: req.body.level, experience: req.body.experience },
-      { returning: true, where: { user_id: req.params.user_id } } // TODO, Change req.parames.uesr_id to a session storage for better securtiy.
+    const { level, experience } = req.body;
+    if (!Number.isInteger(level) || !Number.isInteger(experience)) {
+      res.status(400).json({ message: "Invalid input data." });
+      return;
+    }
+    await Progress.update(
+      { level, experience },
+      { where: { user_id: req.session.user_id } }
     );
-    res.status(200).json(progressData);
+    res.status(200).json({ message: "Progress updated successfully." });
   } catch (err) {
-    res.status(400).json({
-      message: "Unable to update progress table in database. Error: " + err,
-    });
+    console.error(err);
+    res.status(500).json({ message: "Unable to update progress data." });
   }
 });
 
