@@ -4,8 +4,14 @@
     --menubackgroundsolid: #1c2430;
     --menubackgroundtext: #A6A6A6;
     --menubackgrounddark: #171d27;
+    --gold: #d4c274c0;
+    --goldsolid: #d4c274ec;
     --hovercolor: #FFDE59;
+    --complete: rgb(1, 120, 1);
     --black: #000000;
+    --Charcoal: #465362;
+    --red: #ED254E;
+    --green: #C2EABD;
     --font1: 'MedievalSharp', cursive;
     --font2: 'Almendra SC', serif;
 }
@@ -85,10 +91,15 @@ body {
     font-family: var(--font1); 
 }
 
-.profileName,
-.userBackpack {
+.profileName {
     font-size: 25px;
     font-family: var(--font2);
+}
+
+.userBackpack {
+    font-size: 30px;
+    font-family: var(--font2);
+    color: var();
 }
 
 .itemName {
@@ -98,5 +109,43 @@ body {
 
 .itemCards {
     border: 3px solid var(--menubackgroundsolid);
-    background-color: var(--menubackgroundsolid);
+    background-color: var(--gold);
+}
+
+.xpBar {
+    background-color: var(--menubackground);
+    border: 3px solid var(--menubackgroundsolid);
+}
+
+.nextBar {
+    color: var(--text);
+    font-size: 30px;
+}
+
+.insideWoodcuttingCards {
+    background-color: var(--menubackground);
+    border: 3px solid var(--menubackgroundsolid);
+}
+
+.treeText {
+    color: var(--menubackgroundsolid);
+    font-family: var(--font2);
+    font-size: 30px;
+}
+
+
+.percentText {
+    color: var(--menubackgroundsolid);
+    font-family: var(--font1);
+    font-size: 20px;
+}
+
+.percentTextComplete {
+    color: var(--complete);
+    font-family: var(--font1);
+    font-size: 20px;
+}
+
+.willowTreeImage {
+    border-color: var(--complete);
 }
