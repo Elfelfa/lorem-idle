@@ -7,7 +7,7 @@
     --gold: #d4c274c0;
     --goldsolid: #d4c274ec;
     --hovercolor: #FFDE59;
-    --complete: rgb(2, 255, 19);
+    --complete: rgb(3, 227, 18);
     --black: #000000;
     --Charcoal: #465362;
     --red: #ED254E;
@@ -16,7 +16,7 @@
     --font2: 'Almendra SC', serif;
 }
 
-.aside{
+.aside {
     background-color: var(--menubackground);
 }
 
@@ -36,20 +36,24 @@ body {
     transform: scale(1.5);
 }
 
+.shopImg {
+    transform: scale(1.5);
+}
+
 .aside {
     color: var(--text);
     font-family: var(--font1);
 }
 
-.title{
+.title {
     color: var(--menubackground);
-	font-size: 40px;
+    font-size: 40px;
     font-family: var(--font2);
-	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: white;
 }
 
-.subtitle{
+.subtitle {
     font-family: var(--font2);
 }
 
@@ -88,7 +92,7 @@ body {
 .backpackContainer {
     background-color: var(--menubackground);
     color: white;
-    font-family: var(--font1); 
+    font-family: var(--font1);
 }
 
 .profileName {
@@ -112,13 +116,48 @@ body {
 .axeSpeed,
 .axeGold {
     font-size: 14px;
-    color: var(--text); 
+    color: var(--text);
     font-family: var(--font1);
 }
 
 .xpBar {
     background-color: var(--menubackground);
     border: 3px solid var(--menubackgroundsolid);
+}
+
+progress {
+    text-align: center;
+    height: 1.5em;
+    width: 100%;
+    -webkit-appearance: none;
+    border: none;
+
+    /* Set the progressbar to relative */
+    position: relative;
+}
+
+progress:before {
+    content: attr(data-label);
+    font-size: 16px;
+    vertical-align: 0;
+    font-family: var(--font2);
+    color: var(--menubackgroundsolid);
+    /*Position text over the progress bar */
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+progress::-webkit-progress-bar {
+    background-color: var(--menubackgroundtext);
+}
+
+progress::-webkit-progress-value {
+    background-image: linear-gradient(to right, rgba(41, 162, 1, 0.648), rgb(60, 255, 0), rgba(41, 162, 1, 0.648))
+}
+
+progress::-moz-progress-bar {
+    background-color: var(--complete);
 }
 
 .backpackHeader {
@@ -133,18 +172,28 @@ body {
     color: var(--text);
     font-family: var(--font2);
     font-size: 25px;
-} 
+}
 
 .nextBar {
     position: absolute;
     color: var(--text);
     background-color: var(--menubackground);
     font-size: 25px;
-    top: 50%;
+    top: calc(50% - (25px / 2));
     right: 0;
     border: 3px double var(--text);
-  }
-  
+}
+
+.previousBar {
+    position: absolute;
+    color: var(--text);
+    background-color: var(--menubackground);
+    font-size: 25px;
+    top: calc(50% - (25px / 2)); /* Center vertically */
+    left: 19%; /* Position on the left side */
+    border: 3px double var(--text);
+}
+
 
 .insideWoodcuttingCards,
 .insideinventoryCards {
