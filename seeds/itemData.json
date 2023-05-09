@@ -1,0 +1,128 @@
+[
+    {
+        "name": "Log",
+        "value": 100,
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "item_icon": "🪵"
+    },
+    {
+        "name": "Oak Log",
+        "value": 200,
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "item_icon": "🪵"
+    },
+    {
+        "name": "Willow Log",
+        "value": 300,
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "item_icon": "🪵"
+    },
+    {
+        "name": "Teak Log",
+        "value": 400,
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "item_icon": "🪵"
+    },
+    {
+        "name": "Maple Log",
+        "value": 500,
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "item_icon": "🪵"
+    },
+    {
+        "name": "Mahogany Log",
+        "value": 600,
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "item_icon": "🪵"
+    },
+    {
+        "name": "Yew Log",
+        "value": 700,
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "item_icon": "🪵"
+    },
+    {
+        "name": "Magic Log",
+        "value": 800,
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "item_icon": "🪵"
+    },
+    {
+        "name": "Redwood Log",
+        "value": 900,
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "item_icon": "🪵"
+    },
+    {
+        "name": "Shrimp",
+        "value": 100,
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "item_icon": "🦐"
+    },
+    {
+        "name": "Herring",
+        "value": 200,
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "item_icon": "🐟"
+    },
+    {
+        "name": "Anchovies",
+        "value": 300,
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "item_icon": "🎏"
+    },
+    {
+        "name": "Trout",
+        "value": 400,
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "item_icon": "🎣"
+    },
+    {
+        "name": "Salmon",
+        "value": 600,
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "item_icon": "🎣"
+    },
+    {
+        "name": "Lobster",
+        "value": 700,
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "item_icon": "🦞"
+    },
+    {
+        "name": "Swordfish",
+        "value": 800,
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "item_icon": "🐬"
+    },
+    {
+        "name": "Monkfish",
+        "value": 900,
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "item_icon": "🦭"
+    },
+    {
+        "name": "Shark",
+        "value": 1000,
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "item_icon": "🦈"
+    }
+]
