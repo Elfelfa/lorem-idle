@@ -15,7 +15,7 @@
 </head>
 
 <body class="grid grid-cols-11">
-    <aside class="aside col-span-2 h-screen border-double border-r-4 border-slate-50">
+    <aside class="aside col-span-2 h-full border-double border-r-4 border-slate-50">
         <div class="container mx-auto">
             <h1 class="title  flex justify-center pt-6 text-center">Lorem Idle</h1>
             <!-- Put object below -->
@@ -34,6 +34,13 @@
                                 src="https://cdna.artstation.com/p/assets/images/images/012/471/678/original/austin-lutz-backpack-turnaround.gif?1534960441"
                                 alt="image-description" width="20" height="20">
                         </span>Backpack</button>
+                </div>
+                <div>
+                    <button class="shop inline-flex items-center p-1 gap-1"><span class="container">
+                            <img class="shopImg"
+                                src="https://png.pngtree.com/png-vector/20220828/ourmid/pngtree-pixel-art-shop-icon-design-vector-png-image_6125107.png"
+                                alt="image-description" width="20" height="20">
+                        </span>Shop</button>
                 </div>
             </div>
             <div>
@@ -57,13 +64,29 @@
     </aside>
     <main class="container mx-auto col-start-3 grid justify-items-stretch col-end-12 h-screen">
         <div class="grid grid-cols-9 grid-rows-6">
-            <div class="xpBar col-start-1 col-end-10 row start 1 flex justify-center m-4"></div>
-            <div class="nextBar col-end-10 row-start-4 flex justify-center ml-20"> > </div>
-            <div class="woodcuttingCards flex flex-row justify-center col-start-1 col-end-10 row-start-2 row-end-7">
+            <div class="xpBar col-start-1 col-end-10 row start 1 flex justify-center items-center m-4">
+                <label class="woodcuttingXPName mr-1" for="treeXP">(69) Woodcutting XP:</label>
+                <progress class="treeXPBar w-2/3 h-6 rounded-lg" id="treeXP" value="98" max="100" data-label="3901/4000XP"> 98% Woodcutting XP</progress>
+            </div>
+            
+            <div class="woodcuttingCards flex flex-wrap justify-center col-start-1 col-end-10 row-start-2 row-end-7">
 
-                <div class="woodcuttingCard flex justify-center h-80 self-center mx-4">
+                <div class="woodcuttingCard flex justify-center h-80 self-center m-4">
                     <div class="insideWoodcuttingCards">
-                        <div class="treeText flex shrink justify-center ">Tree</div>
+                        <div class="treeText flex shrink justify-center">Tree</div>
+                        <div>
+                            <img class="treeImage border-4 border-white rounded-full m-4"
+                                src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/db21b3bc-8d2c-40ed-b627-0f9cdfe340b6/ddp8kr0-ede82974-6bb9-4469-b1cb-7c0f6f5d2902.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2RiMjFiM2JjLThkMmMtNDBlZC1iNjI3LTBmOWNkZmUzNDBiNlwvZGRwOGtyMC1lZGU4Mjk3NC02YmI5LTQ0NjktYjFjYi03YzBmNmY1ZDI5MDIuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.eWBS6G3TnHeg0UaujtN1xrYnlDm8evusa4v46ja3KZU"
+                                alt="image-description" width="200" height="200">
+                        </div>
+                        <div class="percentText flex justify-center mt-2">0% DONE</div>
+                        <div class="previousBar col-end-10 row-start-4 flex justify-center items-center h-12 w-6 mr-1 pb-1"> < </div>
+                    </div>
+                </div>
+
+                <div class="woodcuttingCard flex justify-center h-80 self-center m-4">
+                    <div class="insideWoodcuttingCards">
+                        <div class="treeText flex shrink justify-center">Tree</div>
                         <div>
                             <img class="treeImage border-4 border-white rounded-full m-4"
                                 src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/db21b3bc-8d2c-40ed-b627-0f9cdfe340b6/ddp8kr0-ede82974-6bb9-4469-b1cb-7c0f6f5d2902.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2RiMjFiM2JjLThkMmMtNDBlZC1iNjI3LTBmOWNkZmUzNDBiNlwvZGRwOGtyMC1lZGU4Mjk3NC02YmI5LTQ0NjktYjFjYi03YzBmNmY1ZDI5MDIuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.eWBS6G3TnHeg0UaujtN1xrYnlDm8evusa4v46ja3KZU"
@@ -73,34 +96,20 @@
                     </div>
                 </div>
 
-                <div class="woodcuttingCard flex shrink justify-center h-80 self-center mx-4">
+                <div class="woodcuttingCard flex justify-center h-80 self-center m-4">
                     <div class="insideWoodcuttingCards">
-                        <div class="treeText flex justify-center">Maple Tree</div>
+                        <div class="treeText flex shrink justify-center">Tree</div>
                         <div>
                             <img class="treeImage border-4 border-white rounded-full m-4"
-                                src="https://preview.redd.it/tshczcjbzv591.gif?width=640&crop=smart&format=png8&s=6d11eb23b41cf016a4e06b127b802d6ec447cc5c"
-                                alt="image-description" width="200px" height="200px">
-                        </div>
-                        <div class="percentText flex justify-center mt-2">0% DONE</div>
-                    </div>
-                </div>
-
-                <div class="woodcuttingCard flex shrink justify-center h-80 self-center mx-4">
-                    <div class="insideWoodcuttingCards">
-                        <div class="treeText flex justify-center">Willow Tree</div>
-                        <div>
-                            <img class="willowTreeImage border-4 rounded-full m-4"
                                 src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/db21b3bc-8d2c-40ed-b627-0f9cdfe340b6/ddp8kr0-ede82974-6bb9-4469-b1cb-7c0f6f5d2902.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2RiMjFiM2JjLThkMmMtNDBlZC1iNjI3LTBmOWNkZmUzNDBiNlwvZGRwOGtyMC1lZGU4Mjk3NC02YmI5LTQ0NjktYjFjYi03YzBmNmY1ZDI5MDIuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.eWBS6G3TnHeg0UaujtN1xrYnlDm8evusa4v46ja3KZU"
                                 alt="image-description" width="200" height="200">
                         </div>
-                        <div class="percentTextComplete flex justify-center mt-2">100% DONE</div>
-                    </div>
+                        <div class="percentText flex justify-center mt-2">0% DONE</div>
                 </div>
             </div>
         </div>
         </div>
     </main>
-    </aside>
 </body>
 
 </html>
