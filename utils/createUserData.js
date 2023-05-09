@@ -1,4 +1,5 @@
 const { faker } = require('@faker-js/faker');
+const dayjs = require('dayjs');
 var fs = require('fs');
 
 let userData = [];
@@ -10,10 +11,14 @@ const createUserSeeds = async() => {
     try {
       for (var i = 1; i <= 100; i++) {
         // Creates user profile data
+        // Places a timestamp on the user's account from their last active login.
+        // For testing purposes this will start as the account creation timestamp.
+
         userData.push({
           username: faker.internet.userName(),
           email: faker.internet.email(),
-          password: faker.internet.password()
+          password: faker.internet.password(),
+          timestamp: dayjs().format('YYYY/MM/DD/hh/mm/ss')
         });
         console.log("User " + i + " created.");
 
@@ -52,7 +57,6 @@ const createUserSeeds = async() => {
           item_id: 1000,
           item_amount: 0
         });
-
         console.log("User " + i + " coin pouch created.");
       }
 
