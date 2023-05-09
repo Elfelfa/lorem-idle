@@ -3,10 +3,10 @@ const { Inventory } = require("../../models");
 const Auth = require("../../utils/auth");
 
 // Endpoint to get all inventory items that the user owns
-router.get("/:user_id", Auth, async (req, res) => {
+router.get("/", Auth, async (req, res) => {
   try {
     const inventoryData = await Inventory.findAll({
-      where: { user_id: req.params.id },
+      where: { user_id: req.session.user_id },
     });
     const inventoryDataObj = inventoryData.map((data) =>
       data.get({ plain: true })
