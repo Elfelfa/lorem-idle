@@ -102,14 +102,18 @@ body {
     color: var();
 }
 
-.itemName {
+.axeName {
     font-size: 20px;
     background-color: var(--menubackgrounddark);
+    color: var(--text);
+    font-family: var(--font1);
 }
 
-.itemCards {
-    border: 3px solid var(--menubackgroundsolid);
-    background-color: var(--gold);
+.axeSpeed,
+.axeGold {
+    font-size: 14px;
+    color: var(--text); 
+    font-family: var(--font1);
 }
 
 .xpBar {
@@ -117,12 +121,27 @@ body {
     border: 3px solid var(--menubackgroundsolid);
 }
 
+.backpackHeader {
+    background-color: var(--menubackground);
+    border: 3px solid var(--menubackgroundsolid);
+    color: var(--text);
+    font-family: var(--font2);
+    font-size: 25px;
+}
+
+.woodcuttingXPName {
+    color: var(--text);
+    font-family: var(--font2);
+    font-size: 25px;
+} 
+
 .nextBar {
     color: var(--text);
     font-size: 30px;
 }
 
-.insideWoodcuttingCards {
+.insideWoodcuttingCards,
+.insideinventoryCards {
     background-color: var(--menubackground);
     border: 3px solid var(--menubackgroundsolid);
 }

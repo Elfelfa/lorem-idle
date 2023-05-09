@@ -57,7 +57,10 @@
     </aside>
     <main class="container mx-auto col-start-3 grid justify-items-stretch col-end-12 h-screen">
         <div class="grid grid-cols-9 grid-rows-6">
-            <div class="xpBar col-start-1 col-end-10 row start 1 flex justify-center m-4"></div>
+            <div class="xpBar col-start-1 col-end-10 row start 1 flex justify-center items-center m-4">
+                <label class="woodcuttingXPName mr-1" for="treeXP">(69) Woodcutting XP:</label>
+                <progress class="treeXPBar w-2/3 h-6 rounded-lg" id="treeXP" value="32" max="100"> 32% Woodcutting XP</progress>
+            </div>
             <div class="nextBar col-end-10 row-start-4 flex justify-center ml-20"> > </div>
             <div class="woodcuttingCards flex flex-row justify-center col-start-1 col-end-10 row-start-2 row-end-7">
 
@@ -100,7 +103,6 @@
         </div>
         </div>
     </main>
-    </aside>
 </body>
 
 </html>
