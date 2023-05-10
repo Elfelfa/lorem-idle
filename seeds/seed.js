@@ -7,7 +7,7 @@ const {
   Resource,
   Progress,
   Inventory,
-  Active_Resource,
+  Active_Resource
 } = require("../models");
 
 const userData = require("./userData.json");
@@ -55,6 +55,7 @@ const seedDatabase = async () => {
     const activeResource = await Active_Resource.bulkCreate(activeResourceData, {
       returning: true,
     });
+
 
     process.exit(0);
     

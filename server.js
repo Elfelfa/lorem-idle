@@ -30,7 +30,7 @@ const sess = {
 app.use(session(sess));
 
 app.engine('handlebars', hbs.engine);
-app.set('view engin', 'handlebars'); // can change this second string to hbs for propper handlebars naming. Will have to rename files though.
+app.set('view engine', 'handlebars'); // can change this second string to hbs for propper handlebars naming. Will have to rename files though.
 
 app.use(routes);
 

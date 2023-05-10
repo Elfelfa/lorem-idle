@@ -27,6 +27,14 @@ Progress.init(
                 key: 'id'
             }
         },
+        tool_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                mode: 'tools',
+                key: 'id'
+            }
+        },
         level: {
             type: DataTypes.INTEGER,
             allowNull: false,

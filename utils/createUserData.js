@@ -9,14 +9,14 @@ let progressData = [];
 
 const createUserSeeds = async() => {
     try {
-      for (var i = 1; i <= 100; i++) {
+      for (var i = 1; i <= 10000; i++) {
         // Creates user profile data
         // Places a timestamp on the user's account from their last active login.
         // For testing purposes this will start as the account creation timestamp.
 
         userData.push({
-          username: faker.internet.userName(),
-          email: faker.internet.email(),
+          username: faker.helpers.unique(faker.internet.userName),
+          email: faker.helpers.unique(faker.internet.email),
           password: faker.internet.password(),
           timestamp: dayjs().format('YYYY/MM/DD/hh/mm/ss')
         });
@@ -28,6 +28,7 @@ const createUserSeeds = async() => {
           progressData.push({
             user_id: i,
             skill_id: sk,
+            tool_id: null,
             level: 1,
             experience: 0
           });
