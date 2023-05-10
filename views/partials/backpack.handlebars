@@ -1,0 +1,16 @@
+
+<main class="container mx-auto col-start-3 grid justify-items-stretch col-end-12 h-screen">
+    <div class="grid grid-cols-9 grid-rows-6">
+        <!-- insert object here -->
+        <div class="backpackHeader col-start-1 col-end-10 row start 1 flex justify-center items-center m-4">Duchess's
+            Backpack</div>
+        <div class="inventoryCards flex flex-wrap justify-center col-start-1 col-end-10 row-start-2 row-end-7">
+
+            {{#each items as |item|}}
+            {{> backpackcards}}
+            {{/each}}
+
+        </div>
+    </div>
+    </div>
+</main>
