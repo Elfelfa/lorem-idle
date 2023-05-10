@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --text: #FFFFFF;
     --menubackground: #263142f1;
@@ -10,14 +14,14 @@
     --complete: rgb(3, 227, 18);
     --black: #000000;
     --Charcoal: #465362;
-    --red: #ED254E;
+    --red: #550414c9;
     --green: #C2EABD;
     --font1: 'MedievalSharp', cursive;
     --font2: 'Almendra SC', serif;
 }
 
 .aside {
-    background-color: var(--menubackground);
+    background-color: var(--menubackgroundsolid);
 }
 
 body {
@@ -219,6 +223,3 @@ progress::-moz-progress-bar {
     font-size: 20px;
 }
 
-.willowTreeImage {
-    border-color: var(--complete);
-}
