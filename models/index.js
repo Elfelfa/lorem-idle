@@ -38,6 +38,14 @@ Skill.hasMany(Resource, {
     foreignKey: 'skill_id'
 });
 
+Tool.hasMany(Progress, {
+    foreignKey: 'tool_id'
+})
+
+Progress.belongsTo(Tool, {
+    foreignKey: 'tool_id'
+})
+
 Progress.belongsTo(User, {
     foreignKey: 'user_id'
 });

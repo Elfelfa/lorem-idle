@@ -26,6 +26,11 @@ Active_Resource.init(
                 model: 'resources',
                 key: 'id'
             }
+        },
+        progress: {
+            type: DataTypes.DECIMAL,
+            allowNull: false,
+            defaultValue: 0.0
         }
     },
     {
