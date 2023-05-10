@@ -34,16 +34,27 @@
     <div class="card">
         <h2>Welcome to Lorem Idle!</h2>
         <p>Please sign in below to begin playing our idle game.</p>
+        <h3>Create User</h3>
+        <form action="/api/user/createuser" method="POST">
+            <label for="new-username">Username:</label><br>
+            <input type="text" id="new-username" name="username" required><br><br>
+            <label for="new-password">Password:</label><br>
+            <input type="password" id="new-password" name="password" required><br><br>
+            <input type="submit" value="Create User">
+        </form>
     </div>
     <div class="card">
         <h3>Sign In</h3>
-        <form>
-            <label for="username">Username:</label><br>
-            <input type="text" id="username" name="username" required><br><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required><br><br>
+        <form action="/api/user/login" method="POST">
+            <label for="login-username">Username:</label><br>
+            <input type="text" id="login-username" name="username" required><br><br>
+            <label for="login-password">Password:</label><br>
+            <input type="password" id="login-password" name="password" required><br><br>
             <input type="submit" value="Sign In">
         </form>
     </div>
 </body>
+
+<script src="./js/login.js"></script> 
+{{!-- Adding comment to commit and merge to main --}}
 </html>
