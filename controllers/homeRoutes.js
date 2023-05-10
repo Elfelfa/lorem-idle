@@ -35,6 +35,19 @@ router.get('/backpack', async (req, res) => { //Add Auth helper after developmen
   }
 });
 
+router.get('/splash', function (req, res) { //splash page route
+  res.render('splash', { username: req.session.username });
+})
+
+
+router.get('/backpack', async (req, res) => { //Add Auth helper after development.
+  try{
+  res.status(200).render("backpack");
+  } catch (err) {
+    res.status(500).json({ message: "Unable to load backpack from server. Error: " + err});
+  }
+});
+
 
 
 module.exports = router;
