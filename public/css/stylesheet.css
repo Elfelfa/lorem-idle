@@ -1,16 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --text: #FFFFFF;
     --menubackground: #263142f1;
-    --menubackgroundsolid: #263142;
+    --menubackgroundsolid: #1c2430;
     --menubackgroundtext: #A6A6A6;
+    --menubackgrounddark: #171d27;
+    --gold: #d4c274c0;
+    --goldsolid: #d4c274ec;
     --hovercolor: #FFDE59;
+    --complete: rgb(3, 227, 18);
     --black: #000000;
+    --Charcoal: #465362;
+    --red: #550414c9;
+    --green: #C2EABD;
     --font1: 'MedievalSharp', cursive;
     --font2: 'Almendra SC', serif;
 }
 
-.aside{
-    background-color: var(--menubackground);
+.aside {
+    background-color: var(--menubackgroundsolid);
 }
 
 body {
@@ -29,20 +40,24 @@ body {
     transform: scale(1.5);
 }
 
+.shopImg {
+    transform: scale(1.5);
+}
+
 .aside {
     color: var(--text);
     font-family: var(--font1);
 }
 
-.title{
+.title {
     color: var(--menubackground);
-	font-size: 40px;
+    font-size: 40px;
     font-family: var(--font2);
-	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: white;
 }
 
-.subtitle{
+.subtitle {
     font-family: var(--font2);
 }
 
@@ -77,13 +92,134 @@ body {
     font-size: 15px;
 }
 
-.generalProfile {
+.generalProfile,
+.backpackContainer {
     background-color: var(--menubackground);
     color: white;
-    font-family: var(--font1); 
+    font-family: var(--font1);
 }
 
 .profileName {
     font-size: 25px;
     font-family: var(--font2);
 }
+
+.userBackpack {
+    font-size: 30px;
+    font-family: var(--font2);
+    color: var();
+}
+
+.axeName {
+    font-size: 20px;
+    background-color: var(--menubackgrounddark);
+    color: var(--text);
+    font-family: var(--font1);
+}
+
+.axeSpeed,
+.axeGold {
+    font-size: 14px;
+    color: var(--text);
+    font-family: var(--font1);
+}
+
+.xpBar {
+    background-color: var(--menubackground);
+    border: 3px solid var(--menubackgroundsolid);
+}
+
+progress {
+    text-align: center;
+    height: 1.5em;
+    width: 100%;
+    -webkit-appearance: none;
+    border: none;
+
+    /* Set the progressbar to relative */
+    position: relative;
+}
+
+progress:before {
+    content: attr(data-label);
+    font-size: 16px;
+    vertical-align: 0;
+    font-family: var(--font2);
+    color: var(--menubackgroundsolid);
+    /*Position text over the progress bar */
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+progress::-webkit-progress-bar {
+    background-color: var(--menubackgroundtext);
+}
+
+progress::-webkit-progress-value {
+    background-image: linear-gradient(to right, rgba(41, 162, 1, 0.648), rgb(60, 255, 0), rgba(41, 162, 1, 0.648))
+}
+
+progress::-moz-progress-bar {
+    background-color: var(--complete);
+}
+
+.backpackHeader {
+    background-color: var(--menubackground);
+    border: 3px solid var(--menubackgroundsolid);
+    color: var(--text);
+    font-family: var(--font2);
+    font-size: 25px;
+}
+
+.woodcuttingXPName {
+    color: var(--text);
+    font-family: var(--font2);
+    font-size: 25px;
+}
+
+.nextBar {
+    position: absolute;
+    color: var(--text);
+    background-color: var(--menubackground);
+    font-size: 25px;
+    top: calc(50% - (25px / 2));
+    right: 0;
+    border: 3px double var(--text);
+}
+
+.previousBar {
+    position: absolute;
+    color: var(--text);
+    background-color: var(--menubackground);
+    font-size: 25px;
+    top: calc(50% - (25px / 2)); /* Center vertically */
+    left: 19%; /* Position on the left side */
+    border: 3px double var(--text);
+}
+
+
+.insideWoodcuttingCards,
+.insideinventoryCards {
+    background-color: var(--menubackground);
+    border: 3px solid var(--menubackgroundsolid);
+}
+
+.treeText {
+    color: var(--text);
+    font-family: var(--font1);
+    font-size: 30px;
+}
+
+.percentText {
+    color: var(--text);
+    font-family: var(--font1);
+    font-size: 20px;
+}
+
+.percentTextComplete {
+    color: var(--complete);
+    font-family: var(--font1);
+    font-size: 20px;
+}
+

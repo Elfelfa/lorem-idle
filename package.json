@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "seed": "node seeds/seed.js"
+    "seed": "node seeds/seed.js",
+    "userData": "node utils/createUserData.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.0.4",
+    "dayjs": "^1.11.7",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
@@ -38,6 +40,9 @@
   },
   "homepage": "https://github.com/Elfelfa/lorem-idle#readme",
   "devDependencies": {
-    "@faker-js/faker": "^7.6.0"
+    "@faker-js/faker": "^7.6.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.2"
   }
 }

@@ -5,6 +5,7 @@ const Tool = require('./Tool');
 const Resource = require('./Resource');
 const Progress = require('./Progress');
 const Inventory = require('./Inventory');
+const Active_Resource = require('./Active_Resource');
 
 //TODO: create relationships between tables
 
@@ -21,28 +22,36 @@ User.hasMany(Inventory, {
     onDelete: 'CASCADE'
 });
 
+Skill.hasMany(Progress, {
+    foreignKey: 'skill_id'
+});
+
+Skill.hasMany(Tool, {
+    foreignKey: 'skill_id'
+});
+
+Skill.hasMany(Item, {
+    foreignKey: 'skill_id'
+});
+
+Skill.hasMany(Resource, {
+    foreignKey: 'skill_id'
+});
+
+Tool.hasMany(Progress, {
+    foreignKey: 'tool_id'
+})
+
+Progress.belongsTo(Tool, {
+    foreignKey: 'tool_id'
+})
+
 Progress.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
 Inventory.belongsTo(User, {
     foreignKey: 'user_id'
-});
-
-Skill.hasMany(Progress, {
-    foreignKey: 'skill_id',
-});
-
-Skill.hasMany(Resource, {
-    foreignKey: 'skill_id',
-});
-
-Skill.hasMany(Tool, {
-    foreignKey: 'skill_id',
-});
-
-Skill.hasMany(Item, {
-    foreignKey: 'skill_id',
 });
 
 Progress.belongsTo(Skill, {
@@ -61,6 +70,24 @@ Item.belongsTo(Skill, {
     foreignKey: 'skill_id',
 });
 
+User.belongsToMany(Resource, {
+    through: {
+        model: Active_Resource,
+        unique: false
+    },
+
+    as: 'active_resource'
+});
+
+Resource.belongsToMany(User, {
+    through: {
+        model: Active_Resource,
+        unique: false
+    },
+
+    as: 'active_resource'
+});
+
 // Consider having an association between tool and skill. Depends on where we want to put our equip lvl requirement logic.
 
-module.exports = { Skill, Tool, Resource, User, Inventory, Item, Progress };
+module.exports = { Skill, Item, User, Tool, Resource, Progress, Inventory, Active_Resource };

@@ -1,0 +1,164 @@
+[
+    {
+        "name": "Tree",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "exp_reward": 5,
+        "item_id": 1,
+        "lvl_required": 1,
+        "seconds_to_complete": 10
+    },
+    {
+        "name": "Oak Tree",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "exp_reward": 25,
+        "item_id": 2,
+        "lvl_required": 15,
+        "seconds_to_complete": 14
+    },
+    {
+        "name": "Willow Tree",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "exp_reward": 50,
+        "item_id": 3,
+        "lvl_required": 30,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Teak Tree",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "exp_reward": 150,
+        "item_id": 4,
+        "lvl_required": 35,
+        "seconds_to_complete": 24
+    },
+    {
+        "name": "Maple Tree",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "exp_reward": 300,
+        "item_id": 5,
+        "lvl_required": 45,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Mahogany Tree",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "exp_reward": 350,
+        "item_id": 6,
+        "lvl_required": 50,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Yew Tree",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "exp_reward": 500,
+        "item_id": 7,
+        "lvl_required": 60,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Magic Tree",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "exp_reward": 1000,
+        "item_id": 8,
+        "lvl_required": 75,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Redwood Tree",
+        "skill_id": 1,
+        "skill_name": "woodcutting",
+        "exp_reward": 2000,
+        "item_id": 9,
+        "lvl_required": 90,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Shrimp",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "exp_reward": 5,
+        "item_id": 10,
+        "lvl_required": 1,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Herring",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "exp_reward": 25,
+        "item_id": 11,
+        "lvl_required": 15,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Anchovies",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "exp_reward": 50,
+        "item_id": 12,
+        "lvl_required": 30,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Trout",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "exp_reward": 150,
+        "item_id": 13,
+        "lvl_required": 35,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Salmon",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "exp_reward": 300,
+        "item_id": 14,
+        "lvl_required": 45,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Lobster",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "exp_reward": 350,
+        "item_id": 15,
+        "lvl_required": 50,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Swordfish",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "exp_reward": 500,
+        "item_id": 16,
+        "lvl_required": 60,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Monkfish",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "exp_reward": 1000,
+        "item_id": 17,
+        "lvl_required": 75,
+        "seconds_to_complete": 20
+    },
+    {
+        "name": "Shark",
+        "skill_id": 2,
+        "skill_name": "fishing",
+        "exp_reward": 2000,
+        "item_id": 18,
+        "lvl_required": 90,
+        "seconds_to_complete": 20
+    }
+]

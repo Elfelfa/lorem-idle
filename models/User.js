@@ -20,11 +20,11 @@ User.init(
         username: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
             validate: {
                 isEmail: true,
             },
@@ -37,6 +37,10 @@ User.init(
             validate: {
                 len: [12],
             },
+        },
+        timestamp: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     },
     {
@@ -52,7 +56,7 @@ User.init(
         },
         sequelize,
         timestamps: false,
-        freezeTableName: true,
+        freezeTableName: false, //changed to false to display the table name as "users" since multiple users will be stored.
         underscored: true,
         modelName: 'user',
     }

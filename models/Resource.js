@@ -19,7 +19,7 @@ Resource.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'skill',
+                model: 'skills',
                 key: 'id'
             }
         },
@@ -31,7 +31,7 @@ Resource.init(
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        item_reward: {
+        item_id: {
             type: DataTypes.INTEGER,
             allowNull: false
         },

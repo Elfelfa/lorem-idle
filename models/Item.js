@@ -24,19 +24,19 @@ Item.init(
         },
         skill_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             references: {
-                model: 'skill',
+                model: 'skills',
                 key: 'id'
            }
         },
         skill_name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         item_icon: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         }
     },
     {

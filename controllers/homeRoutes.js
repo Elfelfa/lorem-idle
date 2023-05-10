@@ -1,11 +1,15 @@
 
 const express = require('express');
 const router = express.Router();
+const Auth = require('../utils/auth')
 
-// Home page route.
-router.get('/', function (req, res) {
-  res.render('home', { title: 'Lorem Idle', showLogin: false });
-})
+router.get('/', async (req, res) => {
+  try {
+  res.status(200).render("splash");
+  } catch (err) {
+    res.status(500).json({ message: "Unable to load splash page from server. Error: " + err});
+  }
+});
 
 router.get('/login', async (req, res) => { 
   try{
@@ -23,9 +27,18 @@ router.get('/home', async (req, res) => {  //Add Auth helper after development.
   }
 });
 
+router.get('/backpack', async (req, res) => { //Add Auth helper after development.
+  try{
+  res.status(200).render("backpack");
+  } catch (err) {
+    res.status(500).json({ message: "Unable to load backpack from server. Error: " + err});
+  }
+});
+
 router.get('/splash', function (req, res) { //splash page route
   res.render('splash', { username: req.session.username });
 })
+
 
 router.get('/backpack', async (req, res) => { //Add Auth helper after development.
   try{
