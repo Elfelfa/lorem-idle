@@ -1,8 +1,8 @@
 <section class="container mx-auto col-start-3 grid justify-items-stretch col-end-12 h-screen" id="oldNode">
     <div class="grid grid-cols-9 grid-rows-6">
         <div class="xpBar col-start-1 col-end-10 h-24 row start 1 flex justify-center items-center m-4">
-            <label class="woodcuttingXPName mr-1" for="treeXP">({{level}}) Woodcutting XP:</label>
-            <progress class="treeXPBar w-2/3 h-6 rounded-lg" id="treeXP" value="98" max="100"
+            <label class="woodcuttingXPName mr-1" for="treeXP">Level&nbsp;:&nbsp;{{level}} &nbsp;&nbsp;Woodcutting XP:</label>
+            <progress class="treeXPBar w-2/3 h-6 rounded-lg" id="treeXP" value="{{currentEXP}}" max="{{expNeeded}}"
                 data-label="{{currentEXP}}/{{expNeeded}}"></progress>
         </div>
 
