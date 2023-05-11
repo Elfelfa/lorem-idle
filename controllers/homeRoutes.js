@@ -35,6 +35,7 @@ router.get("/splash", async (req, res) => {
 
 router.get("/home", async (req, res) => {
   try {
+    
     const userData = await User.findByPk(req.session.user_id);
 
     res.render("home", { check: true, username: userData.username });
@@ -70,7 +71,7 @@ router.get("/home/profile", async (req, res) => {
       },
       (err, rawHTML) => {
         if (!err) {
-          console.log(rawHTML);
+          // console.log(rawHTML);
           res.send({ html: String(rawHTML) });
         } else {
           console.log(err);
@@ -140,5 +141,26 @@ router.get("/home/woodcutting", async (req, res) => {
     throw err;
   }
 });
+
+router.get("/home/backpack", async (req, res) => {
+  try {
+
+    const id = req.session.user_id.toString();
+    const backpackData = await Inventory.findAll({ 
+      where: { 
+        user_id: "1"
+      },
+      include: {
+        model: Item,
+        attributes: {
+          exclude: ['skill_id', 'skill_name']
+      },
+      } 
+    });
+    console.log(backpackData);
+  } catch (err) {
+    throw err;
+  }
+})
 
 module.exports = router;
