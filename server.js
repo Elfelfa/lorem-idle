@@ -11,23 +11,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({helpers});
 
-hbs.handlebars.registerHelper('switch', function(value, options) {
-  this.switch_value = value;
-  this.switch_break = false;
-  return options.fn(this);
-});
-
-hbs.handlebars.registerHelper('case', function(value, options) {
-  this.case_value = value;
-  if (this.case_value === this.switch_value) {
-    this.switch_break = true;
-    return options.fn(this);
-  }
-});
-
-hbs.handlebars.registerHelper("consolelog", function() {
-  console.log(this.switch_value);
-  console.log(this.case_value);
+hbs.handlebars.registerHelper('json', function(context) {
+  return JSON.stringify(context);
 });
 
 require("dotenv").config();

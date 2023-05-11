@@ -1,4 +1,5 @@
 const express = require("express");
+const exphbs = require("express-handlebars");
 const router = express.Router();
 const Auth = require("../utils/auth");
 
@@ -25,7 +26,7 @@ router.get("/login", async (req, res) => {
 router.get("/home", async (req, res) => {
   //Add Auth helper after development.
   try {
-    res.status(200).render("home");
+    res.render("home", { check: true });
   } catch (err) {
     res
       .status(500)
@@ -33,35 +34,25 @@ router.get("/home", async (req, res) => {
   }
 });
 
-router.get("/home/:tab_id", async (req, res) => {
+router.get("/home/profile", async (req, res) => {
   //Add Auth helper after development.
   try {
-    console.log(typeof req.params.tab_id);
-    console.log(typeof parseInt(req.params.tab_id));
-    if (req.params.tab_id) {
-      switch (parseInt(req.params.tab_id)) {
-        case 1:
-          res.render("home", { profileTab: true });
-          break;
-        case 2:
-          console.log("success");
-          res.render("home", { backpackTab: "true" });
-          break;
-        case 3:
-          res.render("home", { woodcuttingTab: true });
-          break;
-        case 4:
-          res.render("home", { fishingTab: true });
-          break;
-      }
-
-    }
+    console.log("I'm here.");
+    res.render('partials/profile', { check: false }, (err, rawHTML) => {
+      if(!err){
+        console.log(rawHTML);
+        res.send({ html: String(rawHTML) });
+      } else {
+        console.log(err);
+      };
+    });
+    
   } catch (err) {
     res
       .status(500)
       .json({ message: "Unable to load home page from server. Error: " + err });
     throw err;
-  }
+  };
 });
 
 
