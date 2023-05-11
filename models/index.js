@@ -88,6 +88,14 @@ Resource.belongsToMany(User, {
     as: 'active_resource'
 });
 
+Item.hasMany(Inventory, {
+    foreignKey: 'item_id'
+});
+
+Inventory.belongsTo(Item, {
+    foreignKey: 'item_id'
+});
+
 // Consider having an association between tool and skill. Depends on where we want to put our equip lvl requirement logic.
 
 module.exports = { Skill, Item, User, Tool, Resource, Progress, Inventory, Active_Resource };
