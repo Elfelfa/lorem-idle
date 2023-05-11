@@ -78,6 +78,7 @@ body {
 
 .profile:hover,
 .backpack:hover,
+.shop:hover,
 .woodcutting:hover,
 .fishing:hover {
     color: var(--hovercolor);
@@ -85,6 +86,7 @@ body {
 
 .profile:active,
 .backpack:active,
+.shop:active,
 .woodcutting:active,
 .fishing:active {
     color: var(--hovercolor);
