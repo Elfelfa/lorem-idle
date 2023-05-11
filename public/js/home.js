@@ -10,8 +10,7 @@ const profileBtn = async (e) => {
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
 
-        if(checkNodes)
-        {
+        if (checkNodes) {
             checkNodes.parentNode.removeChild(checkNodes);
         }
 
@@ -42,8 +41,7 @@ const backpackBtn = async (e) => {
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
 
-        if(checkNodes)
-        {
+        if (checkNodes) {
             checkNodes.parentNode.removeChild(checkNodes);
         }
 
@@ -74,8 +72,7 @@ const woodcuttingBtn = async (e) => {
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
 
-        if(checkNodes)
-        {
+        if (checkNodes) {
             checkNodes.parentNode.removeChild(checkNodes);
         }
 
@@ -106,11 +103,10 @@ const fishingBtn = async (e) => {
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
 
-        if(checkNodes)
-        {
+        if (checkNodes) {
             checkNodes.parentNode.removeChild(checkNodes);
         }
-        
+
         const data = await response.json();
         const rawHTML = data.html;
         const myThing = document.createElement('div');
@@ -128,7 +124,7 @@ const fishingBtn = async (e) => {
     }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector("#profile-btn").addEventListener("click", profileBtn);
     document.querySelector("#backpack-btn").addEventListener("click", backpackBtn);
     document

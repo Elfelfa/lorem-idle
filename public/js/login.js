@@ -12,7 +12,7 @@ const loginFunction = async (e) => {
     });
 
     if (response.ok) {
-      document.location.replace("/#"); // TODO: Add endpoint to route the user to correct handlebars template.
+      document.location.replace("/home"); // TODO: Add endpoint to route the user to correct handlebars template.
     } else {
       alert("Unable to complete login.");
     }
