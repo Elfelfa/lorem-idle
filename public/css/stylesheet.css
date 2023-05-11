@@ -193,8 +193,10 @@ progress::-moz-progress-bar {
     color: var(--text);
     background-color: var(--menubackground);
     font-size: 25px;
-    top: calc(50% - (25px / 2)); /* Center vertically */
-    left: 19%; /* Position on the left side */
+    top: calc(50% - (25px / 2));
+    /* Center vertically */
+    left: 19%;
+    /* Position on the left side */
     border: 3px double var(--text);
 }
 
@@ -221,5 +223,47 @@ progress::-moz-progress-bar {
     color: var(--complete);
     font-family: var(--font1);
     font-size: 20px;
+}
+
+@keyframes growProgressBar {
+
+    0%,
+    33% {
+        --pgPercentage: 0;
+    }
+
+    100% {
+        --pgPercentage: var(--value);
+    }
+}
+
+@property --pgPercentage {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+}
+
+div[role="progressbar"] {
+    --size: 15rem;
+    --fg: rgb(3, 227, 18);
+    --bg: #A6A6A6;
+    --pgPercentage: rgba(221, 238, 255, 0);
+    animation: growProgressBar 3s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(closest-side, #1c2430 90%, transparent 0 99.9%, #1c2430 0),
+        conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: calc(var(--size) / 5);
+    color: #1c243000;
+}
+
+div[role="progressbar"]::before {
+    counter-reset: percentage var(--value);
+    content: counter(percentage) '%';
 }
 
