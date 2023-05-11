@@ -2,58 +2,85 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const router = express.Router();
 const Auth = require("../utils/auth");
-const { Skill, Item, User, Tool, Resource, Progress, Inventory, Active_Resource } = require("../models");
+const {
+  Skill,
+  Item,
+  User,
+  Tool,
+  Resource,
+  Progress,
+  Inventory,
+  Active_Resource,
+} = require("../models");
 const expChart = require("../assets/experience.json");
+
+router.get("/login", async (req, res) => {
+  try {
+    res.render("login");
+  } catch (err) {
+    throw err;
+  }
+});
 
 router.get("/splash", async (req, res) => {
   try {
-    res.redirect('/home');
+    res.redirect("/home");
   } catch (err) {
     res
       .status(500)
       .json({ message: "Unable to load home page from server. Error: " + err });
     throw err;
-  };
+  }
 });
 
 router.get("/home", async (req, res) => {
   try {
-    const userData = await User.findByPk('1');
+    const userData = await User.findByPk(req.session.user_id);
 
-    res.render('home', { check: true, username: userData.username });
+    res.render("home", { check: true, username: userData.username });
   } catch (err) {
     res
       .status(500)
       .json({ message: "Unable to load home page from server. Error: " + err });
     throw err;
-  };
+  }
 });
 
 router.get("/home/profile", async (req, res) => {
   //Add Auth helper after development.
   try {
-    const userData = await User.findByPk('1', {
-      include: [{model: Progress}]
+    const userData = await User.findByPk(req.session.user_id, {
+      include: [{ model: Progress }],
     });
     console.log(userData.progresses);
-    let totalEXP = userData.progresses[0].experience + userData.progresses[1].experience;
-    let totalSkill = userData.progresses[0].level + userData.progresses[1].level;
+    let totalEXP =
+      userData.progresses[0].experience + userData.progresses[1].experience;
+    let totalSkill =
+      userData.progresses[0].level + userData.progresses[1].level;
 
-    res.render(`partials/profile`, { check: false, username: userData.username, totalSkill: totalSkill, totalEXP: totalEXP }, (err, rawHTML) => {
-      if(!err){
-        console.log(rawHTML);
-        res.send({ html: String(rawHTML) });
-      } else {
-        console.log(err);
-      };
-    });
-    
+    res.render(
+      `partials/profile`,
+      {
+        check: false,
+        username: userData.username,
+        totalSkill: totalSkill,
+        totalEXP: totalEXP,
+      },
+      (err, rawHTML) => {
+        if (!err) {
+          console.log(rawHTML);
+          res.send({ html: String(rawHTML) });
+        } else {
+          console.log(err);
+        }
+      }
+    );
   } catch (err) {
     res
       .status(500)
       .json({ message: "Unable to load home page from server. Error: " + err });
     throw err;
-  };
+  }
 });
 
 router.get("/home/woodcutting", async (req, res) => {
@@ -61,9 +88,9 @@ router.get("/home/woodcutting", async (req, res) => {
   try {
     const progressData = await Progress.findAll({
       where: {
-        user_id: 1,
-        skill_id: 1
-      }
+        user_id: req.session.user_id,
+        skill_id: 1,
+      },
     });
     console.log(progressData);
     let totalEXP = progressData[0].experience;
@@ -77,28 +104,37 @@ router.get("/home/woodcutting", async (req, res) => {
 
     const resourceData = await Resource.findAll({
       where: {
-        skill_id: 1
+        skill_id: 1,
+      },
+    });
+
+    let wcResources = resourceData.map((data) => data.get({ plain: true }));
+
+    res.render(
+      `partials/woodcutting`,
+      {
+        check: false,
+        currentEXP: totalEXP,
+        level: totalSkill,
+        expNeeded: expChart[totalSkill + 1],
+        activeTree: 1,
+        resources: wcResources,
+      },
+      (err, rawHTML) => {
+        if (!err) {
+          //console.log(rawHTML);
+          res.send({ html: String(rawHTML) });
+        } else {
+          console.log(err);
+        }
       }
-    });
-
-    let wcResources = resourceData.map(data => data.get({ plain: true }));
-
-    res.render(`partials/woodcutting`, { check: false, currentEXP: totalEXP, level: totalSkill, expNeeded: expChart[totalSkill + 1], activeTree: 1, resources: wcResources}, (err, rawHTML) => {
-      if(!err){
-        //console.log(rawHTML);
-        res.send({ html: String(rawHTML) });
-      } else {
-        console.log(err);
-      };
-    });
-    
+    );
   } catch (err) {
     res
       .status(500)
       .json({ message: "Unable to load home page from server. Error: " + err });
     throw err;
-  };
+  }
 });
-
 
 module.exports = router;

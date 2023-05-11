@@ -40,7 +40,7 @@ User.init(
         },
         timestamp: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         }
     },
     {
