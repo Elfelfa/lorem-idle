@@ -28,12 +28,16 @@ Tool.init(
             allowNull: false,
         },
         modifier: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.DECIMAL(1,2),
             allowNull: false,
             validate: {
                 max: 1.0,
                 min: 0.4
             }
+        },
+        value: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         }
     },
     {
