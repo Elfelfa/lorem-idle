@@ -1,7 +1,7 @@
 module.exports = {
     calcTimePassed: async (data) => {
-        const userData = await User.findByPk(id);
-
+        const userData = data;
+        
         /////////////////////////////////////////
         // Timestamp array index definitions:  //
         // 0: YYYY                             //

@@ -42,6 +42,14 @@ Tool.hasMany(Progress, {
     foreignKey: 'tool_id'
 })
 
+Item.hasMany(Inventory, {
+    foreignKey: 'item_id'
+});
+
+Inventory.belongsTo(Item, {
+    foreignKey: 'item_id'
+});
+
 Progress.belongsTo(Tool, {
     foreignKey: 'tool_id'
 })
@@ -86,14 +94,6 @@ Resource.belongsToMany(User, {
     },
 
     as: 'active_resource'
-});
-
-Item.hasMany(Inventory, {
-    foreignKey: 'item_id'
-});
-
-Inventory.belongsTo(Item, {
-    foreignKey: 'item_id'
 });
 
 // Consider having an association between tool and skill. Depends on where we want to put our equip lvl requirement logic.

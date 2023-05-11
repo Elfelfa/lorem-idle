@@ -1,3 +1,4 @@
+const { calcTimePassed } = require("../../utils/helpers");
 const docBody = document.body;
 
 const profileBtn = async (e) => {
@@ -122,6 +123,24 @@ const fishingBtn = async (e) => {
     } else {
         alert("Unable to load profile");
     }
+};
+
+const loginUpdate = async () => {
+    const response = await fetch(`/api/user/myData`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+        var timePassed = await calcTimePassed(response);
+        
+    } else {
+        alert("Error when processing login update request!");
+    }
+};
+
+const tickUpdate = async (e) => {
+
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
