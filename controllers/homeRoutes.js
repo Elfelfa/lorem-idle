@@ -49,10 +49,12 @@ router.get("/home", async (req, res) => {
 router.get("/home/profile", async (req, res) => {
   //Add Auth helper after development.
   try {
-    const userData = await User.findByPk(req.session.user_id, {
+
+    let id = req.session.user_id.toString();
+    
+    const userData = await User.findByPk(id, {
       include: [{ model: Progress }],
     });
-    console.log(userData.progresses);
     let totalEXP =
       userData.progresses[0].experience + userData.progresses[1].experience;
     let totalSkill =
@@ -86,9 +88,11 @@ router.get("/home/profile", async (req, res) => {
 router.get("/home/woodcutting", async (req, res) => {
   //Add Auth helper after development.
   try {
+
+    let id = req.session.user_id.toString();
     const progressData = await Progress.findAll({
       where: {
-        user_id: req.session.user_id,
+        user_id: id,
         skill_id: 1,
       },
     });
