@@ -1,4 +1,4 @@
-const { calcTimePassed } = require("../../utils/helpers");
+// const { calcTimePassed } = require("../../utils/helpers");
 const docBody = document.body;
 
 const profileBtn = async (e) => {

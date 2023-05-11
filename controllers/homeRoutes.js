@@ -52,7 +52,7 @@ router.get("/home/profile", async (req, res) => {
   try {
 
     let id = req.session.user_id.toString();
-    
+    console.log(req.session.user_id);
     const userData = await User.findByPk(id, {
       include: [{ model: Progress }],
     });
@@ -97,7 +97,6 @@ router.get("/home/woodcutting", async (req, res) => {
         skill_id: 1,
       },
     });
-    console.log(progressData);
     let totalEXP = progressData[0].experience;
     let totalSkill = progressData[0].level;
 
@@ -127,7 +126,6 @@ router.get("/home/woodcutting", async (req, res) => {
       },
       (err, rawHTML) => {
         if (!err) {
-          //console.log(rawHTML);
           res.send({ html: String(rawHTML) });
         } else {
           console.log(err);
@@ -148,7 +146,7 @@ router.get("/home/backpack", async (req, res) => {
     const id = req.session.user_id.toString();
     const backpackData = await Inventory.findAll({ 
       where: { 
-        user_id: "1"
+        user_id: id,
       },
       include: {
         model: Item,
@@ -186,8 +184,6 @@ router.get("/home/backpack", async (req, res) => {
       }
     );
 
-    console.log(backpackData[0].item.name);
-    console.log(itemArray);
 
   } catch (err) {
     throw err;
