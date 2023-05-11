@@ -4,126 +4,126 @@
         "value": 100,
         "skill_id": 1,
         "skill_name": "woodcutting",
-        "item_icon": "🪵"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Logs_detail.png/130px-Logs_detail.png"
     },
     {
         "name": "Oak Log",
         "value": 200,
         "skill_id": 1,
         "skill_name": "woodcutting",
-        "item_icon": "🪵"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Oak_logs_detail.png/130px-Oak_logs_detail.png"
     },
     {
         "name": "Willow Log",
         "value": 300,
         "skill_id": 1,
         "skill_name": "woodcutting",
-        "item_icon": "🪵"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Willow_logs_detail.png/130px-Willow_logs_detail.png"
     },
     {
         "name": "Teak Log",
         "value": 400,
         "skill_id": 1,
         "skill_name": "woodcutting",
-        "item_icon": "🪵"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Teak_logs_detail.png/120px-Teak_logs_detail.png"
     },
     {
         "name": "Maple Log",
         "value": 500,
         "skill_id": 1,
         "skill_name": "woodcutting",
-        "item_icon": "🪵"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Maple_logs_detail.png/130px-Maple_logs_detail.png"
     },
     {
         "name": "Mahogany Log",
         "value": 600,
         "skill_id": 1,
         "skill_name": "woodcutting",
-        "item_icon": "🪵"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Mahogany_logs_detail.png/130px-Mahogany_logs_detail.png"
     },
     {
         "name": "Yew Log",
         "value": 700,
         "skill_id": 1,
         "skill_name": "woodcutting",
-        "item_icon": "🪵"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Yew_logs_detail.png/130px-Yew_logs_detail.png"
     },
     {
         "name": "Magic Log",
         "value": 800,
         "skill_id": 1,
         "skill_name": "woodcutting",
-        "item_icon": "🪵"
+        "item_icon": "https://oldschool.runescape.wiki/images/Magic_logs_detail_animated.gif"
     },
     {
         "name": "Redwood Log",
         "value": 900,
         "skill_id": 1,
         "skill_name": "woodcutting",
-        "item_icon": "🪵"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Redwood_logs_detail.png/130px-Redwood_logs_detail.png"
     },
     {
         "name": "Shrimp",
         "value": 100,
         "skill_id": 2,
         "skill_name": "fishing",
-        "item_icon": "🦐"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Raw_shrimps_detail.png/100px-Raw_shrimps_detail.png"
     },
     {
         "name": "Herring",
         "value": 200,
         "skill_id": 2,
         "skill_name": "fishing",
-        "item_icon": "🐟"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Raw_herring_detail.png/100px-Raw_herring_detail.png"
     },
     {
         "name": "Anchovies",
         "value": 300,
         "skill_id": 2,
         "skill_name": "fishing",
-        "item_icon": "🎏"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Raw_anchovies_detail.png/100px-Raw_anchovies_detail.png"
     },
     {
         "name": "Trout",
         "value": 400,
         "skill_id": 2,
         "skill_name": "fishing",
-        "item_icon": "🎣"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Raw_trout_detail.png/100px-Raw_trout_detail.png"
     },
     {
         "name": "Salmon",
         "value": 600,
         "skill_id": 2,
         "skill_name": "fishing",
-        "item_icon": "🎣"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Raw_salmon_detail.png/100px-Raw_salmon_detail.png"
     },
     {
         "name": "Lobster",
         "value": 700,
         "skill_id": 2,
         "skill_name": "fishing",
-        "item_icon": "🦞"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Raw_lobster_detail.png/125px-Raw_lobster_detail.png"
     },
     {
         "name": "Swordfish",
         "value": 800,
         "skill_id": 2,
         "skill_name": "fishing",
-        "item_icon": "🐬"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Raw_swordfish_detail.png/180px-Raw_swordfish_detail.png"
     },
     {
         "name": "Monkfish",
         "value": 900,
         "skill_id": 2,
         "skill_name": "fishing",
-        "item_icon": "🦭"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Raw_monkfish_detail.png/100px-Raw_monkfish_detail.png"
     },
     {
         "name": "Shark",
         "value": 1000,
         "skill_id": 2,
         "skill_name": "fishing",
-        "item_icon": "🦈"
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Raw_shark_detail.png/150px-Raw_shark_detail.png"
     },
     {
         "id": 1000,

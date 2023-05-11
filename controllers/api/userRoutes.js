@@ -1,12 +1,48 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Active_Resource, Progress, Inventory, Resource } = require("../../models");
+
+// Gather all user data of the client making the request
+router.get("/myData", async (req, res) => {
+  try {
+    const userData = await User.findOne({
+      where: { id: "1"},//req.session.user_id.toString() },
+      attributes: { exclude: ['id', 'email', 'password'] },
+      include: [{ model: Resource, through: { Active_Resource }, as: 'active_resource' },
+                { model: Progress, attributes: { exclude: ['id', 'user_id'] }, as: 'progresses' },
+                { model: Inventory, attributes: { exclude: ['id', 'user_id'] }, as: 'inventories' }]
+    });
+
+    if (userData) {
+      res.status(200).json(userData);
+    }
+  } catch (err) {
+    res 
+      .status(500)
+      .json({ message: "Unable to grab user data. Error: " + err });
+  };
+});
+
+// Gather all user data of a specified user
+router.get("/:id", async (req, res) => {
+  try {
+    const userData = await User.findOne({
+      where: { id: req.params.id }
+    });
+
+    if (userData) {
+      res.status(200).json(userData);
+    }
+  } catch (err) {
+    res 
+      .status(500)
+      .json({ message: "Unable to grab user data. Error: " + err });
+  };
+});
 
 // Create a new User using a POST
 router.post("/createuser", async (req, res) => {
   try {
-    console.log(req.body)
     const userData = await User.create(req.body);
-    console.log(userData);
     if (userData) {
     req.session.save(() => {
       req.session.user_id = userData.id;
@@ -16,7 +52,7 @@ router.post("/createuser", async (req, res) => {
   }
   } catch (err) {
     res
-      .status(200)
+      .status(500)
       .json({ message: "Unable to create a new user. Error: " + err });
   }
 });
