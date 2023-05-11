@@ -9,7 +9,7 @@ let progressData = [];
 
 const createUserSeeds = async() => {
     try {
-      for (var i = 1; i <= 10000; i++) {
+      for (var i = 1; i <= 100; i++) {
         // Creates user profile data
         // Places a timestamp on the user's account from their last active login.
         // For testing purposes this will start as the account creation timestamp.

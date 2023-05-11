@@ -1,3 +1,4 @@
+{{#if check}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almendra+SC&family=MedievalSharp&display=swap">
-    <link rel="stylesheet" href="./css/stylesheet.css">
+    <link rel="stylesheet" href="/css/stylesheet.css">
     <script src="https://cdn.tailwindcss.com"></script>
     
 
@@ -16,8 +17,9 @@
 
 <body class="grid grid-cols-11">
     
-    {{{body}}}
+    {{/if}}{{{body}}}{{#if check}}
+
 
 </body>
 
-</html>
+</html>{{/if}}
