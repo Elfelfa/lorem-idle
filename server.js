@@ -11,8 +11,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({helpers});
 
-hbs.handlebars.registerHelper('json', function(context) {
-  return JSON.stringify(context);
+hbs.handlebars.registerHelper('if_eq', function(a, b, opts) {
+  if(a == b) // Or === depending on your needs
+      return opts.fn(this);
+  else
+      return opts.inverse(this);
 });
 
 require("dotenv").config();
