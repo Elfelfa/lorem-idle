@@ -157,7 +157,38 @@ router.get("/home/backpack", async (req, res) => {
       },
       } 
     });
-    console.log(backpackData);
+
+    let itemArray = [];
+    for (let i = 0; i < 18; i++) {
+      const newItemObj = {
+        item: i,
+        amount: backpackData[i].item_amount,
+        name: backpackData[i].item.name,
+        value: backpackData[i].item.value,
+        item_icon: backpackData[i].item.item_icon,
+      }
+      itemArray.push(newItemObj);
+      
+    }
+
+    // let itemArrayPlain = itemArray.map(data => data.get({ plain: true }))
+    res.render("partials/backpack",
+      {
+        check: false,
+        itemsObj: itemArray,
+      },
+      (err, rawHTML) => {
+        if (!err) {
+          res.send({ html: String(rawHTML) });
+        } else {
+          console.log(err);
+        }
+      }
+    );
+
+    console.log(backpackData[0].item.name);
+    console.log(itemArray);
+
   } catch (err) {
     throw err;
   }
