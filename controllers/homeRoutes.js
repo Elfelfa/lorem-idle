@@ -2,6 +2,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const router = express.Router();
 const Auth = require("../utils/auth");
+const { Skill, Item, User, Tool, Resource, Progress, Inventory, Active_Resource } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
@@ -37,8 +38,14 @@ router.get("/home", async (req, res) => {
 router.get("/home/profile", async (req, res) => {
   //Add Auth helper after development.
   try {
-    console.log("I'm here.");
-    res.render('partials/profile', { check: false }, (err, rawHTML) => {
+    const userData = await User.findByPk('1', {
+      include: [{model: Progress}]
+    });
+    console.log(userData.progresses);
+    let totalEXP = userData.progresses[0].experience + userData.progresses[1].experience;
+    let totalSkill = userData.progresses[0].level + userData.progresses[1].level;
+
+    res.render(`partials/profile`, { check: false, username: userData.username, totalSkill: totalSkill, totalEXP: totalEXP }, (err, rawHTML) => {
       if(!err){
         console.log(rawHTML);
         res.send({ html: String(rawHTML) });
