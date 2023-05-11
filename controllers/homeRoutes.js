@@ -4,7 +4,7 @@ const router = express.Router();
 const Auth = require("../utils/auth");
 const { Skill, Item, User, Tool, Resource, Progress, Inventory, Active_Resource } = require("../models");
 
-router.get("/", async (req, res) => {
+router.get("/splash", async (req, res) => {
   try {
     res.status(200).render("splash");
   } catch (err) {
