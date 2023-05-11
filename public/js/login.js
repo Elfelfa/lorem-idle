@@ -25,11 +25,15 @@ const signupFunction = async (e) => {
     const email = document.querySelector("#email-signup").value.trim();
     const username = document.querySelector("#username-signup").value.trim();
     const password = document.querySelector("#password-signup").value.trim();
+    const timeUnix = Date.now();
+    const timestamp = dayjs.unix(timeUnix).format("YYYY/MM/DD/hh/mm/ss");
+    console.log(timeUnix);
+    console.log(timestamp);
 
     if (email && username && password) {
         const response = await fetch("/api/user/createuser", {
             method: "POST",
-            body: JSON.stringify({ username, email, password }),
+            body: JSON.stringify({ username, email, password, timestamp }),
             headers: { "Content-Type": "application/json" },
         });
 
