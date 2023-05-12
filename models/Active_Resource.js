@@ -28,7 +28,7 @@ Active_Resource.init(
             }
         },
         progress: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: false,
             defaultValue: 0.0
         }
