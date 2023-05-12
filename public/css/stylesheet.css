@@ -99,6 +99,7 @@ body {
 .woodcutting:hover,
 .fishing:hover {
     color: var(--hovercolor);
+    transform: scale(1.05);
 }
 
 .profile:active,
@@ -107,8 +108,7 @@ body {
 .woodcutting:active,
 .fishing:active {
     color: var(--hovercolor);
-    text-shadow: 1px 1px 5px var(--menubackgroundtext);
-    font-size: 15px;
+    transform: scale(1.05) translateY(.125rem);
 }
 
 .generalProfile {
@@ -191,11 +191,11 @@ progress::-moz-progress-bar {
 
 .backpackHeader,
 .shopHeader {
-    background-color: var(--menubackground);
-    border: 3px solid var(--menubackgroundsolid);
+    background-color: var(--menubackgroundsolid);
+    border: 3px double var(--text);
     color: var(--text);
     font-family: var(--font2);
-    font-size: 25px;
+    font-size: 40px;
 }
 
 .woodcuttingXPName {
@@ -350,6 +350,11 @@ div[role="progressbar"]::before {
 .loginButton:hover {
     color: var(--hovercolor);
     border: 2px double var(--hovercolor);
+    transform: scale(1.05);
+}
+
+.loginButton:active {
+   transform: scale(1.05) translateY(.125rem);
 }
 
 .profileTitle {
@@ -361,20 +366,30 @@ div[role="progressbar"]::before {
     background-color: var(--menubackgroundsolid);
 }
 
-.woodcuttingCard:hover .treeText {
+.woodcuttingCard:hover .treeText,
+.shopCard:hover .axeName {
     color: var(--hovercolor);
 }
 
-.woodcuttingCard:hover .insideWoodcuttingCards {
+.woodcuttingCard:hover .insideWoodcuttingCards,
+.shopCard:hover .insideShopCards {
     border: 3px solid var(--hovercolor);
+    transform: scale(1.05);
 }
 
-.woodcuttingCard:focus .treeText {
+.woodcuttingCard:focus .treeText,
+.shopCard:hover .axeName {
     color: var(--hovercolor);
 }
 
-.woodcuttingCard:focus .insideWoodcuttingCards {
+.woodcuttingCard:focus .insideWoodcuttingCards,
+.shopCard:hover .insideShopCards {
     border: 3px solid var(--hovercolor);
+}
+
+.woodcuttingCard:active .insideWoodcuttingCards,
+.shopCard:active .insideShopCards {
+    transform: scale(1.05) translateY(.125rem);
 }
 
 .signInPage {
