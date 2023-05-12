@@ -6,7 +6,8 @@
         "exp_reward": 5,
         "item_id": 1,
         "lvl_required": 1,
-        "seconds_to_complete": 10
+        "seconds_to_complete": 10,
+        "item_icon": "https://oldschool.runescape.wiki/images/Tree.png"
     },
     {
         "name": "Oak Tree",
@@ -15,7 +16,8 @@
         "exp_reward": 25,
         "item_id": 2,
         "lvl_required": 15,
-        "seconds_to_complete": 14
+        "seconds_to_complete": 14,
+        "item_icon": "https://oldschool.runescape.wiki/images/Oak.png"
     },
     {
         "name": "Willow Tree",
@@ -24,7 +26,8 @@
         "exp_reward": 50,
         "item_id": 3,
         "lvl_required": 30,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": "https://oldschool.runescape.wiki/images/Willow.png"
     },
     {
         "name": "Teak Tree",
@@ -33,7 +36,8 @@
         "exp_reward": 150,
         "item_id": 4,
         "lvl_required": 35,
-        "seconds_to_complete": 24
+        "seconds_to_complete": 24,
+        "item_icon": "https://oldschool.runescape.wiki/images/Teak.png"
     },
     {
         "name": "Maple Tree",
@@ -42,7 +46,8 @@
         "exp_reward": 300,
         "item_id": 5,
         "lvl_required": 45,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Maple_tree.png/1024px-Maple_tree.png"
     },
     {
         "name": "Mahogany Tree",
@@ -51,7 +56,8 @@
         "exp_reward": 350,
         "item_id": 6,
         "lvl_required": 50,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": "https://oldschool.runescape.wiki/images/Mahogany.png"
     },
     {
         "name": "Yew Tree",
@@ -60,7 +66,8 @@
         "exp_reward": 500,
         "item_id": 7,
         "lvl_required": 60,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Yew.png/1024px-Yew.png"
     },
     {
         "name": "Magic Tree",
@@ -69,7 +76,8 @@
         "exp_reward": 1000,
         "item_id": 8,
         "lvl_required": 75,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": "https://oldschool.runescape.wiki/images/thumb/Magic_Tree_%28grown%29.png/800px-Magic_Tree_%28grown%29.png"
     },
     {
         "name": "Redwood Tree",
@@ -78,7 +86,8 @@
         "exp_reward": 2000,
         "item_id": 9,
         "lvl_required": 90,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": "https://oldschool.runescape.wiki/images/Redwood.png"
     },
     {
         "name": "Shrimp",
