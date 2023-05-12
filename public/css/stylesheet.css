@@ -281,7 +281,7 @@ div[role="progressbar"] {
     --fg: rgb(3, 227, 18);
     --bg: #A6A6A6;
     --pgPercentage: rgba(221, 238, 255, 0);
-    animation: growProgressBar 3s 1 forwards;
+    animation: growProgressBar 0s 1 forwards;
     width: var(--size);
     height: var(--size);
     border-radius: 50%;

@@ -2,6 +2,8 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const router = express.Router();
 const Auth = require("../utils/auth");
+const sequelize = require('../config/connection');
+const dayjs = require('dayjs');
 
 const {
   Skill,
@@ -118,13 +120,86 @@ router.get("/home/profile", async (req, res) => {
   }
 });
 
+router.put("/home/tickUpdate", async (req, res) => {
+  try {
+    const userData = await User.update(
+      {
+        timestamp: dayjs().format('YYYY/MM/DD/hh/mm/ss')
+      },
+      {
+        where: { id: req.session.user_id }
+      }
+    );
+
+    const progressDataWC = await Progress.update(
+      {
+        level: req.body.player.woodcuttingLevel,
+        experience: req.body.player.woodcuttingEXP
+      },
+      {
+        where: { user_id: req.session.user_id, skill_id: 1 }
+      }
+    );
+
+
+    console.log(req.body.player.fishingLevel);
+    console.log(req.body.player.woodcuttingLevel);
+    console.log(req.body.player.fishingEXP);
+    console.log(req.body.player.woodcuttingEXP);
+
+
+    const progressDataFSH = await Progress.update(
+      {
+        level: req.body.player.fishingLevel,
+        experience: req.body.player.fishingEXP
+      },
+      {
+        where: { user_id: req.session.user_id, skill_id: 2 }
+      }
+    );
+
+    let invArray = []
+
+    for (let i = 0; i < 18; i++) {
+      invArray.push({ amount: req.body.player.inventory[i], itemId: (i + 1) });
+    };
+    try {
+      const inventoryData = await Promise.all(
+        invArray.map((item, index) => {
+          return Inventory.update(
+            { item_amount: item.amount },
+            { where: { user_id: req.session.user_id, item_id: item.itemId } }
+          );
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+
+
+    if (req.body.player.activeResource) {
+      const resourceData = await Active_Resource.update(
+        {
+          progress: req.body.player.progress
+        },
+        {
+          where: { user_id: req.session.user_id }
+        }
+      )
+    }
+
+    res.status(200).json();
+  } catch (err) {
+    throw err;
+  }
+});
+
 // Send users items to be rendered in the user's backpack
 router.get("/home/backpack", async (req, res) => {
   try {
-    const id = req.session.user_id.toString();
     const backpackData = await Inventory.findAll({
       where: {
-        user_id: id,
+        user_id: req.session.user_id,
       },
       include: {
         model: Item,
@@ -192,15 +267,17 @@ router.get("/home/shop", async (req, res) => {
 router.get("/home/woodcutting", async (req, res) => {
   //Add Auth helper after development.
   try {
-    let id = req.session.user_id.toString();
+
     const progressData = await Progress.findAll({
       where: {
-        user_id: id,
+        user_id: req.session.user_id,
         skill_id: 1,
       },
     });
     let totalEXP = progressData[0].experience;
     let totalSkill = progressData[0].level;
+
+    console.log(progressData);
 
     const resourceData = await Resource.findAll({
       where: {
@@ -208,16 +285,33 @@ router.get("/home/woodcutting", async (req, res) => {
       },
     });
 
+    const activeData = await Active_Resource.findOne({
+      where: { user_id: req.session.user_id }
+    })
+
     let wcResources = resourceData.map((data) => data.get({ plain: true }));
+    let totalProg;
+
+    console.log(wcResources);
+
+    for (let i = 0; i < wcResources.length; i++) {
+      if (activeData.resource_id === wcResources[i].id) {
+        totalProg = ((parseFloat(activeData.progress / wcResources[i].seconds_to_complete)).toFixed(2) * 100).toFixed(2); 
+      }
+    }
+    console.log(activeData.progress);
+
+    console.log(totalProg);
 
     res.render(
       `partials/woodcutting`,
       {
         check: false,
         currentEXP: totalEXP,
+        progress: totalProg.toString(),
         level: totalSkill,
         expNeeded: expChart[totalSkill + 1],
-        activeTree: 1,
+        activeTree: activeData.resource_id,
         resources: wcResources,
       },
       (err, rawHTML) => {

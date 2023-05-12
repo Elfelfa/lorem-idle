@@ -1,9 +1,11 @@
 
 const docBody = document.body;
 
+let lastEvent;
+
 
 // Server tick rate in milliseconds 
-const tickRate = 600;
+const tickRate = 2000;
 
 var player = {
     activeResource: undefined,
@@ -19,11 +21,28 @@ var player = {
     tools: {
         woodcutting: 1.0,
         fishing: 1.0
-    }
+    },
+    currentPage: 0,
+    progress: 0,
+    timeToComplete: 0,
+    resourceEXP: 0,
+    resourceItem: 0,
+
+    ////////// CURRENT PAGE //////////////
+    //    0 = splash
+    //    1 = profile
+    //    2 = backpack
+    //    3 = shop
+    //    4 = woodcutting
+    //    5 = fishing
+    //////////////////////////////////////
 };
 
 const profileBtn = async (e) => {
     e.preventDefault();
+
+    player.currentPage = 1;
+
     const response = await fetch("/home/profile", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -55,6 +74,9 @@ const profileBtn = async (e) => {
 
 const backpackBtn = async (e) => {
     e.preventDefault();
+
+    player.currentPage = 2;
+
     const response = await fetch(`/home/backpack`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -87,6 +109,9 @@ const backpackBtn = async (e) => {
 // Function to fetch shop data
 const shopBtn = async (e) => {
     e.preventDefault();
+
+    player.currentPage = 3;
+
     const response = await fetch("/home/shop", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -115,7 +140,12 @@ const shopBtn = async (e) => {
 };
 
 const woodcuttingBtn = async (e) => {
-    e.preventDefault();
+    if (e) {
+        e.preventDefault();
+    }
+
+    player.currentPage = 4;
+
     const response = await fetch("/home/woodcutting", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -123,7 +153,6 @@ const woodcuttingBtn = async (e) => {
 
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
-
         const inject = await htmlInjection(checkNodes, response);
 
         const woodcuttingClick = (data) => {
@@ -137,7 +166,6 @@ const woodcuttingBtn = async (e) => {
             woodcuttingClick(e.target);
            }
           });
-
     } else {
         alert("Unable to load profile");
     }
@@ -145,6 +173,9 @@ const woodcuttingBtn = async (e) => {
 
 const fishingBtn = async (e) => {
     e.preventDefault();
+
+    player.currentPage = 5;
+
     const response = await fetch("/home/fishing", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -193,6 +224,9 @@ const loginUpdate = async () => {
         player.gp = userData.inventories[userData.inventories.length - 1].item_amount;
         player.tools.woodcutting = userData.progresses[0].tool_id;
         player.tools.fishing = userData.progresses[1].tool_id;
+        player.timeToComplete = userData.active_resource[0].seconds_to_complete;
+        player.resourceEXP = userData.active_resource[0].exp_reward;
+        player.resourceItem = userData.active_resource[0].item_id - 1;
 
         for (let a = 0; a < player.inventory.length; a++) {
             player.inventory[a] = userData.inventories[a].item_amount;
@@ -285,7 +319,25 @@ const loginUpdate = async () => {
 };
 
 const tickUpdate = async (e) => {
+    try {
+        const tUpdateRes = await fetch("/home/tickUpdate", {
+            method: "PUT",
+            body: JSON.stringify({ player }),
+            headers: { "Content-Type": "application/json" },
+        });
+    } catch (err) {
+        console.log(err);
+    }
 
+    console.log(player.currentPage);
+
+    
+
+    if (player.currentPage === 4) {
+        const test = await woodcuttingBtn();
+    } else if (player.currentPage === 5) {
+         fishingBtn();
+    };
 };
 
 const calcTimePassed = async (data) => {
@@ -398,7 +450,36 @@ document.addEventListener("DOMContentLoaded", async () => {
     experienceChart = await response.json();
 
     loginUpdate();
-    setInterval(tickUpdate, tickRate);
+    setInterval(async () => {
+        player.progress += 2;
+        if (player.progress >= player.timeToComplete) {
+            player.progress = 0;
+            
+            if (player.resourceItem <= 8) {
+                player.woodcuttingEXP += player.resourceEXP;
+            } else {
+                player.fishingEXP += player.resourceEXP;
+            }
+
+            player.inventory[player.resourceItem] += 1;
+        }
+
+        const tUpdateRes = await fetch("/home/tickUpdate", {
+            method: "PUT",
+            body: JSON.stringify({ player }),
+            headers: { "Content-Type": "application/json" },
+        });
+
+        if (player.currentPage === 4) {
+            const refreshR = await fetch("/home/woodcutting", {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            });
+
+            const checkNodes = await document.getElementById("oldNode");
+            const inject = await htmlInjection(checkNodes, refreshR);
+        }
+    }, tickRate);
 });
 
 const htmlInjection = async (checkNodes, response) => {
