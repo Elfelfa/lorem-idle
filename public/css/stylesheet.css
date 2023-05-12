@@ -378,28 +378,33 @@ div[role="progressbar"]::before {
 }
 
 .woodcuttingCard:hover .treeText,
-.shopCard:hover .axeName {
+.shopCard:hover .axeName,
+.inventoryCard:hover .axeName {
     color: var(--hovercolor);
 }
 
 .woodcuttingCard:hover .insideWoodcuttingCards,
-.shopCard:hover .insideShopCards {
+.shopCard:hover .insideShopCards,
+.inventoryCard:hover .insideinventoryCards {
     border: 3px solid var(--hovercolor);
     transform: scale(1.05);
 }
 
 .woodcuttingCard:focus .treeText,
-.shopCard:hover .axeName {
+.shopCard:hover .axeName,
+.inventoryCard:hover .axeName {
     color: var(--hovercolor);
 }
 
 .woodcuttingCard:focus .insideWoodcuttingCards,
-.shopCard:hover .insideShopCards {
+.shopCard:hover .insideShopCards,
+.inventoryCard:hover .insideinventoryCards {
     border: 3px solid var(--hovercolor);
 }
 
 .woodcuttingCard:active .insideWoodcuttingCards,
-.shopCard:active .insideShopCards {
+.shopCard:active .insideShopCards,
+.inventoryCard:active .insideinventoryCards {
     transform: scale(1.05) translateY(.125rem);
 }
 
