@@ -22,7 +22,7 @@ router.get("/myData", async (req, res) => {
   };
 });
 
-router.update("/loginUpdate", async (req, res) => {
+router.put("/loginUpdate", async (req, res) => {
   try {
     const userData = await User.update(
       {

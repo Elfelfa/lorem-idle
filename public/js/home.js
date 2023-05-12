@@ -99,12 +99,15 @@ const shopBtn = async (e) => {
         const inject = await htmlInjection(checkNodes, response);
 
         const shopClick = (data) => {
-            console.log(data.getAttribute("data-id"));
+            console.log(data.parentElement.getAttribute("data-id"));
           };
+          const shopBtns = document.getElementById("shopCardHolster");
 
-        document.querySelector(".shopCard").addEventListener('click', function(e) {
+        shopBtns.addEventListener('click', function(e) {
+           if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
             e.stopPropagation();
             shopClick(e.target);
+           }
           });
        
     } else {
@@ -250,11 +253,11 @@ const loginUpdate = async () => {
         console.log(player.inventory[userData.active_resource[0].item_id - 1]);
 
         console.log(player);
-        const response = await fetch(`/api/user/loginUpdate`, {
-             method: "UPDATE",
-             body: { player },
-             headers: { "Content-Type": "application/json" },
-        });
+        // const response = await fetch(`/api/user/loginUpdate`, {
+        //      method: "PUT",
+        //      body: { player },
+        //      headers: { "Content-Type": "application/json" },
+        // });
     } else {
         alert("Error when processing login update request: ");
     }

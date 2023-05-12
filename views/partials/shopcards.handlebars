@@ -1,11 +1,11 @@
-<button data-id="{{id}}" class="shopCard self-center m-4">
-    <div class="insideShopCards h-60 w-48">
+<button class="shopCard self-center m-4">
+    <section data-id="{{id}}" class="insideShopCards h-60 w-48">
         <div class="axeName flex  justify-center p-3 px-6 h-1/3 items-center">{{name}}</div>
-        <div class="flex justify-center m-1">
+        <div data-id="{{id}}" class="flex justify-center m-1">
             <img class="ironAxePic m-2 mt-4" src={{tool_icon}} alt="image-description"
                 width="40" height="40">
         </div>
         <div class="axeSpeed flex justify-center">Speed: {{modifier}}</div>
         <div class="axeGold flex justify-center">Price: {{value}}gp</div>
-    </div>
+    </section>
 </button>
