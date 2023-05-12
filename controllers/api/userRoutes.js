@@ -201,26 +201,24 @@ router.post("/createuser", async (req, res) => {
 // User Login using POST
 router.post("/login", async (req, res) => {
   try {
+    const userData = await User.findOne({
+      where: { username: req.body.username },
+    });
+    if (!userData) {
+      res.status(400).json({ message: "Incorrect Username or Password" });
+      return;
+    }
+
+    const validPassword = await userData.checkPassword(req.body.password);
+  
+    if (!validPassword) {
+      res.status(400).json({ message: "Incorrect Username or Password" });
+      return;
+    }
     
     req.session.user_id = userData.id;
     req.session.logged_in = true;
     req.session.save(async () => {
-      const userData = await User.findOne({
-        where: { username: req.body.username },
-      });
-      if (!userData) {
-        res.status(400).json({ message: "Incorrect Username or Password" });
-        return;
-      }
-  
-      const validPassword = await userData.checkPassword(req.body.password);
-  
-      if (!validPassword) {
-        res.status(400).json({ message: "Incorrect Username or Password" });
-        return;
-      }
-  
-
       res.json({ message: "Successfully logged in" });
     });
 
