@@ -1,4 +1,4 @@
-const experienceChart = require("../../assets/experience.json");
+// const experienceChart = require("../../assets/experience.json");
 const docBody = document.body;
 
 // Server tick rate in milliseconds 
