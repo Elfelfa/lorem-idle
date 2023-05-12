@@ -49,6 +49,16 @@ body {
     transform: scale(1.5);
 }
 
+.woodcuttingImg {
+    transform: scale(1.75);
+    margin-bottom: 10px;
+}
+
+.fishingImg {
+    transform: scale(1.75);
+    margin-bottom: 10px;
+}
+
 .aside {
     color: var(--text);
     font-family: var(--font1);
@@ -64,6 +74,7 @@ body {
 
 .subtitle {
     font-family: var(--font2);
+    font-size: 30px;
 }
 
 .player,
@@ -71,14 +82,15 @@ body {
     color: var(--menubackgroundtext);
     border-color: var(--menubackgroundtext);
     font-family: var(--font1);
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .profile,
 .backpack,
 .woodcutting,
-.fishing {
-    font-size: 16px;
+.fishing,
+.shop {
+    font-size: 25px;
 }
 
 .profile:hover,
