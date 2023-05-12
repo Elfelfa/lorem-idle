@@ -250,11 +250,11 @@ const loginUpdate = async () => {
         console.log(player.inventory[userData.active_resource[0].item_id - 1]);
 
         console.log(player);
-        // const response = await fetch(`/api/user/update`, {
-        //     method: "UPDATE",
-        //     body: { player },
-        //     headers: { "Content-Type": "application/json" },
-        // });
+        const response = await fetch(`/api/user/loginUpdate`, {
+             method: "UPDATE",
+             body: { player },
+             headers: { "Content-Type": "application/json" },
+        });
     } else {
         alert("Error when processing login update request: ");
     }
