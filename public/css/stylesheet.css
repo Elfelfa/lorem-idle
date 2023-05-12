@@ -364,12 +364,17 @@ div[role="progressbar"]::before {
 }
 
 .profileTitle {
-    font-size: 35px;
+    font-size: 45px;
 
+}
+
+.profileSubtitle {
+    font-size: 25px;
 }
 
 .profileInfo {
     background-color: var(--menubackgroundsolid);
+    font-size: 25px;
 }
 
 .woodcuttingCard:hover .treeText,
