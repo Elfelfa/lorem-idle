@@ -6,7 +6,7 @@
         "modifier": 0.4,
         "value": 20000,
         "lvl_required": 1,
-        "tool_icon": "🪓"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Bronze_axe_detail.png"
     },
     {
         "name": "Iron Axe",
@@ -15,7 +15,7 @@
         "modifier": 0.45,
         "value": 50000,
         "lvl_required": 1,
-        "tool_icon": "🪓"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Iron_axe_detail.png"
     },
     {
         "name": "Steel Axe",
@@ -24,7 +24,7 @@
         "modifier": 0.5,
         "value": 200000,
         "lvl_required": 5,
-        "tool_icon": "🪓"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Steel_axe_detail.png"
     },
     {
         "name": "Black Axe",
@@ -33,7 +33,7 @@
         "modifier": 0.55,
         "value": 800000,
         "lvl_required": 10,
-        "tool_icon": "🪓"
+        "tool_icon": "https://oldschool.runescape.wiki/images/thumb/Black_axe_detail.png/260px-Black_axe_detail.png"
     },
     {
         "name": "Mithril Axe",
@@ -42,7 +42,7 @@
         "modifier": 0.6,
         "value": 3000000,
         "lvl_required": 20,
-        "tool_icon": "🪓"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Mithril_axe_detail.png"
     },
     {
         "name": "Adamant Axe",
@@ -51,7 +51,7 @@
         "modifier": 0.7,
         "value": 10000000,
         "lvl_required": 30,
-        "tool_icon": "🪓"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Adamant_axe_detail.png"
     },
     {
         "name": "Rune Axe",
@@ -60,7 +60,7 @@
         "modifier": 0.8,
         "value": 20000000,
         "lvl_required": 40,
-        "tool_icon": "🪓"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Rune_axe_detail.png"
     },
     {
         "name": "Dragon Axe",
@@ -69,7 +69,7 @@
         "modifier": 0.9,
         "value": 100000000,
         "lvl_required": 60,
-        "tool_icon": "🪓"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Dragon_axe_detail.png"
     },
     {
         "name": "Crystal Axe",
@@ -78,7 +78,7 @@
         "modifier": 1.0,
         "value": 500000000,
         "lvl_required": 75,
-        "tool_icon": "🪓"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Crystal_axe_detail.png"
     },
     {
         "name": "Fishing Rod",
@@ -87,7 +87,7 @@
         "modifier": 0.4,
         "value": 20000,
         "lvl_required": 1,
-        "tool_icon": "🎣"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Fishing_rod_detail.png"
     },
     {
         "name": "Reinforced Fishing Rod",
@@ -96,7 +96,7 @@
         "modifier": 0.5,
         "value": 500000,
         "lvl_required": 10,
-        "tool_icon": "🎣"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Oily_pearl_fishing_rod_detail.png"
     },
     {
         "name": "Live Bait",
@@ -105,7 +105,7 @@
         "modifier": 0.6,
         "value": 3000000,
         "lvl_required": 20,
-        "tool_icon": "🎣"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Sandworms_detail.png"
     },
     {
         "name": "Fishing Lessons",
@@ -114,7 +114,7 @@
         "modifier": 0.7,
         "value": 10000000,
         "lvl_required": 30,
-        "tool_icon": "🎣"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Fishing_icon_%28detail%29.png"
     },
     {
         "name": "Dr. Giuseppe's Bait Formula",
@@ -123,7 +123,7 @@
         "modifier": 0.8,
         "value": 20000000,
         "lvl_required": 40,
-        "tool_icon": "🎣"
+        "tool_icon": "https://oldschool.runescape.wiki/images/Fish_barrel_detail.png"
     },
     {
         "name": "The Secret Technique",
@@ -141,6 +141,6 @@
         "modifier": 1.0,
         "value": 500000000,
         "lvl_required": 75,
-        "tool_icon": "🎣"
+        "tool_icon": "https://oldschool.runescape.wiki/images/thumb/Pearl_fly_fishing_rod_detail.png/300px-Pearl_fly_fishing_rod_detail.png"
     }
 ] 
