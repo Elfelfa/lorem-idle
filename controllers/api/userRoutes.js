@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Active_Resource, Progress, Inventory, Resource } = require("../../models");
+const { User, Active_Resource, Progress, Inventory, Resource, Experience } = require("../../models");
 
 // Gather all user data of the client making the request
 router.get("/myData", async (req, res) => {
@@ -14,6 +14,22 @@ router.get("/myData", async (req, res) => {
 
     if (userData) {
       res.status(200).json(userData);
+    }
+  } catch (err) {
+    res 
+      .status(500)
+      .json({ message: "Unable to grab user data. Error: " + err });
+  };
+});
+
+router.get("/expChart", async (req, res) => {
+  try {
+    const expData = await Experience.findAll();
+
+    const expChart = expData.map((data) => data.get({ plain: true }));
+
+    if (expChart) {
+      res.status(200).json({ expChart });
     }
   } catch (err) {
     res 

@@ -355,6 +355,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     experienceChart = await fetch("../../assets/experience.json").then(r => { return r.json() }).catch(err => console.log(err));
 
+    experienceChart = await fetch('/user/expChart', {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    })
+
     loginUpdate();
     setInterval(tickUpdate, tickRate);
 });
