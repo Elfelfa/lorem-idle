@@ -1,16 +1,28 @@
-<section class="container mx-auto col-start-5 grid justify-items-stretch my-40 col-end-10" id="oldNode">
-    <div class="generalProfile grid grid-cols-3 m-5 border-double border-8 border-slate-50">
-        <!-- Set up object -->
-        <div class="profileName col-start-1 col-end-4 flex justify-center pt-4 pb-4">{{username}}'s&nbsp;&nbsp;Profile</div>
-        <div class="col-start-1 col-end-3 flex justify-center border-t-2 border-slate-50 ms-6 pt-1">Total Skill Level
+<section class="container mx-auto col-start-5 grid my-24 col-end-10" id="oldNode">
+    <div class="generalProfile flex flex-col justify-center">
+        <h1 class="profileTitle  flex justify-center mt-3">Welcome, Duchess</h1>
+        <div class="text-center  mt-3">Time Away: 2Hrs</div>
+        <div class="grid grid-cols-2 mt-3">
+            <!-- Set up object -->
+            <div class="text-center col-span-2">Account Details:</div>
+            <div class="profileInfo text-center border-t-2 border-white ml-2 my-1 p-1">Total Skill Level</div>
+            <!-- Set up object -->
+            <div class="profileInfo text-center border-t-2 border-white mr-2 my-1 p-1">{{totalSkill}}</div>
+            <div class="profileInfo text-center border-t-2 border-white ml-2 my-1 p-1">Total XP</div>
+            <!-- Set up object -->
+            <div class="profileInfo text-center border-t-2 border-white mr-2 my-1 p-1">{{totalEXP}}</div>
+            <div class="profileInfo text-center border-t-2 border-white ml-2 my-1 p-1">Account Age </div>
+            <!-- Set up object -->
+            <div class="profileInfo text-center border-t-2 border-white mr-2 my-1 p-1">??</div>
         </div>
-        <!-- Set up object -->
-        <div class="flex justify-center border-t-2 border-slate-50 me-6 pt-1">{{totalSkill}}</div>
-        <div class="col-start-1 col-end-3 flex justify-center border-t-2 border-slate-50 ms-6 pt-1">Total XP</div>
-        <!-- Set up object -->
-        <div class="flex justify-center border-t-2 border-slate-50 me-6 pt-1">{{totalEXP}}</div>
-        <div class="col-start-1 col-end-3 flex justify-center border-t-2 border-slate-50 ms-6 pt-1">Account Age </div>
-        <!-- Set up object -->
-        <div class="flex justify-center border-t-2 border-slate-50 me-6 pt-1">??</div>
+        <div class="grid grid-cols-2 mt-4">
+            <div class=" text-center col-span-2">Since last login:</div>
+            <div class="profileInfo text-center border-t-2 border-white ml-2 my-1 p-1">XP gained: 18473</div>
+            <div class="profileInfo text-center border-t-2 border-white mr-2 my-1 p-1">Resources gathered: 543</div>
+            <div class="profileInfo text-center border-t-2 border-white ml-2 my-1 p-1 mb-3">Woodcutting levels gained: 1
+            </div>
+            <div class="profileInfo text-center border-t-2 border-white mr-2 my-1 p-1 mb-3">FIshing levels gained: 2
+            </div>
+        </div>
     </div>
 </section>
