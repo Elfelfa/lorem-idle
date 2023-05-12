@@ -38,7 +38,7 @@ const createUserSeeds = async() => {
         // Creates entry in joint table to specify which resource node is active for the user if any
         activeResourceData.push({
           user_id: i,
-          resource_id: null
+          resource_id: 1
         });
         console.log("User " + i + " active resource reference created.");
 
@@ -85,8 +85,7 @@ const createUserSeeds = async() => {
       // Creates entry in joint table to specify which resource node is active for the user if any
       activeResourceData.push({
         user_id: i,
-        resource_id: 2,
-        progress: 3
+        resource_id: 1
       });
       console.log("Developer active resource reference created.");
 
