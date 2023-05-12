@@ -6,7 +6,7 @@
                 data-label="{{currentEXP}}/{{expNeeded}}"></progress>
         </div>
 
-        <div class="woodcuttingCards flex flex-wrap justify-center col-start-1 col-end-10 row-start-2 row-end-7 -mt-20">
+        <div id="woodcuttingCardHolster" class="woodcuttingCards flex flex-wrap justify-center col-start-1 col-end-10 row-start-2 row-end-7 -mt-20">
             
             {{#each resources as |tree|}}
             {{> woodcuttingcards activeTree=../activeTree }}

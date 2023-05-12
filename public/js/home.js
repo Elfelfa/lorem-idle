@@ -125,22 +125,20 @@ const woodcuttingBtn = async (e) => {
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
 
-        if (checkNodes) {
-            checkNodes.parentNode.removeChild(checkNodes);
-        }
+        const inject = await htmlInjection(checkNodes, response);
 
-        const data = await response.json();
-        const rawHTML = data.html;
-        const myThing = document.createElement('div');
-        myThing.innerHTML = rawHTML;
-        docBody.appendChild(myThing);
+        const woodcuttingClick = (data) => {
+            console.log(data.parentElement.getAttribute("data-id"));
+          };
+          const woodcuttingBtns = document.getElementById("woodcuttingCardHolster");
 
-        while (myThing.firstChild) {
-            myThing.parentNode.insertBefore(myThing.firstChild,
-                myThing);
-        }
+        woodcuttingBtns.addEventListener('click', function(e) {
+           if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
+            e.stopPropagation();
+            woodcuttingClick(e.target);
+           }
+          });
 
-        myThing.parentNode.removeChild(myThing);
     } else {
         alert("Unable to load profile");
     }
