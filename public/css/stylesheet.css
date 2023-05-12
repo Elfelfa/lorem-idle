@@ -98,7 +98,7 @@ body {
     font-size: 15px;
 }
 
-.generalProfile{
+.generalProfile {
     background-color: var(--menubackground);
     color: white;
     font-family: var(--font1);
@@ -320,10 +320,13 @@ div[role="progressbar"]::before {
     color: var(--hovercolor);
 }
 
-.username-focused, .email-focused, .name-focused, .pswrd-focused {
+.username-focused,
+.email-focused,
+.name-focused,
+.pswrd-focused {
     color: var(--hovercolor);
-  }
-  
+}
+
 .loginButton {
     background-color: var(--menubackgroundsolid);
     border: 2px double var(--text);
@@ -336,9 +339,27 @@ div[role="progressbar"]::before {
 
 .profileTitle {
     font-size: 25px;
-   
+
 }
 
 .profileInfo {
-background-color: var(--menubackgroundsolid);
+    background-color: var(--menubackgroundsolid);
 }
+
+.woodcuttingCard:hover .treeText {
+    color: var(--hovercolor);
+}
+
+.woodcuttingCard:hover .insideWoodcuttingCards {
+    border: 3px solid var(--hovercolor);
+}
+
+.woodcuttingCard:focus .treeText {
+    color: var(--hovercolor);
+}
+
+.woodcuttingCard:focus .insideWoodcuttingCards {
+    border: 3px solid var(--hovercolor);
+}
+
+

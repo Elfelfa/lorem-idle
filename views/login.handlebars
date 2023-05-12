@@ -1,49 +1,62 @@
 <div class="signInPage col-start-4 col-end-9 flex flex-col mt-4">
-    <h1 class="welcomeTitle flex justify-center mt-6">Lorem Idle</h1>
-    <h2 class="welcomeSubTitle flex justify-center">Welcome to Lorem Idle!</h2>
-
-    <div class="card flex flex-col justify-center m-4">
-      <h3 class="signUpSubtitles flex justify-center">Create User</h3>
-      <form class="form login-form ">
-        <div class="form-group flex justify-center m-2 gap-2">
-          <label for="username-login " class="username-label">Username:</label>
-          <input class="form-input username-input" type="text" id="username-login" onFocus="document.querySelector('.username-label').classList.add('username-focused')" onBlur="document.querySelector('.username-label').classList.remove('username-focused')"/>
-        </div>
-        <div class="form-group flex justify-center m-2 gap-2">
-          <label for="password-login" class="password-label">&nbsppassword:</label>
-          <input class="form-input" type="password" id="password-login" onFocus="document.querySelector('.password-label').classList.add('password-focused')" onBlur="document.querySelector('.password-label').classList.remove('password-focused')"/>
-        </div>
-        
-        <div class="loginButton form-group mx-auto max-w-[25%] text-center mt-4">
-          <button class=" btn btn-primary" type="submit">login</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="card flex flex-col justify-center m-4 -mt-2">
-      <h2 class="signUpSubtitles flex justify-center">Signup</h2>
-      <form class="form signup-form">
-        <div class="form-group flex justify-center m-2 gap-2">
-          <label for="username-signup" class="name-label">&nbsp&nbsp&nbsp&nbsp&nbspname:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-          <input class="form-input" type="text" id="username-signup" onFocus="document.querySelector('.name-label').classList.add('name-focused')" onBlur="document.querySelector('.name-label').classList.remove('name-focused')"/>
-        </div>
-        <div class="form-group flex justify-center m-2 gap-2">
-          <label for="email-signup" class="email-label">&nbsp&nbsp&nbsp&nbsp&nbspemail:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-          <input class="form-input" type="text" id="email-signup" onFocus="document.querySelector('.email-label').classList.add('email-focused')" onBlur="document.querySelector('.email-label').classList.remove('email-focused')"/>
-        </div>
-        <div class="form-group flex justify-center m-2 gap-2">
-          <label for="password-signup" class="pswrd-label">password:</label>
-          <input class="form-input" type="password" id="password-signup" onFocus="document.querySelector('.pswrd-label').classList.add('pswrd-focused')" onBlur="document.querySelector('.pswrd-label').classList.remove('pswrd-focused')"/>
-        </div>
-        <div class="loginButton form-group mx-auto max-w-[25%] text-center mt-4">
-          <button class=" btn btn-primary" type="submit">signup</button>
-        </div>
-      </form>
-    </div>
+  <div class="flex justify-center">
+    <img class="logo ml-1"
+      src="https://cdn.discordapp.com/attachments/1104109106660380773/1106400779176247396/LoremLogo.png"
+      alt="image-description" width="250" height="20" class="">
   </div>
+  <h2 class="welcomeSubTitle flex justify-center">Welcome to Lorem Idle!</h2>
+
+  <div class="card flex flex-col justify-center m-4">
+    <h3 class="signUpSubtitles flex justify-center">Create User</h3>
+    <form class="form login-form ">
+      <div class="form-group flex justify-center m-2 gap-2">
+        <label for="username-login " class="username-label">Username:</label>
+        <input class="form-input username-input" type="text" id="username-login"
+          onFocus="document.querySelector('.username-label').classList.add('username-focused')"
+          onBlur="document.querySelector('.username-label').classList.remove('username-focused')" />
+      </div>
+      <div class="form-group flex justify-center m-2 gap-2">
+        <label for="password-login" class="password-label">&nbsppassword:</label>
+        <input class="form-input" type="password" id="password-login"
+          onFocus="document.querySelector('.password-label').classList.add('password-focused')"
+          onBlur="document.querySelector('.password-label').classList.remove('password-focused')" />
+      </div>
+
+      <div class="loginButton form-group mx-auto max-w-[25%] text-center mt-4">
+        <button class=" btn btn-primary" type="submit">login</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="card flex flex-col justify-center m-4 -mt-2">
+    <h2 class="signUpSubtitles flex justify-center">Signup</h2>
+    <form class="form signup-form">
+      <div class="form-group flex justify-center m-2 gap-2">
+        <label for="username-signup" class="name-label">&nbsp&nbsp&nbsp&nbsp&nbspname:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <input class="form-input" type="text" id="username-signup"
+          onFocus="document.querySelector('.name-label').classList.add('name-focused')"
+          onBlur="document.querySelector('.name-label').classList.remove('name-focused')" />
+      </div>
+      <div class="form-group flex justify-center m-2 gap-2">
+        <label for="email-signup" class="email-label">&nbsp&nbsp&nbsp&nbsp&nbspemail:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <input class="form-input" type="text" id="email-signup"
+          onFocus="document.querySelector('.email-label').classList.add('email-focused')"
+          onBlur="document.querySelector('.email-label').classList.remove('email-focused')" />
+      </div>
+      <div class="form-group flex justify-center m-2 gap-2">
+        <label for="password-signup" class="pswrd-label">password:</label>
+        <input class="form-input" type="password" id="password-signup"
+          onFocus="document.querySelector('.pswrd-label').classList.add('pswrd-focused')"
+          onBlur="document.querySelector('.pswrd-label').classList.remove('pswrd-focused')" />
+      </div>
+      <div class="loginButton form-group mx-auto max-w-[25%] text-center mt-4">
+        <button class=" btn btn-primary" type="submit">signup</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 
-<script src="./js/login.js"></script> 
+<script src="./js/login.js"></script>
 {{!-- Adding comment to commit and merge to main --}}
-
