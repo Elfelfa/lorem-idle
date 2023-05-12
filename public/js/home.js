@@ -1,4 +1,3 @@
-const helpers = require("../../utils/helpers");
 const experienceChart = require("../../assets/experience.json");
 const docBody = document.body;
 
@@ -100,6 +99,37 @@ const backpackBtn = async (e) => {
     }
 };
 
+// Function to fetch shop data
+const shopBtn = async (e) => {
+    e.preventDefault();
+    const response = await fetch("/home/shop", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+        const checkNodes = await document.getElementById("oldNode");
+
+        if (checkNodes) {
+            checkNodes.parentNode.removeChild(checkNodes);
+        }
+
+        const data = await response.json();
+        const rawHTML = data.html;
+        const myThing = document.createElement("div");
+        myThing.innerHTML = rawHTML;
+        docBody.appendChild(myThing);
+
+        while (myThing.firstChild) {
+            myThing.parentNode.insertBefore(myThing.firstChild, myThing);
+        }
+
+        myThing.parentNode.removeChild(myThing);
+    } else {
+        alert("Unable to load profile");
+    }
+};
+
 const woodcuttingBtn = async (e) => {
     e.preventDefault();
     const response = await fetch("/home/woodcutting", {
@@ -183,7 +213,7 @@ const loginUpdate = async () => {
             player.inventory[a] = userData.inventories[a].item_amount;
         }
 
-        var timePassed = await helpers.calcTimePassed(userData);
+        var timePassed = await calcTimePassed(userData);
         var iterations = 0;
 
         //add authentication function if we have time. Code snippet in discord.
@@ -196,7 +226,7 @@ const loginUpdate = async () => {
         iterations++;
         iterations += floor(parseFloat(timePassed) / parseFloat(userData.active_resource.seconds_to_complete));
 
-        if(userData.active_resource.skill_id == 1) {
+        if (userData.active_resource.skill_id == 1) {
             player.woodcuttingEXP += (iterations * userData.active_resource.exp_reward);
 
             if (player.woodcuttingEXP > experienceChart[player.woodcuttingLevel]) {
@@ -210,7 +240,7 @@ const loginUpdate = async () => {
             };
         }
 
-        player.inventory[userData.active_resource.item_id-1] += iterations;
+        player.inventory[userData.active_resource.item_id - 1] += iterations;
 
         const response = await fetch(`/api/user/update`, {
             method: "UPDATE",
@@ -226,11 +256,80 @@ const tickUpdate = async (e) => {
 
 };
 
+const calcTimePassed = async (data) => {
+
+    /////////////////////////////////////////
+    // Timestamp array index definitions:  //
+    // 0: YYYY                             //
+    // 1: MM                               //
+    // 2: DD                               //
+    // 3: hh                               //
+    // 4: mm                               //
+    // 5: ss                               //
+    /////////////////////////////////////////
+
+    var oldTS = data.timestamp.split('/');
+    var t = dayjs().format('YYYY/MM/DD/hh/mm/ss');
+    var newTS = t.split('/');
+
+    var timePassed;
+
+    // Loop that converts the timestamp arrays into integers.
+    for (var i = 0; i < 2; i++) {
+        var temp = [];
+
+        switch (i) {
+            case 0:
+                for (var k = 0; k < oldTS.length; k++) {
+                    temp.push(parseInt(oldTS[k]));
+                };
+
+                oldTS.length = 0;
+                oldTS.concat(temp);
+                break;
+            case 1:
+                for (var k = 0; k < newTS.length; k++) {
+                    temp.push(parseInt(newTS[k]));
+                };
+                newTS.length = 0;
+                newTS.concat(temp);
+                break;
+        };
+
+        temp.length = 0;
+    };
+
+    if ((newTS[0] - oldTS[0]) <= 0) {
+        if ((newTS[1] - oldTS[1]) <= 0) {
+            if ((newTS[2] - oldTS[2]) <= 1) {
+                if ((newTS[3] - oldTS[3]) < 0) {
+                    var hours = ((newTS[3] - oldTS[3]) + 24);
+                    var minutes = ((60 - oldTS[4]) + newTS[4]);
+                    var seconds = ((60 - oldTS[5]) + newTS[5]);
+
+                    timePassed = (((hours * 60) * 60) + (minutes * 60) + seconds);
+                } else {
+                    timePassed = ((24 * 60) * 60);
+                };
+            } else {
+                timePassed = ((24 * 60) * 60);
+            };
+        } else {
+            timePassed = ((24 * 60) * 60);
+        };
+    } else {
+        timePassed = ((24 * 60) * 60);
+    };
+
+    return timePassed;
+};
+
 document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector("#profile-btn").addEventListener("click", profileBtn);
     document.querySelector("#backpack-btn").addEventListener("click", backpackBtn);
     document.querySelector("#woodcutting-btn").addEventListener("click", woodcuttingBtn);
     document.querySelector("#fishing-btn").addEventListener("click", fishingBtn);
+    document.querySelector("#shop-btn").addEventListener("click", shopBtn);
 
     loginUpdate();
     setInterval(tickUpdate, tickRate);

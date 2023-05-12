@@ -28,7 +28,7 @@ Tool.init(
             allowNull: false,
         },
         modifier: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: false,
             validate: {
                 max: 1.0,
