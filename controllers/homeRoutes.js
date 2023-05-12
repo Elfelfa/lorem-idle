@@ -2,6 +2,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const router = express.Router();
 const Auth = require("../utils/auth");
+
 const {
   Skill,
   Item,
@@ -16,15 +17,15 @@ const expChart = require("../assets/experience.json");
 
 router.get("/login", async (req, res) => {
   try {
-    res.render("login", { check: true});
+    res.render("login", { check: true });
   } catch (err) {
     throw err;
   }
 });
 
-router.get("/splash", async (req, res) => {
+router.get("/home", async (req, res) => {
   try {
-    res.redirect("/home");
+    res.render("home", {check: true });
   } catch (err) {
     res
       .status(500)
@@ -33,11 +34,44 @@ router.get("/splash", async (req, res) => {
   }
 });
 
-router.get("/home", async (req, res) => {
+router.put("/home/init", async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id);
+    
 
-    res.render("home", { check: true, username: userData.username });
+    console.log(req.body.updateObj.updateTime);
+
+    totalHours = Math.floor(parseFloat(((req.body.updateObj.updateTime / 60) / 60)));
+    totalMinutes = Math.floor(parseFloat((req.body.updateObj.updateTime - (totalHours * 60 * 60)) / 60));
+    totalSeconds = Math.ceil(parseFloat(req.body.updateObj.updateTime - (totalHours * 60 * 60) - (totalMinutes * 60)));
+
+    if (totalSeconds === 60) {
+      totalSeconds = 0;
+      totalMinutes++;
+    }
+
+    if (totalMinutes === 60) {
+      totalMinutes = 0;
+      totalHours++;
+    }
+
+    totalTime = `${totalHours}h ${totalMinutes}m ${totalSeconds}s`;
+
+    res.render("partials/splash",
+      {
+        check: false, username: userData.username,
+        timeAway: totalTime, totalEXP: req.body.updateObj.totalExp,
+        totalItems: req.body.updateObj.totalItems, totalWC: req.body.updateObj.totalWC,
+        totalFSH: req.body.updateObj.totalFSH
+      },
+      (err, rawHTML) => {
+        if (!err) {
+          // console.log(rawHTML);
+          res.send({ html: String(rawHTML) });
+        } else {
+          console.log(err);
+        }
+      });
   } catch (err) {
     res
       .status(500)
@@ -49,9 +83,9 @@ router.get("/home", async (req, res) => {
 router.get("/home/profile", async (req, res) => {
   //Add Auth helper after development.
   try {
-    let id = req.session.user_id.toString();
-    // console.log(req.session.user_id);
-    const userData = await User.findByPk(id, {
+
+    const userData = await User.findByPk(req.session.user_id, {
+
       include: [{ model: Progress }],
     });
     let totalEXP =

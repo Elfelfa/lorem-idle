@@ -12,13 +12,13 @@ var player = {
     fishingLevel: undefined,
     fishingEXP: undefined,
     inventory: [
-        undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+        undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined,
         undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined
     ],
     gp: undefined,
     tools: {
-        woodcutting: undefined,
-        fishing: undefined
+        woodcutting: 1.0,
+        fishing: 1.0
     }
 };
 
@@ -109,7 +109,6 @@ const shopBtn = async (e) => {
             shopClick(e.target);
            }
           });
-       
     } else {
         alert("Unable to load profile");
     }
@@ -183,14 +182,14 @@ const loginUpdate = async () => {
     });
 
     const userData = await response.json();
-    // console.log(userData);
+
 
     if (response.ok) {
         player.activeResource = userData.active_resource[0].id;
         player.woodcuttingLevel = userData.progresses[0].level;
         player.woodcuttingEXP = userData.progresses[0].experience;
         player.fishingLevel = userData.progresses[1].level;
-        player.fishingEXP = userData.progresses[1].level;
+        player.fishingEXP = userData.progresses[1].experience;
         player.gp = userData.inventories[userData.inventories.length - 1].item_amount;
         player.tools.woodcutting = userData.progresses[0].tool_id;
         player.tools.fishing = userData.progresses[1].tool_id;
@@ -202,9 +201,18 @@ const loginUpdate = async () => {
         player.gp = userData.inventories[18].item_amount;
 
         var timePassed = await calcTimePassed(userData);
-        var iterations = 0;
 
         // console.log(timePassed);
+
+        var updateObj = {
+            updateTime: timePassed,
+            totalWC: 0,
+            totalFSH: 0,
+            totalExp: 0,
+            totalItems: 0
+        }        
+        
+        var iterations = 0;
 
         //add authentication function if we have time. Code snippet in discord.
 
@@ -215,46 +223,62 @@ const loginUpdate = async () => {
         timePassed -= Math.floor(userData.active_resource[0].seconds_to_complete - parseFloat(userData.active_resource[0].activeResource.progress));
         iterations++;
 
-        // console.log(timePassed + ", " + iterations);
 
         iterations += Math.floor(parseFloat(timePassed) / parseFloat(userData.active_resource[0].seconds_to_complete));
-        //transfer code
-        // console.log(iterations);
-        // console.log(player.woodcuttingEXP);
+        updateObj.totalItems = iterations;
 
         if (userData.active_resource[0].skill_id == 1) {
-            player.woodcuttingEXP += (iterations * userData.active_resource[0].exp_reward);
+            updateObj.totalExp += (iterations * userData.active_resource[0].exp_reward);
+            player.woodcuttingEXP += updateObj.totalExp;
 
-            // console.log(player.woodcuttingEXP);
 
-            while(true) {
+            while (true) {
                 if (player.woodcuttingEXP > experienceChart[player.woodcuttingLevel]) {
                     player.woodcuttingLevel++;
-                    // console.log(player.woodcuttingLevel);
+                    updateObj.totalWC++;
                 } else {
                     break;
                 };
             }
         } else {
-            player.fishingEXP += (iterations * userData.active_resource[0].exp_reward);
+            updateObj.totalExp += (iterations * userData.active_resource[0].exp_reward);
+            player.fishingEXP += updateObj.totalExp;
 
-            if (player.fishingEXP > experienceChart[player.fishingLevel]) {
-                player.fishingLevel++;
-            };
+            while (true) {
+                if (player.fishingEXP > experienceChart[player.fishingLevel]) {
+                    player.fishingLevel++;
+                    updateObj.totalFSH++;
+                } else {
+                    break;
+                };
+            }
         }
 
-        // console.log(player.inventory);
 
         player.inventory[userData.active_resource[0].item_id - 1] += iterations;
 
-        // console.log(player.inventory[userData.active_resource[0].item_id - 1]);
+        const updateResponse = await fetch(`/api/user/loginUpdate`, {
+            method: "PUT",
+            body: JSON.stringify({ player }),
+            headers: { "Content-Type": "application/json" },
+        });
 
-        // console.log(player);
-        // const response = await fetch(`/api/user/loginUpdate`, {
-        //      method: "PUT",
-        //      body: { player },
-        //      headers: { "Content-Type": "application/json" },
-        // });
+        if (updateResponse.ok) {
+            const renderResponse = await fetch("/home/init", {
+                method: "PUT",
+                body: JSON.stringify({ player, updateObj }),
+                headers: { "Content-Type": "application/json" },
+            });
+
+            console.log('init passed');
+
+            if (renderResponse.ok) {
+                const checkNodes = await document.getElementById("oldNode");
+
+
+                const inject = await htmlInjection(checkNodes, renderResponse);
+            };
+        };
     } else {
         alert("Error when processing login update request: ");
     }
@@ -280,9 +304,9 @@ const calcTimePassed = async (data) => {
     var t = dayjs().format('YYYY/MM/DD/hh/mm/ss');
     var newTS = t.split('/');
 
-    // console.log(t);
-    // console.log(oldTS);
-    // console.log(newTS);
+
+    console.log(oldTS);
+    console.log(newTS);
 
     var timePassed;
 
@@ -293,34 +317,65 @@ const calcTimePassed = async (data) => {
         newTS[k] = parseInt(newTS[k]);
     };
 
-    // console.log(newTS);
-    // console.log(oldTS);
+
+    console.log(oldTS);
+    console.log(newTS);
 
     if ((newTS[0] - oldTS[0]) <= 0) {
         if ((newTS[1] - oldTS[1]) <= 0) {
-            if ((newTS[2] - oldTS[2]) <= 1) {
-                if ((newTS[3] - oldTS[3]) < 0) {
-                    var hours = ((newTS[3] - oldTS[3]) + 24);
-                    var minutes = ((60 - oldTS[4]) + newTS[4]);
-                    var seconds = ((60 - oldTS[5]) + newTS[5]);
-
-                    timePassed = (((hours * 60) * 60) + (minutes * 60) + seconds);
-                } else {
-                    timePassed = ((24 * 60) * 60);
-                };
+          if ((newTS[2] - oldTS[2]) <= 1) {
+            if ((newTS[3] - oldTS[3]) < 0 || ((newTS[3] - oldTS[3]) === 0 && (newTS[4] - oldTS[4]) < 0)) {
+              var hours = ((newTS[3] - oldTS[3]) + 24);
+              var minutes = ((60 - oldTS[4]) + newTS[4]);
+              var seconds = ((60 - oldTS[5]) + newTS[5]);
+      
+              if (minutes > 59) {
+                hours += Math.floor(minutes / 60);
+                minutes = (minutes % 60);
+              }
+      
+              if (seconds > 59) {
+                minutes += Math.floor(seconds / 60);
+                seconds = (seconds % 60);
+              }
+      
+              timePassed = (((hours * 60) * 60) + (minutes * 60) + seconds);
             } else {
-                timePassed = ((24 * 60) * 60);
-            };
+              var hours = (newTS[3] - oldTS[3]);
+              var minutes = (newTS[4] - oldTS[4]);
+              var seconds = (newTS[5] - oldTS[5]);
+      
+              if (minutes < 0) {
+                hours -= 1;
+                minutes += 60;
+              }
+      
+              if (seconds < 0) {
+                minutes -= 1;
+                seconds += 60;
+              }
+      
+              timePassed = (((hours * 60) * 60) + (minutes * 60) + seconds);
+            }
+          } else {
+            timePassed = ((24 * 60) * 60); // more than one day has passed
+          }
         } else {
-            timePassed = ((24 * 60) * 60);
-        };
-    } else {
-        timePassed = ((24 * 60) * 60);
-    };
+          timePassed = ((24 * 60) * 60); // more than one month has passed
+        }
+      } else {
+        timePassed = ((24 * 60) * 60); // more than one year has passed
+      }
+
+    console.log(timePassed);
 
     return timePassed;
 };
 
+
+const shopClick = (data) => {
+    console.log(data);
+};
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -331,7 +386,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector("#fishing-btn").addEventListener("click", fishingBtn);
     document.querySelector("#shop-btn").addEventListener("click", shopBtn);
 
-    
+
 
     const response = await fetch("/api/user/expChart", {
         method: "GET",
@@ -339,11 +394,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     });
 
-    // console.log(response.json);
+
     experienceChart = await response.json();
 
-    // console.log(experienceChart);
-    // console.log("test");
     loginUpdate();
     setInterval(tickUpdate, tickRate);
 });
