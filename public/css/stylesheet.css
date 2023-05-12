@@ -362,4 +362,20 @@ div[role="progressbar"]::before {
     border: 3px solid var(--hovercolor);
 }
 
+.signInPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Add this line */
+    align-items: center;
+    /* This line was already present */
+    margin-top: 4rem;
+}
 
+.backpackImg {
+    width: 20px;
+        height: 20px;
+        position: relative;
+        display: inline-block;
+        margin: 50px;
+}
