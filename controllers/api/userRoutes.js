@@ -22,6 +22,28 @@ router.get("/myData", async (req, res) => {
   };
 });
 
+router.update("/loginUpdate", async (req, res) => {
+  try {
+    const userData = await User.update(
+      {
+        timestamp: dayjs().format('YYYY/MM/DD/hh/mm/ss')
+      },
+      { 
+        where: { id: req.session.user_id.toString() }
+      });
+
+    const progressData = await Progress.update(
+        {
+          tool_id: req.body.player.tools.woodcutting,
+          
+        }
+      );
+
+  } catch (err) {
+    res.status(500).json({ message: "Unable to update user data. Error: " + err });
+  };
+});
+
 router.get("/expChart", async (req, res) => {
   try {
     const expData = await Experience.findAll({attributes: {exclude: ["id"]}});
