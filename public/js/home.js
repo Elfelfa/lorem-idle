@@ -1,5 +1,6 @@
-const experienceChart = require("../../assets/experience.json");
+let experienceChart;
 const docBody = document.body;
+
 
 // Server tick rate in milliseconds 
 const tickRate = 600;
@@ -201,6 +202,7 @@ const loginUpdate = async () => {
     });
 
     if (userData.ok) {
+        console.log(player);
 
         player.activeResource = userData.active_resource.id;
         player.woodcuttingLevel = userData.progresses[0].level;
@@ -210,13 +212,17 @@ const loginUpdate = async () => {
         player.gp = userData.inventories[userData.inventories.length - 1].item_amount;
         player.tools.woodcutting = userData.progresses[0].tool_id;
         player.tools.fishing = userData.progresses[1].tool_id;
-
+        
         for (let a = 0; a < player.inventory.length - 1; a++) {
             player.inventory[a] = userData.inventories[a].item_amount;
         }
 
+        console.log(player);
+
         var timePassed = await calcTimePassed(userData);
         var iterations = 0;
+
+        console.log(timePassed);
 
         //add authentication function if we have time. Code snippet in discord.
 
@@ -226,13 +232,22 @@ const loginUpdate = async () => {
 
         timePassed -= floor(userData.active_resource.seconds_to_complete - userData.active_resource.activeResource.progress);
         iterations++;
+        
+        console.log(timePassed + ", " + iterations);
+        
         iterations += floor(parseFloat(timePassed) / parseFloat(userData.active_resource.seconds_to_complete));
+        
+        console.log(iterations);
+        console.log(player.woodcuttingEXP);
 
         if (userData.active_resource.skill_id == 1) {
             player.woodcuttingEXP += (iterations * userData.active_resource.exp_reward);
 
+            console.log(player.woodcuttingEXP);
+            
             if (player.woodcuttingEXP > experienceChart[player.woodcuttingLevel]) {
                 player.woodcuttingLevel++;
+                console.log(player.woodcuttingLevel);
             };
         } else {
             player.fishingEXP += (iterations * userData.active_resource.exp_reward);
@@ -244,11 +259,13 @@ const loginUpdate = async () => {
 
         player.inventory[userData.active_resource.item_id - 1] += iterations;
 
-        const response = await fetch(`/api/user/update`, {
-            method: "UPDATE",
-            body: { player },
-            headers: { "Content-Type": "application/json" },
-        });
+        console.log(player.inventory[userData.active_resource.item_id - 1]);
+
+        // const response = await fetch(`/api/user/update`, {
+        //     method: "UPDATE",
+        //     body: { player },
+        //     headers: { "Content-Type": "application/json" },
+        // });
     } else {
         alert("Error when processing login update request!");
     }
@@ -327,11 +344,16 @@ const calcTimePassed = async (data) => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+    
     document.querySelector("#profile-btn").addEventListener("click", profileBtn);
     document.querySelector("#backpack-btn").addEventListener("click", backpackBtn);
     document.querySelector("#woodcutting-btn").addEventListener("click", woodcuttingBtn);
     document.querySelector("#fishing-btn").addEventListener("click", fishingBtn);
     document.querySelector("#shop-btn").addEventListener("click", shopBtn);
+    
+    
+    experienceChart = await fetch("../../assets/experience.json").then(r => { return r.json() }).catch(err => console.log(err));
 
     loginUpdate();
     setInterval(tickUpdate, tickRate);
