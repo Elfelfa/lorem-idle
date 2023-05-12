@@ -1,4 +1,4 @@
-const experienceChart = require("../../assets/experience.json");
+let experienceChart;
 const docBody = document.body;
 
 // Server tick rate in milliseconds 
@@ -332,6 +332,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector("#woodcutting-btn").addEventListener("click", woodcuttingBtn);
     document.querySelector("#fishing-btn").addEventListener("click", fishingBtn);
     document.querySelector("#shop-btn").addEventListener("click", shopBtn);
+
+    experienceChart = await fetch('/user/expChart', {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    })
 
     loginUpdate();
     setInterval(tickUpdate, tickRate);

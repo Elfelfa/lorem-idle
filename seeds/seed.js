@@ -7,7 +7,8 @@ const {
   Resource,
   Progress,
   Inventory,
-  Active_Resource
+  Active_Resource,
+  Experience
 } = require("../models");
 
 const userData = require("./userData.json");
@@ -18,6 +19,7 @@ const skillData = require("./skillData.json");
 const toolData = require("./toolData.json");
 const progressData = require("./progressData.json");
 const activeResourceData = require("./activeResourceData.json");
+const experienceData = require("./experienceData.json");
 
 const seedDatabase = async () => {
   try {
@@ -53,6 +55,10 @@ const seedDatabase = async () => {
     });
 
     const activeResource = await Active_Resource.bulkCreate(activeResourceData, {
+      returning: true,
+    });
+
+    const exp = await Experience.bulkCreate(experienceData, {
       returning: true,
     });
 
