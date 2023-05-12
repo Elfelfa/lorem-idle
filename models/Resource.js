@@ -35,6 +35,10 @@ Resource.init(
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        lvl_required: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         seconds_to_complete: {
             type: DataTypes.INTEGER,
             allowNull: false,

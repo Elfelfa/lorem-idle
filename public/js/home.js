@@ -1,7 +1,7 @@
-
 const docBody = document.body;
 
 let lastEvent;
+let experienceChart;
 
 
 // Server tick rate in milliseconds 
@@ -125,15 +125,15 @@ const shopBtn = async (e) => {
 
         const shopClick = (data) => {
             console.log(data.parentElement.getAttribute("data-id"));
-          };
-          const shopBtns = document.getElementById("shopCardHolster");
+        };
+        const shopBtns = document.getElementById("shopCardHolster");
 
-        shopBtns.addEventListener('click', function(e) {
-           if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
-            e.stopPropagation();
-            shopClick(e.target);
-           }
-          });
+        shopBtns.addEventListener('click', function (e) {
+            if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
+                e.stopPropagation();
+                shopClick(e.target);
+            }
+        });
     } else {
         alert("Unable to load profile");
     }
@@ -157,15 +157,15 @@ const woodcuttingBtn = async (e) => {
 
         const woodcuttingClick = (data) => {
             console.log(data.parentElement.getAttribute("data-id"));
-          };
-          const woodcuttingBtns = document.getElementById("woodcuttingCardHolster");
+        };
+        const woodcuttingBtns = document.getElementById("woodcuttingCardHolster");
 
-        woodcuttingBtns.addEventListener('click', function(e) {
-           if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
-            e.stopPropagation();
-            woodcuttingClick(e.target);
-           }
-          });
+        woodcuttingBtns.addEventListener('click', function (e) {
+            if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
+                e.stopPropagation();
+                woodcuttingClick(e.target);
+            }
+        });
     } else {
         alert("Unable to load profile");
     }
@@ -184,20 +184,20 @@ const fishingBtn = async (e) => {
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
 
-        
+
         const inject = await htmlInjection(checkNodes, response);
 
         const fishingClick = (data) => {
             console.log(data.parentElement.getAttribute("data-id"));
-          };
-          const fishingBtns = document.getElementById("fishingCardHolster");
+        };
+        const fishingBtns = document.getElementById("fishingCardHolster");
 
-        fishingBtns.addEventListener('click', function(e) {
-           if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
-            e.stopPropagation();
-            fishingClick(e.target);
-           }
-          });
+        fishingBtns.addEventListener('click', function (e) {
+            if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
+                e.stopPropagation();
+                fishingClick(e.target);
+            }
+        });
 
     } else {
         alert("Unable to load profile");
@@ -224,9 +224,7 @@ const loginUpdate = async () => {
         player.gp = userData.inventories[userData.inventories.length - 1].item_amount;
         player.tools.woodcutting = userData.progresses[0].tool_id;
         player.tools.fishing = userData.progresses[1].tool_id;
-        player.timeToComplete = userData.active_resource[0].seconds_to_complete;
-        player.resourceEXP = userData.active_resource[0].exp_reward;
-        player.resourceItem = userData.active_resource[0].item_id - 1;
+
 
         for (let a = 0; a < player.inventory.length; a++) {
             player.inventory[a] = userData.inventories[a].item_amount;
@@ -236,60 +234,65 @@ const loginUpdate = async () => {
 
         var timePassed = await calcTimePassed(userData);
 
-        // console.log(timePassed);
-
-        var updateObj = {
-            updateTime: timePassed,
-            totalWC: 0,
-            totalFSH: 0,
-            totalExp: 0,
-            totalItems: 0
-        }        
-        
-        var iterations = 0;
-
-        //add authentication function if we have time. Code snippet in discord.
-
-        // Calculates remaining time needed for previous resource being excavated to complete
-        // Subtracts that time from timePassed and iterates iterations by 1.
-        // Divides timePassed by the active resource's time it takes to complete and adds that many iterations to iterations variable.
-
-        timePassed -= Math.floor(userData.active_resource[0].seconds_to_complete - parseFloat(userData.active_resource[0].activeResource.progress));
-        iterations++;
+        if (player.activeResource) {
+            player.timeToComplete = userData.active_resource[0].seconds_to_complete;
+            player.resourceEXP = userData.active_resource[0].exp_reward;
+            player.resourceItem = userData.active_resource[0].item_id - 1;
 
 
-        iterations += Math.floor(parseFloat(timePassed) / parseFloat(userData.active_resource[0].seconds_to_complete));
-        updateObj.totalItems = iterations;
-
-        if (userData.active_resource[0].skill_id == 1) {
-            updateObj.totalExp += (iterations * userData.active_resource[0].exp_reward);
-            player.woodcuttingEXP += updateObj.totalExp;
-
-
-            while (true) {
-                if (player.woodcuttingEXP > experienceChart[player.woodcuttingLevel]) {
-                    player.woodcuttingLevel++;
-                    updateObj.totalWC++;
-                } else {
-                    break;
-                };
+            var updateObj = {
+                updateTime: timePassed,
+                totalWC: 0,
+                totalFSH: 0,
+                totalExp: 0,
+                totalItems: 0
             }
-        } else if (userData.active_resource[0].skill_id == 2) {
-            updateObj.totalExp += (iterations * userData.active_resource[0].exp_reward);
-            player.fishingEXP += updateObj.totalExp;
 
-            while (true) {
-                if (player.fishingEXP > experienceChart[player.fishingLevel]) {
-                    player.fishingLevel++;
-                    updateObj.totalFSH++;
-                } else {
-                    break;
-                };
+            var iterations = 0;
+
+            //add authentication function if we have time. Code snippet in discord.
+
+            // Calculates remaining time needed for previous resource being excavated to complete
+            // Subtracts that time from timePassed and iterates iterations by 1.
+            // Divides timePassed by the active resource's time it takes to complete and adds that many iterations to iterations variable.
+
+            timePassed -= Math.floor(userData.active_resource[0].seconds_to_complete - parseFloat(userData.active_resource[0].activeResource.progress));
+            iterations++;
+
+
+            iterations += Math.floor(parseFloat(timePassed) / parseFloat(userData.active_resource[0].seconds_to_complete));
+            updateObj.totalItems = iterations;
+
+            if (userData.active_resource[0].skill_id == 1) {
+                updateObj.totalExp += (iterations * userData.active_resource[0].exp_reward);
+                player.woodcuttingEXP += updateObj.totalExp;
+
+
+                while (true) {
+                    if (player.woodcuttingEXP > experienceChart[player.woodcuttingLevel]) {
+                        player.woodcuttingLevel++;
+                        updateObj.totalWC++;
+                    } else {
+                        break;
+                    };
+                }
+            } else if (userData.active_resource[0].skill_id == 2) {
+                updateObj.totalExp += (iterations * userData.active_resource[0].exp_reward);
+                player.fishingEXP += updateObj.totalExp;
+
+                while (true) {
+                    if (player.fishingEXP > experienceChart[player.fishingLevel]) {
+                        player.fishingLevel++;
+                        updateObj.totalFSH++;
+                    } else {
+                        break;
+                    };
+                }
             }
+
+
+            player.inventory[userData.active_resource[0].item_id - 1] += iterations;
         }
-
-
-        player.inventory[userData.active_resource[0].item_id - 1] += iterations;
 
         const updateResponse = await fetch(`/api/user/loginUpdate`, {
             method: "PUT",
@@ -331,12 +334,12 @@ const tickUpdate = async (e) => {
 
     console.log(player.currentPage);
 
-    
+
 
     if (player.currentPage === 4) {
         const test = await woodcuttingBtn();
     } else if (player.currentPage === 5) {
-         fishingBtn();
+        fishingBtn();
     };
 };
 
@@ -375,49 +378,49 @@ const calcTimePassed = async (data) => {
 
     if ((newTS[0] - oldTS[0]) <= 0) {
         if ((newTS[1] - oldTS[1]) <= 0) {
-          if ((newTS[2] - oldTS[2]) <= 1) {
-            if ((newTS[3] - oldTS[3]) < 0 || ((newTS[3] - oldTS[3]) === 0 && (newTS[4] - oldTS[4]) < 0)) {
-              var hours = ((newTS[3] - oldTS[3]) + 24);
-              var minutes = ((60 - oldTS[4]) + newTS[4]);
-              var seconds = ((60 - oldTS[5]) + newTS[5]);
-      
-              if (minutes > 59) {
-                hours += Math.floor(minutes / 60);
-                minutes = (minutes % 60);
-              }
-      
-              if (seconds > 59) {
-                minutes += Math.floor(seconds / 60);
-                seconds = (seconds % 60);
-              }
-      
-              timePassed = (((hours * 60) * 60) + (minutes * 60) + seconds);
+            if ((newTS[2] - oldTS[2]) <= 1) {
+                if ((newTS[3] - oldTS[3]) < 0 || ((newTS[3] - oldTS[3]) === 0 && (newTS[4] - oldTS[4]) < 0)) {
+                    var hours = ((newTS[3] - oldTS[3]) + 24);
+                    var minutes = ((60 - oldTS[4]) + newTS[4]);
+                    var seconds = ((60 - oldTS[5]) + newTS[5]);
+
+                    if (minutes > 59) {
+                        hours += Math.floor(minutes / 60);
+                        minutes = (minutes % 60);
+                    }
+
+                    if (seconds > 59) {
+                        minutes += Math.floor(seconds / 60);
+                        seconds = (seconds % 60);
+                    }
+
+                    timePassed = (((hours * 60) * 60) + (minutes * 60) + seconds);
+                } else {
+                    var hours = (newTS[3] - oldTS[3]);
+                    var minutes = (newTS[4] - oldTS[4]);
+                    var seconds = (newTS[5] - oldTS[5]);
+
+                    if (minutes < 0) {
+                        hours -= 1;
+                        minutes += 60;
+                    }
+
+                    if (seconds < 0) {
+                        minutes -= 1;
+                        seconds += 60;
+                    }
+
+                    timePassed = (((hours * 60) * 60) + (minutes * 60) + seconds);
+                }
             } else {
-              var hours = (newTS[3] - oldTS[3]);
-              var minutes = (newTS[4] - oldTS[4]);
-              var seconds = (newTS[5] - oldTS[5]);
-      
-              if (minutes < 0) {
-                hours -= 1;
-                minutes += 60;
-              }
-      
-              if (seconds < 0) {
-                minutes -= 1;
-                seconds += 60;
-              }
-      
-              timePassed = (((hours * 60) * 60) + (minutes * 60) + seconds);
+                timePassed = ((24 * 60) * 60); // more than one day has passed
             }
-          } else {
-            timePassed = ((24 * 60) * 60); // more than one day has passed
-          }
         } else {
-          timePassed = ((24 * 60) * 60); // more than one month has passed
+            timePassed = ((24 * 60) * 60); // more than one month has passed
         }
-      } else {
+    } else {
         timePassed = ((24 * 60) * 60); // more than one year has passed
-      }
+    }
 
     console.log(timePassed);
 
@@ -454,11 +457,33 @@ document.addEventListener("DOMContentLoaded", async () => {
         player.progress += 2;
         if (player.progress >= player.timeToComplete) {
             player.progress = 0;
-            
+
             if (player.resourceItem <= 8) {
                 player.woodcuttingEXP += player.resourceEXP;
             } else {
                 player.fishingEXP += player.resourceEXP;
+            }
+
+            if (player.resourceItem <= 8) {
+                player.woodcuttingEXP += player.resourceEXP;
+
+                while (true) {
+                    if (player.woodcuttingEXP > experienceChart[player.woodcuttingLevel]) {
+                        player.woodcuttingLevel++;
+                    } else {
+                        break;
+                    };
+                }
+            } else {
+                player.fishingEXP += player.resourceEXP;
+
+                while (true) {
+                    if (player.fishingEXP > experienceChart[player.fishingLevel]) {
+                        player.fishingLevel++;
+                    } else {
+                        break;
+                    };
+                }
             }
 
             player.inventory[player.resourceItem] += 1;

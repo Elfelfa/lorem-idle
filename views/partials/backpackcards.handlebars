@@ -1,12 +1,13 @@
 {{#if amount}}
 <div class="inventoryCard flex justify-center  self-center m-2">
     <div class="insideinventoryCards">
-        <div class="axeName flex  justify-center p-3 px-6">Iron Axe</div>
+        <div class="axeName flex  justify-center p-3 px-6">{{name}}</div>
         <div class="flex justify-center m-1">
-            <img class="ironAxePic" src="https://art.pixilart.com/923cc3b26a6afb5.png" alt="image-description"
+            <img class="ironAxePic" src="{{item_icon}}" alt="image-description"
                 width="40" height="40">
         </div>
-        <div class="axeSpeed flex justify-center">Speed: 80%</div>
-        <div class="axeGold flex justify-center">Gold: 80gp</div>
+        {{!-- <div class="axeSpeed flex justify-center">Speed: 80%</div> --}}
+        <div class="axeGold flex justify-center">Value: {{value}}gp</div>
+        <div class="axeGold flex justify-center">Quantity: {{amount}}</div>
     </div>
-</div>
+</div>{{/if}}
