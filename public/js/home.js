@@ -196,15 +196,16 @@ const fishingBtn = async (e) => {
 
 
 const loginUpdate = async () => {
-    const userData = await fetch(`/api/user/myData`, {
+    const response = await fetch(`/api/user/myData`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
-
+    const userData = response.json();
+    console.log(userData);
     if (userData.ok) {
         console.log(player);
 
-        player.activeResource = userData.active_resource.id;
+        player.activeResource = userData.active_resource[0].id;
         player.woodcuttingLevel = userData.progresses[0].level;
         player.woodcuttingEXP = userData.progresses[0].experience;
         player.fishingLevel = userData.progresses[1].level;
@@ -230,7 +231,7 @@ const loginUpdate = async () => {
         // Subtracts that time from timePassed and iterates iterations by 1.
         // Divides timePassed by the active resource's time it takes to complete and adds that many iterations to iterations variable.
 
-        timePassed -= floor(userData.active_resource.seconds_to_complete - userData.active_resource.activeResource.progress);
+        timePassed -= floor(userData.active_resource.seconds_to_complete - parseFloat(userData.active_resource.activeResource.progress));
         iterations++;
         
         console.log(timePassed + ", " + iterations);
@@ -353,13 +354,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector("#shop-btn").addEventListener("click", shopBtn);
     
     
-    experienceChart = await fetch("../../assets/experience.json").then(r => { return r.json() }).catch(err => console.log(err));
+   const response = await fetch("/api/user/expChart", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    
+   });
 
-    experienceChart = await fetch('/user/expChart', {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    })
-
+   console.log(response.json);
+    const experienceChart = await response.json();
+   
+    console.log(experienceChart);
+    console.log("test");
     loginUpdate();
     setInterval(tickUpdate, tickRate);
 });
