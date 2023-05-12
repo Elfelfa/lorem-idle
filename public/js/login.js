@@ -22,13 +22,10 @@ const loginFunction = async (e) => {
 const signupFunction = async (e) => {
     e.preventDefault();
 
-    const email = document.querySelector("#email-signup").value.trim();
-    const username = document.querySelector("#username-signup").value.trim();
-    const password = document.querySelector("#password-signup").value.trim();
-    const timeUnix = Date.now();
-    const timestamp = dayjs.unix(timeUnix).format("YYYY/MM/DD/hh/mm/ss");
-    console.log(timeUnix);
-    console.log(timestamp);
+    let email = document.querySelector("#email-signup").value.trim();
+    let username = document.querySelector("#username-signup").value.trim();
+    let password = document.querySelector("#password-signup").value.trim();
+    let timestamp = dayjs().format("YYYY/MM/DD/hh/mm/ss");
 
     if (email && username && password) {
         const response = await fetch("/api/user/createuser", {

@@ -132,14 +132,63 @@ router.get("/:id", async (req, res) => {
 // Create a new User using a POST
 router.post("/createuser", async (req, res) => {
   try {
+    console.log(req.body);
+
     const userData = await User.create(req.body);
-    if (userData) {
-      req.session.save(() => {
-        req.session.user_id = userData.id;
-        req.session.logged_in = true;
-        res.status(200).json(userData);
-      });
-    }
+    
+    req.session.user_id = userData.id;
+    req.session.logged_in = true;
+    req.session.save(async () => {
+
+      try{
+        const skillData = await Progress.bulkCreate([
+          {
+            user_id: req.session.user_id,
+            skill_id: 1,
+            tool_id: null,
+            level: 1,
+            experience: 0
+          },
+          {
+            user_id: req.session.user_id,
+            skill_id: 2,
+            tool_id: null,
+            level: 1,
+            experience: 0
+          }
+        ]);} catch (err){
+          console.log(err);
+        }
+        try{
+        const activeRData = await Active_Resource.create({
+          user_id: req.session.user_id,
+          resource_id: 1
+        });} catch (err){
+          console.log(err);
+        }
+        let inventoryArray = [];
+    
+        for (var k = 1; k <= 18; k++) {
+          inventoryArray.push({
+            user_id: req.session.user_id,
+            item_id: k,
+            item_amount: 0,
+          });
+        }
+    
+        inventoryArray.push({
+          user_id: req.session.user_id,
+          item_id: 1000,
+          item_amount: 0
+        });
+    
+        try {
+        const invData = await Inventory.bulkCreate(inventoryArray);
+        } catch (err){
+          console.log(err);
+        }
+      res.json({ message: "Successfully logged in" });
+    });
   } catch (err) {
     res
       .status(500)
@@ -165,20 +214,11 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    if (req.session) {
-      req.session.regenerate(() => {
-        (req.session.user_id = userData.id),
-          (req.session.logged_in = true),
-          res.json({ message: "Successfully logged in" });
-      })
-    } else {
-      req.session.save(() => {
-        (req.session.user_id = userData.id),
-          (req.session.logged_in = true),
-          res.json({ message: "Successfully logged in" });
-      });
-    }
-
+    req.session.user_id = userData.id;
+    req.session.logged_in = true;
+    req.session.save(() => {
+      res.json({ message: "Successfully logged in" });
+    });
 
   } catch (err) {
     res
