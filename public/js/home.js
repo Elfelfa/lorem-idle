@@ -1,5 +1,6 @@
-// const experienceChart = require("../../assets/experience.json");
+
 const docBody = document.body;
+
 
 // Server tick rate in milliseconds 
 const tickRate = 600;
@@ -195,14 +196,16 @@ const fishingBtn = async (e) => {
 
 
 const loginUpdate = async () => {
-    const userData = await fetch(`/api/user/myData`, {
+    const response = await fetch(`/api/user/myData`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
-
+    const userData = response.json();
+    console.log(userData);
     if (userData.ok) {
+        console.log(player);
 
-        player.activeResource = userData.active_resource.id;
+        player.activeResource = userData.active_resource[0].id;
         player.woodcuttingLevel = userData.progresses[0].level;
         player.woodcuttingEXP = userData.progresses[0].experience;
         player.fishingLevel = userData.progresses[1].level;
@@ -210,13 +213,17 @@ const loginUpdate = async () => {
         player.gp = userData.inventories[userData.inventories.length - 1].item_amount;
         player.tools.woodcutting = userData.progresses[0].tool_id;
         player.tools.fishing = userData.progresses[1].tool_id;
-
+        
         for (let a = 0; a < player.inventory.length - 1; a++) {
             player.inventory[a] = userData.inventories[a].item_amount;
         }
 
+        console.log(player);
+
         var timePassed = await calcTimePassed(userData);
         var iterations = 0;
+
+        console.log(timePassed);
 
         //add authentication function if we have time. Code snippet in discord.
 
@@ -224,15 +231,24 @@ const loginUpdate = async () => {
         // Subtracts that time from timePassed and iterates iterations by 1.
         // Divides timePassed by the active resource's time it takes to complete and adds that many iterations to iterations variable.
 
-        timePassed -= floor(userData.active_resource.seconds_to_complete - userData.active_resource.activeResource.progress);
+        timePassed -= floor(userData.active_resource.seconds_to_complete - parseFloat(userData.active_resource.activeResource.progress));
         iterations++;
+        
+        console.log(timePassed + ", " + iterations);
+        
         iterations += floor(parseFloat(timePassed) / parseFloat(userData.active_resource.seconds_to_complete));
+        //transfer code
+        console.log(iterations);
+        console.log(player.woodcuttingEXP);
 
         if (userData.active_resource.skill_id == 1) {
             player.woodcuttingEXP += (iterations * userData.active_resource.exp_reward);
 
+            console.log(player.woodcuttingEXP);
+            
             if (player.woodcuttingEXP > experienceChart[player.woodcuttingLevel]) {
                 player.woodcuttingLevel++;
+                console.log(player.woodcuttingLevel);
             };
         } else {
             player.fishingEXP += (iterations * userData.active_resource.exp_reward);
@@ -244,11 +260,13 @@ const loginUpdate = async () => {
 
         player.inventory[userData.active_resource.item_id - 1] += iterations;
 
-        const response = await fetch(`/api/user/update`, {
-            method: "UPDATE",
-            body: { player },
-            headers: { "Content-Type": "application/json" },
-        });
+        console.log(player.inventory[userData.active_resource.item_id - 1]);
+
+        // const response = await fetch(`/api/user/update`, {
+        //     method: "UPDATE",
+        //     body: { player },
+        //     headers: { "Content-Type": "application/json" },
+        // });
     } else {
         alert("Error when processing login update request!");
     }
@@ -327,12 +345,26 @@ const calcTimePassed = async (data) => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+    
     document.querySelector("#profile-btn").addEventListener("click", profileBtn);
     document.querySelector("#backpack-btn").addEventListener("click", backpackBtn);
     document.querySelector("#woodcutting-btn").addEventListener("click", woodcuttingBtn);
     document.querySelector("#fishing-btn").addEventListener("click", fishingBtn);
     document.querySelector("#shop-btn").addEventListener("click", shopBtn);
+    
+    
+   const response = await fetch("/api/user/expChart", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    
+   });
 
+   console.log(response.json);
+    const experienceChart = await response.json();
+   
+    console.log(experienceChart);
+    console.log("test");
     loginUpdate();
     setInterval(tickUpdate, tickRate);
 });

@@ -1,19 +1,42 @@
 const router = require("express").Router();
-const { User, Active_Resource, Progress, Inventory, Resource } = require("../../models");
+const { User, Active_Resource, Progress, Inventory, Resource, Experience } = require("../../models");
 
 // Gather all user data of the client making the request
 router.get("/myData", async (req, res) => {
   try {
     const userData = await User.findOne({
-      where: { id: "1"},//req.session.user_id.toString() },
+      where: { id: req.session.user_id.toString()},
       attributes: { exclude: ['id', 'email', 'password'] },
       include: [{ model: Resource, through: { Active_Resource }, as: 'active_resource' },
                 { model: Progress, attributes: { exclude: ['id', 'user_id'] }, as: 'progresses' },
                 { model: Inventory, attributes: { exclude: ['id', 'user_id'] }, as: 'inventories' }]
     });
-
+    console.log(userData);
     if (userData) {
       res.status(200).json(userData);
+    }
+  } catch (err) {
+    res 
+      .status(500)
+      .json({ message: "Unable to grab user data. Error: " + err });
+  };
+});
+
+router.get("/expChart", async (req, res) => {
+  try {
+    const expData = await Experience.findAll({attributes: {exclude: ["id"]}});
+
+    const expChart = expData.map((data) => data.get({ plain: true }));
+
+    let chartArray = [];
+    for (let i = 0; i < expChart.length; i++) {
+      chartArray.push(expChart[i].exp);
+      
+    }
+    // console.log(expChart);
+
+    if (chartArray) {
+      res.status(200).json(chartArray);
     }
   } catch (err) {
     res 
