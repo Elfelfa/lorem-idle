@@ -1,4 +1,4 @@
-let experienceChart;
+
 const docBody = document.body;
 
 
