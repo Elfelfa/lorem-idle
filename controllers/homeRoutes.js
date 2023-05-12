@@ -16,7 +16,7 @@ const expChart = require("../assets/experience.json");
 
 router.get("/login", async (req, res) => {
   try {
-    res.render("login");
+    res.render("login", { check: true});
   } catch (err) {
     throw err;
   }
