@@ -7,11 +7,10 @@
         </div>
 
         <div id="fishingCardHolster" class="woodcuttingCards flex flex-wrap justify-center col-start-1 col-end-10 row-start-2 row-end-7 -mt-20">
-            {{log resources}}
             {{#each resources as |fish|}}
             {{> fishingcards activeFish=../activeFish }}
             {{/each}}
-
         </div>
     </div>
 </section>
+{{log resources}}

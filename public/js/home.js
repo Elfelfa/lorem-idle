@@ -183,7 +183,7 @@ const loginUpdate = async () => {
     });
 
     const userData = await response.json();
-    console.log(userData);
+    // console.log(userData);
 
     if (response.ok) {
         player.activeResource = userData.active_resource[0].id;
@@ -204,7 +204,7 @@ const loginUpdate = async () => {
         var timePassed = await calcTimePassed(userData);
         var iterations = 0;
 
-        console.log(timePassed);
+        // console.log(timePassed);
 
         //add authentication function if we have time. Code snippet in discord.
 
@@ -215,22 +215,22 @@ const loginUpdate = async () => {
         timePassed -= Math.floor(userData.active_resource[0].seconds_to_complete - parseFloat(userData.active_resource[0].activeResource.progress));
         iterations++;
 
-        console.log(timePassed + ", " + iterations);
+        // console.log(timePassed + ", " + iterations);
 
         iterations += Math.floor(parseFloat(timePassed) / parseFloat(userData.active_resource[0].seconds_to_complete));
         //transfer code
-        console.log(iterations);
-        console.log(player.woodcuttingEXP);
+        // console.log(iterations);
+        // console.log(player.woodcuttingEXP);
 
         if (userData.active_resource[0].skill_id == 1) {
             player.woodcuttingEXP += (iterations * userData.active_resource[0].exp_reward);
 
-            console.log(player.woodcuttingEXP);
+            // console.log(player.woodcuttingEXP);
 
             while(true) {
                 if (player.woodcuttingEXP > experienceChart[player.woodcuttingLevel]) {
                     player.woodcuttingLevel++;
-                    console.log(player.woodcuttingLevel);
+                    // console.log(player.woodcuttingLevel);
                 } else {
                     break;
                 };
@@ -243,13 +243,13 @@ const loginUpdate = async () => {
             };
         }
 
-        console.log(player.inventory);
+        // console.log(player.inventory);
 
         player.inventory[userData.active_resource[0].item_id - 1] += iterations;
 
-        console.log(player.inventory[userData.active_resource[0].item_id - 1]);
+        // console.log(player.inventory[userData.active_resource[0].item_id - 1]);
 
-        console.log(player);
+        // console.log(player);
         // const response = await fetch(`/api/user/loginUpdate`, {
         //      method: "PUT",
         //      body: { player },
@@ -280,9 +280,9 @@ const calcTimePassed = async (data) => {
     var t = dayjs().format('YYYY/MM/DD/hh/mm/ss');
     var newTS = t.split('/');
 
-    console.log(t);
-    console.log(oldTS);
-    console.log(newTS);
+    // console.log(t);
+    // console.log(oldTS);
+    // console.log(newTS);
 
     var timePassed;
 
@@ -293,8 +293,8 @@ const calcTimePassed = async (data) => {
         newTS[k] = parseInt(newTS[k]);
     };
 
-    console.log(newTS);
-    console.log(oldTS);
+    // console.log(newTS);
+    // console.log(oldTS);
 
     if ((newTS[0] - oldTS[0]) <= 0) {
         if ((newTS[1] - oldTS[1]) <= 0) {
@@ -321,9 +321,6 @@ const calcTimePassed = async (data) => {
     return timePassed;
 };
 
-const shopClick = (data) => {
-    console.log(data);
-  };
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -342,11 +339,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     });
 
-    console.log(response.json);
+    // console.log(response.json);
     experienceChart = await response.json();
 
-    console.log(experienceChart);
-    console.log("test");
+    // console.log(experienceChart);
+    // console.log("test");
     loginUpdate();
     setInterval(tickUpdate, tickRate);
 });

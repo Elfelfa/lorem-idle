@@ -50,7 +50,7 @@ router.get("/home/profile", async (req, res) => {
   //Add Auth helper after development.
   try {
     let id = req.session.user_id.toString();
-    console.log(req.session.user_id);
+    // console.log(req.session.user_id);
     const userData = await User.findByPk(id, {
       include: [{ model: Progress }],
     });
@@ -213,12 +213,18 @@ router.get("/home/fishing", async (req, res) => {
       }
     });
 
-    const itemIconData = await Item.findAll()
+    const itemIconData = await Item.findAll({ where: {skill_id: "2"}});
+
+    const itemIconDataObj = itemIconData.map(data => data.get({ plain: true }));
+    
+    
+
+    console.log(itemIconData[0].item_icon);
+
 
 
     let totalEXP = progressData[0].experience;
     let totalSkill = progressData[0].level;
-    console.log(progressData);
     const resourceData = await Resource.findAll({
       where: {
         skill_id: 2,
@@ -226,6 +232,16 @@ router.get("/home/fishing", async (req, res) => {
     });
 
     let fishResources = resourceData.map((data) => data.get({ plain: true }));
+  
+
+    const mergedData = resourceData.map(resource => {
+      const itemIconData = itemIconDataObj.find(icon => icon.id === resource.item_id);
+      return {
+        ...resource,
+        item_icon: itemIconData ? itemIconData.item_icon : null
+      };
+    });
+    console.log(mergedData)
 
     res.render(
       `partials/fishing`,
@@ -235,8 +251,7 @@ router.get("/home/fishing", async (req, res) => {
         level: totalSkill,
         expNeeded: expChart[totalSkill + 1],
         activeFish: 2,
-        resources: fishResources,
-        icon: itemIconData,
+        resources: mergedData
       },
       (err, rawHTML) => {
         if (!err) {

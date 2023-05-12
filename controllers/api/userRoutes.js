@@ -11,7 +11,7 @@ router.get("/myData", async (req, res) => {
                 { model: Progress, attributes: { exclude: ['id', 'user_id'] }, as: 'progresses' },
                 { model: Inventory, attributes: { exclude: ['id', 'user_id'] }, as: 'inventories' }]
     });
-    console.log(userData);
+    // console.log(userData);
     if (userData) {
       res.status(200).json(userData);
     }

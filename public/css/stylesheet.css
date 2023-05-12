@@ -426,3 +426,7 @@ div[role="progressbar"]::before {
     content: url('https://img.itch.zone/aW1nLzMzMzY4OTguZ2lm/original/0Ut41Y.gif');
    
 }
+
+#fish-img {
+    width: 130px;
+}
