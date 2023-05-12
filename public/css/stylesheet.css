@@ -372,10 +372,3 @@ div[role="progressbar"]::before {
     margin-top: 4rem;
 }
 
-.backpackImg {
-    width: 20px;
-        height: 20px;
-        position: relative;
-        display: inline-block;
-        margin: 50px;
-}
