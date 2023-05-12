@@ -52,7 +52,7 @@ router.get("/home/profile", async (req, res) => {
   try {
 
     let id = req.session.user_id.toString();
-    
+    console.log(req.session.user_id);
     const userData = await User.findByPk(id, {
       include: [{ model: Progress }],
     });
@@ -97,7 +97,6 @@ router.get("/home/woodcutting", async (req, res) => {
         skill_id: 1,
       },
     });
-    console.log(progressData);
     let totalEXP = progressData[0].experience;
     let totalSkill = progressData[0].level;
 
@@ -127,7 +126,6 @@ router.get("/home/woodcutting", async (req, res) => {
       },
       (err, rawHTML) => {
         if (!err) {
-          //console.log(rawHTML);
           res.send({ html: String(rawHTML) });
         } else {
           console.log(err);
@@ -142,20 +140,20 @@ router.get("/home/woodcutting", async (req, res) => {
   }
 });
 
+// Send users items to be rendered in the user's backpack
 router.get("/home/backpack", async (req, res) => {
   try {
-
     const id = req.session.user_id.toString();
-    const backpackData = await Inventory.findAll({ 
-      where: { 
-        user_id: "1"
+    const backpackData = await Inventory.findAll({
+      where: {
+        user_id: id,
       },
       include: {
         model: Item,
         attributes: {
-          exclude: ['skill_id', 'skill_name']
+          exclude: ["skill_id", "skill_name"],
+        },
       },
-      } 
     });
 
     let itemArray = [];
@@ -166,13 +164,12 @@ router.get("/home/backpack", async (req, res) => {
         name: backpackData[i].item.name,
         value: backpackData[i].item.value,
         item_icon: backpackData[i].item.item_icon,
-      }
+      };
       itemArray.push(newItemObj);
-      
     }
 
-    // let itemArrayPlain = itemArray.map(data => data.get({ plain: true }))
-    res.render("partials/backpack",
+    res.render(
+      "partials/backpack",
       {
         check: false,
         itemsObj: itemArray,
@@ -185,13 +182,34 @@ router.get("/home/backpack", async (req, res) => {
         }
       }
     );
-
-    console.log(backpackData[0].item.name);
-    console.log(itemArray);
-
   } catch (err) {
     throw err;
   }
-})
+});
+
+// Send available tools to the shop partial.
+router.get("/home/shop", async (req, res) => {
+  try {
+    const toolsData = await Tool.findAll();
+    const toolsDataObj = toolsData.map( data => data.get({ plain: true }));
+    res.render(
+      "partials/shop",
+      {
+        check: false,
+        tool: toolsDataObj,
+      },
+      (err, rawHTML) => {
+        if (!err) {
+          res.send({ html: String(rawHTML) });
+        } else {
+          console.log(err);
+        }
+      }
+    );
+  } catch (err) {
+    throw err;
+  }
+});
+
 
 module.exports = router;
