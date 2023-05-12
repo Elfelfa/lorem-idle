@@ -103,32 +103,32 @@ const backpackBtn = async (e) => {
 const shopBtn = async (e) => {
     e.preventDefault();
     const response = await fetch("/home/shop", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
     });
-
+  
     if (response.ok) {
-        const checkNodes = await document.getElementById("oldNode");
-
-        if (checkNodes) {
-            checkNodes.parentNode.removeChild(checkNodes);
-        }
-
-        const data = await response.json();
-        const rawHTML = data.html;
-        const myThing = document.createElement("div");
-        myThing.innerHTML = rawHTML;
-        docBody.appendChild(myThing);
-
-        while (myThing.firstChild) {
-            myThing.parentNode.insertBefore(myThing.firstChild, myThing);
-        }
-
-        myThing.parentNode.removeChild(myThing);
+      const checkNodes = await document.getElementById("oldNode");
+  
+      if (checkNodes) {
+        checkNodes.parentNode.removeChild(checkNodes);
+      }
+  
+      const data = await response.json();
+      const rawHTML = data.html;
+      const myThing = document.createElement("div");
+      myThing.innerHTML = rawHTML;
+      docBody.appendChild(myThing);
+  
+      while (myThing.firstChild) {
+        myThing.parentNode.insertBefore(myThing.firstChild, myThing);
+      }
+  
+      myThing.parentNode.removeChild(myThing);
     } else {
-        alert("Unable to load profile");
+      alert("Unable to load profile");
     }
-};
+  };
 
 const woodcuttingBtn = async (e) => {
     e.preventDefault();
@@ -191,6 +191,8 @@ const fishingBtn = async (e) => {
         alert("Unable to load profile");
     }
 };
+
+
 
 const loginUpdate = async () => {
     const userData = await fetch(`/api/user/myData`, {

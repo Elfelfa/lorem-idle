@@ -82,6 +82,7 @@ body {
 
 .profile:hover,
 .backpack:hover,
+.shop:hover,
 .woodcutting:hover,
 .fishing:hover {
     color: var(--hovercolor);
@@ -89,6 +90,7 @@ body {
 
 .profile:active,
 .backpack:active,
+.shop:active,
 .woodcutting:active,
 .fishing:active {
     color: var(--hovercolor);
@@ -96,7 +98,13 @@ body {
     font-size: 15px;
 }
 
-.generalProfile,
+.generalProfile {
+    background-color: var(--menubackground);
+    color: white;
+    font-family: var(--font1);
+    border: 2px double var(--text);
+}
+
 .backpackContainer {
     background-color: var(--menubackground);
     color: white;
@@ -270,4 +278,88 @@ div[role="progressbar"]::before {
     counter-reset: percentage var(--value);
     content: counter(percentage) '%';
 }
+
+.signInPage {
+    background-color: var(--menubackground);
+    color: var(--text);
+    font-family: var(--font2);
+    border: 3px double var(--text);
+}
+
+.welcomeTitle {
+    color: var(--menubackground);
+    font-size: 50px;
+    font-family: var(--font2);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+}
+
+.welcomeSubTitle {
+    font-size: 20px;
+}
+
+.signUpSubtitles {
+    font-size: 25px;
+}
+
+.form-input {
+    background-color: var(--menubackgroundsolid);
+    border: 1px solid var(--text);
+}
+
+.form-input:hover {
+    border: 1px solid var(--hovercolor);
+}
+
+.form-input:active {
+    color: var(--hovercolor);
+    border: 1px solid var(--hovercolor);
+}
+
+.password-focused {
+    color: var(--hovercolor);
+}
+
+.username-focused,
+.email-focused,
+.name-focused,
+.pswrd-focused {
+    color: var(--hovercolor);
+}
+
+.loginButton {
+    background-color: var(--menubackgroundsolid);
+    border: 2px double var(--text);
+}
+
+.loginButton:hover {
+    color: var(--hovercolor);
+    border: 2px double var(--hovercolor);
+}
+
+.profileTitle {
+    font-size: 25px;
+
+}
+
+.profileInfo {
+    background-color: var(--menubackgroundsolid);
+}
+
+.woodcuttingCard:hover .treeText {
+    color: var(--hovercolor);
+}
+
+.woodcuttingCard:hover .insideWoodcuttingCards {
+    border: 3px solid var(--hovercolor);
+}
+
+.woodcuttingCard:focus .treeText {
+    color: var(--hovercolor);
+}
+
+.woodcuttingCard:focus .insideWoodcuttingCards {
+    border: 3px solid var(--hovercolor);
+}
+
 

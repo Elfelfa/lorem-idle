@@ -34,6 +34,14 @@ Tool.init(
                 max: 1.0,
                 min: 0.4
             }
+        },
+        value: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        tool_icon: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },
     {
