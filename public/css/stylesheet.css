@@ -96,7 +96,13 @@ body {
     font-size: 15px;
 }
 
-.generalProfile,
+.generalProfile{
+    background-color: var(--menubackground);
+    color: white;
+    font-family: var(--font1);
+    border: 2px double var(--text);
+}
+
 .backpackContainer {
     background-color: var(--menubackground);
     color: white;
@@ -324,4 +330,13 @@ div[role="progressbar"]::before {
 .loginButton:hover {
     color: var(--hovercolor);
     border: 2px double var(--hovercolor);
+}
+
+.profileTitle {
+    font-size: 25px;
+   
+}
+
+.profileInfo {
+background-color: var(--menubackgroundsolid);
 }
