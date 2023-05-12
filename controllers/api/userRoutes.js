@@ -135,12 +135,12 @@ router.post("/createuser", async (req, res) => {
     console.log(req.body);
 
     const userData = await User.create(req.body);
-    
+
     req.session.user_id = userData.id;
     req.session.logged_in = true;
     req.session.save(async () => {
 
-      try{
+      try {
         const skillData = await Progress.bulkCreate([
           {
             user_id: req.session.user_id,
@@ -156,37 +156,39 @@ router.post("/createuser", async (req, res) => {
             level: 1,
             experience: 0
           }
-        ]);} catch (err){
-          console.log(err);
-        }
-        try{
+        ]);
+      } catch (err) {
+        console.log(err);
+      }
+      try {
         const activeRData = await Active_Resource.create({
           user_id: req.session.user_id,
           resource_id: 1
-        });} catch (err){
-          console.log(err);
-        }
-        let inventoryArray = [];
-    
-        for (var k = 1; k <= 18; k++) {
-          inventoryArray.push({
-            user_id: req.session.user_id,
-            item_id: k,
-            item_amount: 0,
-          });
-        }
-    
+        });
+      } catch (err) {
+        console.log(err);
+      }
+      let inventoryArray = [];
+
+      for (var k = 1; k <= 18; k++) {
         inventoryArray.push({
           user_id: req.session.user_id,
-          item_id: 1000,
-          item_amount: 0
+          item_id: k,
+          item_amount: 0,
         });
-    
-        try {
+      }
+
+      inventoryArray.push({
+        user_id: req.session.user_id,
+        item_id: 1000,
+        item_amount: 0
+      });
+
+      try {
         const invData = await Inventory.bulkCreate(inventoryArray);
-        } catch (err){
-          console.log(err);
-        }
+      } catch (err) {
+        console.log(err);
+      }
       res.json({ message: "Successfully logged in" });
     });
   } catch (err) {
@@ -199,24 +201,26 @@ router.post("/createuser", async (req, res) => {
 // User Login using POST
 router.post("/login", async (req, res) => {
   try {
-    const userData = await User.findOne({
-      where: { username: req.body.username },
-    });
-    if (!userData) {
-      res.status(400).json({ message: "Incorrect Username or Password" });
-      return;
-    }
-
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res.status(400).json({ message: "Incorrect Username or Password" });
-      return;
-    }
-
+    
     req.session.user_id = userData.id;
     req.session.logged_in = true;
-    req.session.save(() => {
+    req.session.save(async () => {
+      const userData = await User.findOne({
+        where: { username: req.body.username },
+      });
+      if (!userData) {
+        res.status(400).json({ message: "Incorrect Username or Password" });
+        return;
+      }
+  
+      const validPassword = await userData.checkPassword(req.body.password);
+  
+      if (!validPassword) {
+        res.status(400).json({ message: "Incorrect Username or Password" });
+        return;
+      }
+  
+
       res.json({ message: "Successfully logged in" });
     });
 
