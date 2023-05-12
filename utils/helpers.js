@@ -1,6 +1,5 @@
 module.exports = {
     calcTimePassed: async (data) => {
-        const userData = data;
         
         /////////////////////////////////////////
         // Timestamp array index definitions:  //
@@ -12,7 +11,7 @@ module.exports = {
         // 5: ss                               //
         /////////////////////////////////////////
 
-        var oldTS = userData.timestamp.split('/');
+        var oldTS = data.timestamp.split('/');
         var t = dayjs().format('YYYY/MM/DD/hh/mm/ss');
         var newTS = t.split('/');
 
