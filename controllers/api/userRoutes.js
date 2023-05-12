@@ -5,13 +5,13 @@ const { User, Active_Resource, Progress, Inventory, Resource, Experience } = req
 router.get("/myData", async (req, res) => {
   try {
     const userData = await User.findOne({
-      where: { id: "1"},//req.session.user_id.toString() },
+      where: { id: req.session.user_id.toString()},
       attributes: { exclude: ['id', 'email', 'password'] },
       include: [{ model: Resource, through: { Active_Resource }, as: 'active_resource' },
                 { model: Progress, attributes: { exclude: ['id', 'user_id'] }, as: 'progresses' },
                 { model: Inventory, attributes: { exclude: ['id', 'user_id'] }, as: 'inventories' }]
     });
-
+    console.log(userData);
     if (userData) {
       res.status(200).json(userData);
     }
@@ -24,12 +24,19 @@ router.get("/myData", async (req, res) => {
 
 router.get("/expChart", async (req, res) => {
   try {
-    const expData = await Experience.findAll();
+    const expData = await Experience.findAll({attributes: {exclude: ["id"]}});
 
     const expChart = expData.map((data) => data.get({ plain: true }));
 
-    if (expChart) {
-      res.status(200).json({ expChart });
+    let chartArray = [];
+    for (let i = 0; i < expChart.length; i++) {
+      chartArray.push(expChart[i].exp);
+      
+    }
+    // console.log(expChart);
+
+    if (chartArray) {
+      res.status(200).json(chartArray);
     }
   } catch (err) {
     res 
