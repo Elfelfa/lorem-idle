@@ -27,7 +27,7 @@ router.get("/login", async (req, res) => {
 
 router.get("/home", async (req, res) => {
   try {
-    res.render("home", {check: true });
+    res.render("home", { check: true });
   } catch (err) {
     res
       .status(500)
@@ -39,7 +39,7 @@ router.get("/home", async (req, res) => {
 router.put("/home/init", async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id);
-    
+
 
     console.log(req.body.updateObj.updateTime);
 
@@ -131,53 +131,46 @@ router.put("/home/tickUpdate", async (req, res) => {
       }
     );
 
-    const progressDataWC = await Progress.update(
-      {
-        level: req.body.player.woodcuttingLevel,
-        experience: req.body.player.woodcuttingEXP
-      },
-      {
-        where: { user_id: req.session.user_id, skill_id: 1 }
-      }
-    );
-
-
-    console.log(req.body.player.fishingLevel);
-    console.log(req.body.player.woodcuttingLevel);
-    console.log(req.body.player.fishingEXP);
-    console.log(req.body.player.woodcuttingEXP);
-
-
-    const progressDataFSH = await Progress.update(
-      {
-        level: req.body.player.fishingLevel,
-        experience: req.body.player.fishingEXP
-      },
-      {
-        where: { user_id: req.session.user_id, skill_id: 2 }
-      }
-    );
-
-    let invArray = []
-
-    for (let i = 0; i < 18; i++) {
-      invArray.push({ amount: req.body.player.inventory[i], itemId: (i + 1) });
-    };
-    try {
-      const inventoryData = await Promise.all(
-        invArray.map((item, index) => {
-          return Inventory.update(
-            { item_amount: item.amount },
-            { where: { user_id: req.session.user_id, item_id: item.itemId } }
-          );
-        })
-      );
-    } catch (err) {
-      console.log(err);
-    }
-
-
     if (req.body.player.activeResource) {
+      const progressDataWC = await Progress.update(
+        {
+          level: req.body.player.woodcuttingLevel,
+          experience: req.body.player.woodcuttingEXP
+        },
+        {
+          where: { user_id: req.session.user_id, skill_id: 1 }
+        }
+      );
+
+      const progressDataFSH = await Progress.update(
+        {
+          level: req.body.player.fishingLevel,
+          experience: req.body.player.fishingEXP
+        },
+        {
+          where: { user_id: req.session.user_id, skill_id: 2 }
+        }
+      );
+
+      let invArray = []
+
+      for (let i = 0; i < 18; i++) {
+        invArray.push({ amount: req.body.player.inventory[i], itemId: (i + 1) });
+      };
+      try {
+        const inventoryData = await Promise.all(
+          invArray.map((item, index) => {
+            return Inventory.update(
+              { item_amount: item.amount },
+              { where: { user_id: req.session.user_id, item_id: item.itemId } }
+            );
+          })
+        );
+      } catch (err) {
+        console.log(err);
+      }
+
+
       const resourceData = await Active_Resource.update(
         {
           progress: req.body.player.progress
@@ -186,6 +179,7 @@ router.put("/home/tickUpdate", async (req, res) => {
           where: { user_id: req.session.user_id }
         }
       )
+
     }
 
     res.status(200).json();
@@ -296,7 +290,7 @@ router.get("/home/woodcutting", async (req, res) => {
 
     for (let i = 0; i < wcResources.length; i++) {
       if (activeData.resource_id === wcResources[i].id) {
-        totalProg = ((parseFloat(activeData.progress / wcResources[i].seconds_to_complete)).toFixed(2) * 100).toFixed(2); 
+        totalProg = ((parseFloat(activeData.progress / wcResources[i].seconds_to_complete)).toFixed(2) * 100).toFixed(2);
       }
     }
     console.log(activeData.progress);
@@ -307,10 +301,10 @@ router.get("/home/woodcutting", async (req, res) => {
       `partials/woodcutting`,
       {
         check: false,
-        currentEXP: totalEXP,
+        currentEXP: totalEXP - expChart[totalSkill],
         progress: totalProg.toString(),
         level: totalSkill,
-        expNeeded: expChart[totalSkill + 1],
+        expNeeded: expChart[totalSkill + 1] - expChart[totalSkill],
         activeTree: activeData.resource_id,
         resources: wcResources,
       },
@@ -341,11 +335,11 @@ router.get("/home/fishing", async (req, res) => {
       }
     });
 
-    const itemIconData = await Item.findAll({ where: {skill_id: "2"}});
+    const itemIconData = await Item.findAll({ where: { skill_id: "2" } });
 
     const itemIconDataObj = itemIconData.map(data => data.get({ plain: true }));
-    
-    
+
+
 
     console.log(itemIconData[0].item_icon);
 
@@ -360,7 +354,7 @@ router.get("/home/fishing", async (req, res) => {
     });
 
     let fishResources = resourceData.map((data) => data.get({ plain: true }));
-  
+
 
     const mergedData = resourceData.map(resource => {
       const itemIconData = itemIconDataObj.find(icon => icon.id === resource.item_id);

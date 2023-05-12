@@ -96,7 +96,8 @@
         "exp_reward": 5,
         "item_id": 10,
         "lvl_required": 1,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": ""
     },
     {
         "name": "Herring",
@@ -105,7 +106,8 @@
         "exp_reward": 25,
         "item_id": 11,
         "lvl_required": 15,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": ""
     },
     {
         "name": "Anchovies",
@@ -114,7 +116,8 @@
         "exp_reward": 50,
         "item_id": 12,
         "lvl_required": 30,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": ""
     },
     {
         "name": "Trout",
@@ -123,7 +126,8 @@
         "exp_reward": 150,
         "item_id": 13,
         "lvl_required": 35,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": ""
     },
     {
         "name": "Salmon",
@@ -132,7 +136,8 @@
         "exp_reward": 300,
         "item_id": 14,
         "lvl_required": 45,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": ""
     },
     {
         "name": "Lobster",
@@ -141,7 +146,8 @@
         "exp_reward": 350,
         "item_id": 15,
         "lvl_required": 50,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": ""
     },
     {
         "name": "Swordfish",
@@ -150,7 +156,8 @@
         "exp_reward": 500,
         "item_id": 16,
         "lvl_required": 60,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": ""
     },
     {
         "name": "Monkfish",
@@ -159,7 +166,8 @@
         "exp_reward": 1000,
         "item_id": 17,
         "lvl_required": 75,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": ""
     },
     {
         "name": "Shark",
@@ -168,6 +176,7 @@
         "exp_reward": 2000,
         "item_id": 18,
         "lvl_required": 90,
-        "seconds_to_complete": 20
+        "seconds_to_complete": 20,
+        "item_icon": ""
     }
 ]
