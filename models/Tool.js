@@ -28,7 +28,7 @@ Tool.init(
             allowNull: false,
         },
         modifier: {
-            type: DataTypes.DECIMAL(1,2),
+            type: DataTypes.DECIMAL,
             allowNull: false,
             validate: {
                 max: 1.0,
@@ -38,6 +38,10 @@ Tool.init(
         value: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        tool_icon: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },
     {
