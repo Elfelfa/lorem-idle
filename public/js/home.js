@@ -124,22 +124,20 @@ const woodcuttingBtn = async (e) => {
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
 
-        if (checkNodes) {
-            checkNodes.parentNode.removeChild(checkNodes);
-        }
+        const inject = await htmlInjection(checkNodes, response);
 
-        const data = await response.json();
-        const rawHTML = data.html;
-        const myThing = document.createElement('div');
-        myThing.innerHTML = rawHTML;
-        docBody.appendChild(myThing);
+        const woodcuttingClick = (data) => {
+            console.log(data.parentElement.getAttribute("data-id"));
+          };
+          const woodcuttingBtns = document.getElementById("woodcuttingCardHolster");
 
-        while (myThing.firstChild) {
-            myThing.parentNode.insertBefore(myThing.firstChild,
-                myThing);
-        }
+        woodcuttingBtns.addEventListener('click', function(e) {
+           if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
+            e.stopPropagation();
+            woodcuttingClick(e.target);
+           }
+          });
 
-        myThing.parentNode.removeChild(myThing);
     } else {
         alert("Unable to load profile");
     }
@@ -155,22 +153,21 @@ const fishingBtn = async (e) => {
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
 
-        if (checkNodes) {
-            checkNodes.parentNode.removeChild(checkNodes);
-        }
+        
+        const inject = await htmlInjection(checkNodes, response);
 
-        const data = await response.json();
-        const rawHTML = data.html;
-        const myThing = document.createElement('div');
-        myThing.innerHTML = rawHTML;
-        docBody.appendChild(myThing);
+        const fishingClick = (data) => {
+            console.log(data.parentElement.getAttribute("data-id"));
+          };
+          const fishingBtns = document.getElementById("fishingCardHolster");
 
-        while (myThing.firstChild) {
-            myThing.parentNode.insertBefore(myThing.firstChild,
-                myThing);
-        }
+        fishingBtns.addEventListener('click', function(e) {
+           if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
+            e.stopPropagation();
+            fishingClick(e.target);
+           }
+          });
 
-        myThing.parentNode.removeChild(myThing);
     } else {
         alert("Unable to load profile");
     }
@@ -185,6 +182,7 @@ const loginUpdate = async () => {
     });
 
     const userData = await response.json();
+
 
     if (response.ok) {
         player.activeResource = userData.active_resource[0].id;
@@ -204,7 +202,7 @@ const loginUpdate = async () => {
 
         var timePassed = await calcTimePassed(userData);
 
-        console.log(timePassed);
+        // console.log(timePassed);
 
         var updateObj = {
             updateTime: timePassed,
@@ -225,12 +223,14 @@ const loginUpdate = async () => {
         timePassed -= Math.floor(userData.active_resource[0].seconds_to_complete - parseFloat(userData.active_resource[0].activeResource.progress));
         iterations++;
 
+
         iterations += Math.floor(parseFloat(timePassed) / parseFloat(userData.active_resource[0].seconds_to_complete));
         updateObj.totalItems = iterations;
 
         if (userData.active_resource[0].skill_id == 1) {
             updateObj.totalExp += (iterations * userData.active_resource[0].exp_reward);
             player.woodcuttingEXP += updateObj.totalExp;
+
 
             while (true) {
                 if (player.woodcuttingEXP > experienceChart[player.woodcuttingLevel]) {
@@ -253,6 +253,7 @@ const loginUpdate = async () => {
                 };
             }
         }
+
 
         player.inventory[userData.active_resource[0].item_id - 1] += iterations;
 
@@ -303,6 +304,7 @@ const calcTimePassed = async (data) => {
     var t = dayjs().format('YYYY/MM/DD/hh/mm/ss');
     var newTS = t.split('/');
 
+
     console.log(oldTS);
     console.log(newTS);
 
@@ -314,6 +316,7 @@ const calcTimePassed = async (data) => {
         oldTS[k] = parseInt(oldTS[k]);
         newTS[k] = parseInt(newTS[k]);
     };
+
 
     console.log(oldTS);
     console.log(newTS);
@@ -369,6 +372,7 @@ const calcTimePassed = async (data) => {
     return timePassed;
 };
 
+
 const shopClick = (data) => {
     console.log(data);
 };
@@ -389,6 +393,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         headers: { "Content-Type": "application/json" },
 
     });
+
 
     experienceChart = await response.json();
 

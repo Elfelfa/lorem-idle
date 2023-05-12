@@ -41,6 +41,10 @@ Resource.init(
             validate: {
                 min: 1
             }
+        },
+        item_icon: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },
     {
