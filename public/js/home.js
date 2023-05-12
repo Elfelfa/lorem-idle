@@ -99,14 +99,16 @@ const shopBtn = async (e) => {
         const inject = await htmlInjection(checkNodes, response);
 
         const shopClick = (data) => {
-            console.log(data.getAttribute("data-id"));
-        };
+            console.log(data.parentElement.getAttribute("data-id"));
+          };
+          const shopBtns = document.getElementById("shopCardHolster");
 
-        document.querySelector(".shopCard").addEventListener('click', function (e) {
+        shopBtns.addEventListener('click', function(e) {
+           if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
             e.stopPropagation();
             shopClick(e.target);
-        });
-
+           }
+          });
     } else {
         alert("Unable to load profile");
     }
