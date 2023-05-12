@@ -274,7 +274,7 @@ const loginUpdate = async () => {
                     break;
                 };
             }
-        } else {
+        } else if (userData.active_resource[0].skill_id == 2) {
             updateObj.totalExp += (iterations * userData.active_resource[0].exp_reward);
             player.fishingEXP += updateObj.totalExp;
 
