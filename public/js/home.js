@@ -156,22 +156,21 @@ const fishingBtn = async (e) => {
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
 
-        if (checkNodes) {
-            checkNodes.parentNode.removeChild(checkNodes);
-        }
+        
+        const inject = await htmlInjection(checkNodes, response);
 
-        const data = await response.json();
-        const rawHTML = data.html;
-        const myThing = document.createElement('div');
-        myThing.innerHTML = rawHTML;
-        docBody.appendChild(myThing);
+        const fishingClick = (data) => {
+            console.log(data.parentElement.getAttribute("data-id"));
+          };
+          const fishingBtns = document.getElementById("fishingCardHolster");
 
-        while (myThing.firstChild) {
-            myThing.parentNode.insertBefore(myThing.firstChild,
-                myThing);
-        }
+        fishingBtns.addEventListener('click', function(e) {
+           if (e.target && (e.target.matches("div") || (e.target.matches("img")))) {
+            e.stopPropagation();
+            fishingClick(e.target);
+           }
+          });
 
-        myThing.parentNode.removeChild(myThing);
     } else {
         alert("Unable to load profile");
     }

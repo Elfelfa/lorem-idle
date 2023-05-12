@@ -1,18 +1,15 @@
 <div class="woodcuttingCard flex justify-center self-center m-4">
-    <div class="insideWoodcuttingCards">
-        <div class="treeText flex shrink justify-center m-2">{{name}}</div>
-        <div>
-            <div class="treeContainer">
-                <div class="flex justify-center content-center m-1" role="progressbar" aria-valuenow="10"
-                    aria-valuemin="0" aria-valuemax="100" style="--value:10"><img class="treeImage mb-24"
-                        src="{{icon}}"
-                        alt="image-description" width="200" height="200"></div>
-    
+    <div data-id="{{id}}" class="insideWoodcuttingCards">
+        <div class="treeText flex shrink justify-center m-2">{{name}}</div>    
+            <div data-id="{{id}}" class="treeContainer">
+                <div data-id="{{id}}" class="flex justify-center content-center m-1" role="progressbar" aria-valuenow="10"
+                    aria-valuemin="0" aria-valuemax="100" style="--value:10">
+                    <img class="treeImage mb-24" src="{{icon}}" alt="image-description" width="200" height="200"> 
+                </div>
                 {{#if_eq id activeFish}}
                 <div class="percentText flex justify-center mt-2">0% DONE</div>
                 {{/if_eq}}
             </div>
-        </div>
     </div>
 </div>
 
