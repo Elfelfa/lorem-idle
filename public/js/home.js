@@ -95,21 +95,18 @@ const shopBtn = async (e) => {
     if (response.ok) {
         const checkNodes = await document.getElementById("oldNode");
 
-        if (checkNodes) {
-            checkNodes.parentNode.removeChild(checkNodes);
-        }
 
-        const data = await response.json();
-        const rawHTML = data.html;
-        const myThing = document.createElement("div");
-        myThing.innerHTML = rawHTML;
-        docBody.appendChild(myThing);
+        const inject = await htmlInjection(checkNodes, response);
 
-        while (myThing.firstChild) {
-            myThing.parentNode.insertBefore(myThing.firstChild, myThing);
-        }
+        const shopClick = (data) => {
+            console.log(data.getAttribute("data-id"));
+          };
 
-        myThing.parentNode.removeChild(myThing);
+        document.querySelector(".shopCard").addEventListener('click', function(e) {
+            e.stopPropagation();
+            shopClick(e.target);
+          });
+       
     } else {
         alert("Unable to load profile");
     }
@@ -324,6 +321,10 @@ const calcTimePassed = async (data) => {
     return timePassed;
 };
 
+const shopClick = (data) => {
+    console.log(data);
+  };
+
 document.addEventListener("DOMContentLoaded", async () => {
 
 
@@ -333,6 +334,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector("#fishing-btn").addEventListener("click", fishingBtn);
     document.querySelector("#shop-btn").addEventListener("click", shopBtn);
 
+    
 
     const response = await fetch("/api/user/expChart", {
         method: "GET",
@@ -348,3 +350,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     loginUpdate();
     setInterval(tickUpdate, tickRate);
 });
+
+const htmlInjection = async (checkNodes, response) => {
+    if (checkNodes) {
+        checkNodes.parentNode.removeChild(checkNodes);
+    }
+
+    const data = await response.json();
+    const rawHTML = data.html;
+    const myThing = document.createElement("div");
+    myThing.innerHTML = rawHTML;
+    docBody.appendChild(myThing);
+
+    while (myThing.firstChild) {
+        myThing.parentNode.insertBefore(myThing.firstChild, myThing);
+    }
+
+    myThing.parentNode.removeChild(myThing);
+
+};

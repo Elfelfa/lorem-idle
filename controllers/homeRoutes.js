@@ -12,7 +12,7 @@ const {
   Inventory,
   Active_Resource,
 } = require("../models");
-// const expChart = require("../assets/experience.json");
+const expChart = require("../assets/experience.json");
 
 router.get("/login", async (req, res) => {
   try {

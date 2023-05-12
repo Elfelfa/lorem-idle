@@ -10,7 +10,22 @@
                 <div class="percentText flex justify-center m-2">0% DONE</div>
             </div>
         </div>
-        {{log activeTree}}
+
+    </div>
+</button>
+
+
+<button class="woodcuttingCard flex justify-center h-80 self-center m-4">
+    <div class="insideWoodcuttingCards">
+        <div class="treeText flex shrink justify-center">{{name}}</div>
+        <div>
+            <img class="treeImage border-4 border-white rounded-full m-4"
+                src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/db21b3bc-8d2c-40ed-b627-0f9cdfe340b6/ddp8kr0-ede82974-6bb9-4469-b1cb-7c0f6f5d2902.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2RiMjFiM2JjLThkMmMtNDBlZC1iNjI3LTBmOWNkZmUzNDBiNlwvZGRwOGtyMC1lZGU4Mjk3NC02YmI5LTQ0NjktYjFjYi03YzBmNmY1ZDI5MDIuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.eWBS6G3TnHeg0UaujtN1xrYnlDm8evusa4v46ja3KZU"
+                alt="image-description" width="200" height="200">
+        </div>
+
+
+
         {{#if_eq id activeTree}}
         <div class="percentText flex justify-center mt-2">0% DONE</div>
         {{/if_eq}}
