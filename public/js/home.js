@@ -237,7 +237,7 @@ const loginUpdate = async () => {
         console.log(timePassed + ", " + iterations);
         
         iterations += floor(parseFloat(timePassed) / parseFloat(userData.active_resource.seconds_to_complete));
-        
+        //transfer code
         console.log(iterations);
         console.log(player.woodcuttingEXP);
 
