@@ -1,0 +1,15 @@
+<section class="container mx-auto col-start-5 grid flex self-center col-end-10 h-[60%]" id="oldNode">
+    <div class="generalProfile flex flex-col justify-center">
+        <h1 class="profileTitle  flex justify-center ">Welcome back, {{username}}</h1>
+        <div class="text-center  mt-3">Time Away: {{timeAway}}</div>
+        <div class="grid grid-cols-2 mt-4">
+            <div class=" text-center col-span-2">Since last login:</div>
+            <div class="profileInfo text-center border-t-2 border-white ml-2 my-1 p-1">XP gained: {{totalEXP}}</div>
+            <div class="profileInfo text-center border-t-2 border-white mr-2 my-1 p-1">Resources gathered: {{totalItems}}</div>
+            <div class="profileInfo text-center border-t-2 border-white ml-2 my-1 p-1 mb-3">Woodcutting levels gained: {{totalWC}}
+            </div>
+            <div class="profileInfo text-center border-t-2 border-white mr-2 my-1 p-1 mb-3">Fishing levels gained: {{totalFSH}}
+            </div>
+        </div>
+    </div>
+</section>
