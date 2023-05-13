@@ -17,38 +17,9 @@ const {
 } = require("../models");
 const expChart = require("../assets/experience.json");
 
-// User Login using POST
-router.post("/", async (req, res) => {
-  try {
-    const userData = await User.findOne({
-      where: { username: req.body.username },
-    });
-    if (!userData) {
-      res.status(400).json({ message: "Incorrect Username or Password" });
-      return;
-    }
 
-    const validPassword = await userData.checkPassword(req.body.password);
-  
-    if (!validPassword) {
-      res.status(400).json({ message: "Incorrect Username or Password" });
-      return;
-    }
-    
-    req.session.user_id = userData.id;
-    req.session.logged_in = true;
-    req.session.save(async () => {
-      res.json({ message: "Successfully logged in" });
-    });
 
-  } catch (err) {
-    res
-      .status(400)
-      .json({ message: "Unable to complete login. Error: " + err });
-  }
-});
-
-router.get("/login", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     res.render("login", { check: true });
   } catch (err) {
