@@ -28,13 +28,13 @@
   Enjoy a stress free experience that an AFK RPG provides while reviewing the code to learn more about RESTFUL APIs.
   
   ## ScreenShots:
-  ![Login Screen](![image](https://github.com/Elfelfa/lorem-idle/assets/16827480/6674c253-9c92-4f1d-95a6-7d500bcee8a1))
+  ![image](https://github.com/Elfelfa/lorem-idle/assets/16827480/8a85a5a4-8f27-480e-b813-91e005008577)
 
-  ![Profile Screen](![image](https://github.com/Elfelfa/lorem-idle/assets/16827480/570eae5b-350f-420e-bafa-e8628ea2b5fc))
+  ![image](https://github.com/Elfelfa/lorem-idle/assets/16827480/570eae5b-350f-420e-bafa-e8628ea2b5fc)
 
-  ![Shop Screen](![image](https://github.com/Elfelfa/lorem-idle/assets/16827480/7566ea30-577a-43e7-99be-43417ab40f3e))
+  ![image](https://github.com/Elfelfa/lorem-idle/assets/16827480/7566ea30-577a-43e7-99be-43417ab40f3e)
 
-  ![Woodcutting Screen](![image](https://github.com/Elfelfa/lorem-idle/assets/16827480/4b06ac4a-eb0e-4844-a14a-ad90b6612207))
+  ![image](https://github.com/Elfelfa/lorem-idle/assets/16827480/4b06ac4a-eb0e-4844-a14a-ad90b6612207)
 
   ---
 
