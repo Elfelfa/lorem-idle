@@ -21,7 +21,7 @@
   
   ## Installation:
   
-  Click [here](https://warm-tundra-68123.herokuapp.com/) to view the application deployed with heroku (NOTE: Signup currently bugged. To Demo, sign in as username: dev1 , password: devpassword1). If you would like to use the code for yourself, you can clone the code down to a local file to explore the application in your code editor of choice.
+  Click [here](https://warm-tundra-68123.herokuapp.com/) to view the application deployed with heroku (NOTE: To Demo, sign in as username: dev1 , password: devpassword1). If you would like to use the code for yourself, you can clone the code down to a local file to explore the application in your code editor of choice.
   
   ## Usage:
   
